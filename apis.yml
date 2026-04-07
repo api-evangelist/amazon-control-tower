@@ -8,11 +8,11 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Governance
-  - Multi-Account
-  - Landing Zone
-  - Compliance
   - AWS
+  - Compliance
+  - Governance
+  - Landing Zone
+  - Multi-Account
 url: >-
   https://raw.githubusercontent.com/api-evangelist/amazon-control-tower/refs/heads/main/apis.yml
 created: '2026-03-16'
