@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-control-tower/refs/heads/main/json-schema/update-landing-zone-response-schema.json",
+  "title": "UpdateLandingZoneResponse",
+  "description": "UpdateLandingZoneResponse schema from AWS Control Tower API",
+  "type": "object",
+  "properties": {
+    "operationIdentifier": {
+      "type": "string",
+      "description": "A unique identifier assigned to the UpdateLandingZone operation.",
+      "example": "a1b2c3d4-5678-90ab-cdef-EXAMPLE33333"
+    }
+  }
+}

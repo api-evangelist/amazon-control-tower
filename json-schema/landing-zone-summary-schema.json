@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-control-tower/refs/heads/main/json-schema/landing-zone-summary-schema.json",
+  "title": "LandingZoneSummary",
+  "description": "Summary information about a landing zone.",
+  "type": "object",
+  "properties": {
+    "arn": {
+      "type": "string",
+      "description": "The ARN of the landing zone.",
+      "example": "arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE"
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-control-tower/refs/heads/main/json-schema/landing-zone-operation-detail-schema.json",
+  "title": "LandingZoneOperationDetail",
+  "description": "Information about a landing zone operation.",
+  "type": "object",
+  "properties": {
+    "endTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The time the operation completed."
+    },
+    "operationIdentifier": {
+      "type": "string",
+      "description": "The unique identifier of the operation."
+    },
+    "operationType": {
+      "type": "string",
+      "description": "The type of landing zone operation.",
+      "enum": [
+        "CREATE",
+        "UPDATE",
+        "RESET",
+        "DELETE"
+      ]
+    },
+    "startTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The time the operation was initiated."
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the operation.",
+      "enum": [
+        "SUCCEEDED",
+        "FAILED",
+        "IN_PROGRESS"
+      ],
+      "example": "SUCCEEDED"
+    },
+    "statusMessage": {
+      "type": "string",
+      "description": "If the operation result is FAILED, this string contains a message explaining why."
+    }
+  }
+}

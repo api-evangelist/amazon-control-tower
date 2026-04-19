@@ -1,0 +1,13 @@
+{
+  "arn": "arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE",
+  "baselineIdentifier": "example-value",
+  "baselineVersion": "2.0",
+  "parameters": [
+    "example-value"
+  ],
+  "statusSummary": {
+    "lastOperationIdentifier": "a1b2c3d4-5678-90ab-cdef-EXAMPLE11111",
+    "status": "SUCCEEDED"
+  },
+  "targetIdentifier": "example-value"
+}

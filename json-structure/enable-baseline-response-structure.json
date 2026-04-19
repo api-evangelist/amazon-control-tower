@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-control-tower/refs/heads/main/json-structure/enable-baseline-response-structure.json",
+  "name": "EnableBaselineResponse",
+  "description": "EnableBaselineResponse schema from AWS Control Tower API",
+  "type": "object",
+  "properties": {
+    "arn": {
+      "type": "string",
+      "description": "The ARN of the EnabledBaseline resource.",
+      "example": "arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE"
+    },
+    "operationIdentifier": {
+      "type": "string",
+      "description": "The identifier of the asynchronous operation.",
+      "example": "a1b2c3d4-5678-90ab-cdef-EXAMPLE99999"
+    }
+  }
+}

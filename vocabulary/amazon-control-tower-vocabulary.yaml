@@ -1,0 +1,171 @@
+id: https://api-evangelist.github.io/amazon-control-tower/vocabulary/amazon-control-tower-vocabulary.yaml
+name: AWS Control Tower Vocabulary
+description: Controlled vocabulary and taxonomy for AWS Control Tower API covering governance, landing zones, controls, baselines, and multi-account management concepts.
+version: 1.0.0
+specificationVersion: 1.0.0
+
+tags:
+  - AWS
+  - Governance
+  - Cloud
+  - Compliance
+  - Multi-Account
+
+operational:
+  resources:
+    - term: LandingZone
+      definition: A pre-configured, secure, multi-account AWS environment based on AWS best practices
+      aliases:
+        - landing-zone
+        - LZ
+    - term: LandingZoneVersion
+      definition: A specific version of the Control Tower landing zone configuration
+    - term: Control
+      definition: A governance rule (guardrail) that prevents or detects policy violations in AWS accounts
+      aliases:
+        - Guardrail
+        - EnabledControl
+    - term: ControlIdentifier
+      definition: The ARN that uniquely identifies a Control Tower control in the library
+    - term: Baseline
+      definition: A set of governance configurations applied to an organizational unit when registered with Control Tower
+      aliases:
+        - EnabledBaseline
+    - term: BaselineIdentifier
+      definition: The ARN that uniquely identifies a baseline in the Control Tower library
+    - term: OrganizationalUnit
+      definition: An AWS Organizations organizational unit (OU) managed by Control Tower
+      aliases:
+        - OU
+        - TargetIdentifier
+    - term: Manifest
+      definition: A JSON document describing the desired configuration of a landing zone or enabled resource
+    - term: Operation
+      definition: An asynchronous Control Tower operation tracked by an operationIdentifier
+      aliases:
+        - LandingZoneOperation
+        - ControlOperation
+        - BaselineOperation
+    - term: OperationIdentifier
+      definition: A UUID string that identifies an asynchronous Control Tower operation for status polling
+    - term: DriftStatus
+      definition: Indicates whether a landing zone, control, or baseline has drifted from its configured state
+    - term: StatusSummary
+      definition: A summary of the current status and status message for a Control Tower resource
+
+  actions:
+    - term: CreateLandingZone
+      definition: Provision a new AWS Control Tower landing zone with governance configuration
+    - term: UpdateLandingZone
+      definition: Update an existing landing zone's version or manifest
+    - term: DeleteLandingZone
+      definition: Remove an AWS Control Tower landing zone
+    - term: ResetLandingZone
+      definition: Reset a landing zone to repair drift or apply accumulated updates
+    - term: EnableControl
+      definition: Apply a control to an organizational unit, activating its governance rule
+    - term: DisableControl
+      definition: Remove a control from an organizational unit
+    - term: UpdateEnabledControl
+      definition: Update the parameters or configuration of an enabled control
+    - term: ResetEnabledControl
+      definition: Reset an enabled control to repair drift
+    - term: EnableBaseline
+      definition: Register an organizational unit with a Control Tower baseline
+    - term: DisableBaseline
+      definition: Remove a baseline from an organizational unit
+    - term: UpdateEnabledBaseline
+      definition: Update the parameters or version of an enabled baseline
+    - term: ResetEnabledBaseline
+      definition: Reset an enabled baseline to repair drift or apply updates
+
+  statuses:
+    - term: ACTIVE
+      definition: The resource is operational and in its expected configured state
+    - term: FAILED
+      definition: The resource or operation encountered an error
+    - term: PROCESSING
+      definition: The resource is being created, updated, or deleted
+    - term: DRIFTED
+      definition: The resource has deviated from its configured governance state
+    - term: SUCCEEDED
+      definition: An asynchronous operation completed successfully
+    - term: IN_PROGRESS
+      definition: An asynchronous operation is currently running
+
+  controlTypes:
+    - term: Preventive
+      definition: Controls that prevent non-compliant actions using AWS Organizations service control policies (SCPs)
+    - term: Detective
+      definition: Controls that detect non-compliant configurations using AWS Config rules
+    - term: Proactive
+      definition: Controls that check resources before provisioning using AWS CloudFormation hooks
+
+capability:
+  personas:
+    - term: Cloud Administrator
+      definition: Responsible for provisioning and maintaining the AWS Control Tower landing zone and overall governance framework
+    - term: Security Engineer
+      definition: Responsible for enabling and monitoring compliance controls (guardrails) across organizational units
+    - term: Platform Engineer
+      definition: Responsible for automating account provisioning, OU registration, and baseline application
+
+  workflows:
+    - term: Landing Zone Setup
+      definition: The process of creating and configuring an AWS Control Tower landing zone for multi-account governance
+      steps:
+        - CreateLandingZone
+        - PollLandingZoneOperation
+        - VerifyLandingZone
+    - term: Control Enablement
+      definition: The process of enabling compliance controls on organizational units
+      steps:
+        - EnableControl
+        - PollControlOperation
+        - VerifyEnabledControl
+    - term: OU Baseline Registration
+      definition: The process of registering an organizational unit with Control Tower baselines
+      steps:
+        - EnableBaseline
+        - PollBaselineOperation
+        - VerifyEnabledBaseline
+    - term: Compliance Remediation
+      definition: The process of resetting drifted controls or baselines to restore compliance
+      steps:
+        - DetectDrift
+        - ResetResource
+        - PollOperation
+        - VerifyRemediation
+
+crossReference:
+  awsServices:
+    - term: AWS Organizations
+      definition: Provides the multi-account structure and OU hierarchy that Control Tower governs
+      url: https://aws.amazon.com/organizations/
+    - term: AWS Config
+      definition: Implements detective controls that continuously evaluate resource compliance
+      url: https://aws.amazon.com/config/
+    - term: AWS CloudTrail
+      definition: Logs all Control Tower API calls for audit and compliance reporting
+      url: https://aws.amazon.com/cloudtrail/
+    - term: AWS Service Catalog
+      definition: Powers Account Factory for self-service account provisioning within Control Tower
+      url: https://aws.amazon.com/servicecatalog/
+    - term: AWS Security Hub
+      definition: Aggregates Control Tower findings for centralized security posture management
+      url: https://aws.amazon.com/security-hub/
+    - term: AWS CloudFormation
+      definition: Used to deploy and manage Control Tower landing zones and controls as infrastructure-as-code
+      url: https://aws.amazon.com/cloudformation/
+
+  standards:
+    - term: CIS Benchmarks
+      definition: Center for Internet Security benchmarks implemented as Control Tower controls
+    - term: NIST 800-53
+      definition: NIST security controls mapped to Control Tower guardrails
+    - term: PCI-DSS
+      definition: Payment Card Industry Data Security Standard controls available in Control Tower library
+    - term: HIPAA
+      definition: Health Insurance Portability and Accountability Act controls available in Control Tower library
+    - term: SOC 2
+      definition: Service Organization Control 2 compliance controls available in Control Tower library

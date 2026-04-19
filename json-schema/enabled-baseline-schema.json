@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-control-tower/refs/heads/main/json-schema/enabled-baseline-schema.json",
+  "title": "EnabledBaseline",
+  "description": "An enabled baseline for a target organizational unit.",
+  "type": "object",
+  "properties": {
+    "arn": {
+      "type": "string",
+      "description": "The ARN of the enabled baseline.",
+      "example": "arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE"
+    },
+    "baselineIdentifier": {
+      "type": "string",
+      "description": "The baseline ARN."
+    },
+    "baselineVersion": {
+      "type": "string",
+      "description": "The version of the baseline.",
+      "example": "2.0"
+    },
+    "parameters": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/EnabledBaselineParameter"
+      }
+    },
+    "statusSummary": {
+      "type": "object",
+      "properties": {
+        "lastOperationIdentifier": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "targetIdentifier": {
+      "type": "string",
+      "description": "The ARN of the target organizational unit."
+    }
+  }
+}

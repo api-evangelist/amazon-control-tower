@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-control-tower/refs/heads/main/json-structure/enabled-control-parameter-structure.json",
+  "name": "EnabledControlParameter",
+  "description": "A key-value pair for a control parameter.",
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "The parameter key.",
+      "example": "AllowedRegions"
+    },
+    "value": {
+      "description": "The parameter value."
+    }
+  },
+  "required": [
+    "key",
+    "value"
+  ]
+}

@@ -1,0 +1,120 @@
+id: https://api-evangelist.github.io/amazon-control-tower/capabilities/governance-operations.yaml
+name: Cloud Governance Operations
+description: Workflow-oriented Naftiko capability for cloud governance and compliance operations using AWS Control Tower, covering landing zone management, control enforcement, and baseline registration across multi-account AWS environments.
+version: 1.0.0-alpha1
+specificationVersion: 1.0.0-alpha1
+
+tags:
+  - Governance
+  - Compliance
+  - Landing Zone
+  - Multi-Account
+  - Controls
+  - Baselines
+
+imports:
+  - url: capabilities/shared/control-tower.yaml
+    as: controlTower
+
+personas:
+  - name: Cloud Administrator
+    description: Cloud platform administrator responsible for governing multi-account AWS environments using Control Tower
+  - name: Security Engineer
+    description: Security engineer responsible for enabling and managing compliance controls across organizational units
+  - name: Platform Engineer
+    description: Platform engineer automating account provisioning and baseline registration
+
+workflows:
+  - name: Landing Zone Setup
+    description: Provision a new AWS Control Tower landing zone for multi-account governance
+    steps:
+      - step: createLandingZone
+        capability: controlTower
+        description: Create the landing zone with governance manifest
+      - step: getLandingZoneOperation
+        capability: controlTower
+        description: Poll operation status until complete
+      - step: listLandingZones
+        capability: controlTower
+        description: Confirm landing zone is active
+    persona: Cloud Administrator
+
+  - name: Control Enablement
+    description: Enable compliance controls on organizational units
+    steps:
+      - step: listBaselines
+        capability: controlTower
+        description: Review available controls in the library
+      - step: enableControl
+        capability: controlTower
+        description: Enable a control on the target OU
+      - step: getControlOperation
+        capability: controlTower
+        description: Monitor control enablement operation
+      - step: listEnabledControls
+        capability: controlTower
+        description: Verify control is enabled
+    persona: Security Engineer
+
+  - name: OU Baseline Registration
+    description: Register an organizational unit with Control Tower baselines
+    steps:
+      - step: listBaselines
+        capability: controlTower
+        description: Identify applicable baselines
+      - step: enableBaseline
+        capability: controlTower
+        description: Enable baseline on the target OU
+      - step: getBaselineOperation
+        capability: controlTower
+        description: Monitor baseline enablement operation
+      - step: listEnabledBaselines
+        capability: controlTower
+        description: Confirm OU is registered with baseline
+    persona: Platform Engineer
+
+  - name: Compliance Remediation
+    description: Remediate a drifted control or baseline by resetting it
+    steps:
+      - step: listEnabledControls
+        capability: controlTower
+        description: Identify controls with drift
+      - step: resetEnabledControl
+        capability: controlTower
+        description: Reset the drifted control
+      - step: getControlOperation
+        capability: controlTower
+        description: Monitor reset operation
+    persona: Security Engineer
+
+rest:
+  port: 8080
+  baseURL: https://controltower.amazonaws.com
+  auth:
+    type: aws-signature-v4
+    service: controltower
+
+mcp:
+  port: 9090
+  tools:
+    - name: setup_landing_zone
+      description: Create and configure an AWS Control Tower landing zone
+      workflow: Landing Zone Setup
+    - name: enable_compliance_control
+      description: Enable a compliance control on an organizational unit
+      workflow: Control Enablement
+    - name: register_ou_baseline
+      description: Register an organizational unit with a Control Tower baseline
+      workflow: OU Baseline Registration
+    - name: remediate_control_drift
+      description: Reset a drifted control to restore compliance
+      workflow: Compliance Remediation
+    - name: list_landing_zones
+      description: List all landing zones in the AWS environment
+      operationId: listLandingZones
+    - name: list_enabled_controls
+      description: List controls enabled on organizational units
+      operationId: listEnabledControls
+    - name: list_enabled_baselines
+      description: List baselines enabled on organizational units
+      operationId: listEnabledBaselines

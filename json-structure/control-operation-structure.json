@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-control-tower/refs/heads/main/json-structure/control-operation-structure.json",
+  "name": "ControlOperation",
+  "description": "An operation performed on a control.",
+  "type": "object",
+  "properties": {
+    "controlIdentifier": {
+      "type": "string",
+      "description": "The identifier of the control."
+    },
+    "enabledControlIdentifier": {
+      "type": "string",
+      "description": "The ARN of the enabled control."
+    },
+    "endTime": {
+      "type": "datetime"
+    },
+    "operationIdentifier": {
+      "type": "string",
+      "description": "The unique identifier of the operation."
+    },
+    "operationType": {
+      "type": "string",
+      "description": "The type of operation.",
+      "enum": [
+        "ENABLE_CONTROL",
+        "DISABLE_CONTROL",
+        "UPDATE_ENABLED_CONTROL",
+        "RESET_ENABLED_CONTROL"
+      ]
+    },
+    "startTime": {
+      "type": "datetime"
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the operation.",
+      "enum": [
+        "SUCCEEDED",
+        "FAILED",
+        "IN_PROGRESS"
+      ]
+    },
+    "statusMessage": {
+      "type": "string",
+      "description": "An error message if the operation failed."
+    },
+    "targetIdentifier": {
+      "type": "string",
+      "description": "The ARN of the organizational unit."
+    }
+  }
+}

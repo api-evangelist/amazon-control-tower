@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-control-tower/refs/heads/main/json-structure/update-enabled-control-response-structure.json",
+  "name": "UpdateEnabledControlResponse",
+  "description": "UpdateEnabledControlResponse schema from AWS Control Tower API",
+  "type": "object",
+  "properties": {
+    "operationIdentifier": {
+      "type": "string",
+      "description": "The identifier of the operation.",
+      "example": "a1b2c3d4-5678-90ab-cdef-EXAMPLE77777"
+    }
+  }
+}

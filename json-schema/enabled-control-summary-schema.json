@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-control-tower/refs/heads/main/json-schema/enabled-control-summary-schema.json",
+  "title": "EnabledControlSummary",
+  "description": "Summary information about an enabled control.",
+  "type": "object",
+  "properties": {
+    "arn": {
+      "type": "string",
+      "description": "The ARN of the enabled control."
+    },
+    "controlIdentifier": {
+      "type": "string",
+      "description": "The control identifier."
+    },
+    "statusSummary": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "targetIdentifier": {
+      "type": "string"
+    }
+  }
+}

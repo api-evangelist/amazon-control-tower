@@ -1,0 +1,8 @@
+{
+  "controlIdentifier": "arn:aws:controltower:us-east-1::control/AWS-GR_ENCRYPTED_VOLUMES",
+  "targetIdentifier": "arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111",
+  "parameters": [
+    "example-value"
+  ],
+  "tags": {}
+}

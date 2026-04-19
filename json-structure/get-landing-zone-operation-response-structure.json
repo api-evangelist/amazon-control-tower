@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-control-tower/refs/heads/main/json-structure/get-landing-zone-operation-response-structure.json",
+  "name": "GetLandingZoneOperationResponse",
+  "description": "GetLandingZoneOperationResponse schema from AWS Control Tower API",
+  "type": "object",
+  "properties": {
+    "operationDetails": {
+      "$ref": "#/components/schemas/LandingZoneOperationDetail"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-control-tower/refs/heads/main/json-structure/get-enabled-baseline-response-structure.json",
+  "name": "GetEnabledBaselineResponse",
+  "description": "GetEnabledBaselineResponse schema from AWS Control Tower API",
+  "type": "object",
+  "properties": {
+    "enabledBaselineDetails": {
+      "$ref": "#/components/schemas/EnabledBaseline"
+    }
+  }
+}

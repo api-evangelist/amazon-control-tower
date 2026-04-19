@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-control-tower/refs/heads/main/json-structure/list-landing-zones-response-structure.json",
+  "name": "ListLandingZonesResponse",
+  "description": "ListLandingZonesResponse schema from AWS Control Tower API",
+  "type": "object",
+  "properties": {
+    "landingZones": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/LandingZoneSummary"
+      }
+    },
+    "nextToken": {
+      "type": "string"
+    }
+  }
+}

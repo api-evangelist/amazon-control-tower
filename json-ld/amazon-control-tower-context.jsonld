@@ -1,0 +1,206 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "aws": "https://aws.amazon.com/schema/controltower/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "LandingZoneSummary": "aws:LandingZoneSummary",
+    "GetLandingZoneResponse": "aws:GetLandingZoneResponse",
+    "GetControlOperationResponse": "aws:GetControlOperationResponse",
+    "Baseline": "aws:Baseline",
+    "ResetEnabledBaselineResponse": "aws:ResetEnabledBaselineResponse",
+    "EnabledControlParameter": "aws:EnabledControlParameter",
+    "BaselineOperation": "aws:BaselineOperation",
+    "EnableControlResponse": "aws:EnableControlResponse",
+    "CreateLandingZoneRequest": "aws:CreateLandingZoneRequest",
+    "EnabledBaselineSummary": "aws:EnabledBaselineSummary",
+    "LandingZone": "aws:LandingZone",
+    "ControlOperation": "aws:ControlOperation",
+    "DisableBaselineResponse": "aws:DisableBaselineResponse",
+    "ResetEnabledControlResponse": "aws:ResetEnabledControlResponse",
+    "ControlOperationSummary": "aws:ControlOperationSummary",
+    "EnabledBaselineParameter": "aws:EnabledBaselineParameter",
+    "GetEnabledControlResponse": "aws:GetEnabledControlResponse",
+    "DeleteLandingZoneResponse": "aws:DeleteLandingZoneResponse",
+    "CreateLandingZoneResponse": "aws:CreateLandingZoneResponse",
+    "UpdateEnabledControlResponse": "aws:UpdateEnabledControlResponse",
+    "ListLandingZonesResponse": "aws:ListLandingZonesResponse",
+    "ResetLandingZoneResponse": "aws:ResetLandingZoneResponse",
+    "GetEnabledBaselineResponse": "aws:GetEnabledBaselineResponse",
+    "EnabledControl": "aws:EnabledControl",
+    "UpdateEnabledBaselineResponse": "aws:UpdateEnabledBaselineResponse",
+    "ListLandingZoneOperationsResponse": "aws:ListLandingZoneOperationsResponse",
+    "LandingZoneOperationSummary": "aws:LandingZoneOperationSummary",
+    "ListBaselinesResponse": "aws:ListBaselinesResponse",
+    "ListEnabledControlsResponse": "aws:ListEnabledControlsResponse",
+    "UpdateLandingZoneResponse": "aws:UpdateLandingZoneResponse",
+    "EnabledBaseline": "aws:EnabledBaseline",
+    "UpdateLandingZoneRequest": "aws:UpdateLandingZoneRequest",
+    "EnableBaselineRequest": "aws:EnableBaselineRequest",
+    "GetLandingZoneOperationResponse": "aws:GetLandingZoneOperationResponse",
+    "ListEnabledBaselinesResponse": "aws:ListEnabledBaselinesResponse",
+    "DisableControlResponse": "aws:DisableControlResponse",
+    "EnabledControlSummary": "aws:EnabledControlSummary",
+    "EnableBaselineResponse": "aws:EnableBaselineResponse",
+    "LandingZoneOperationDetail": "aws:LandingZoneOperationDetail",
+    "ListControlOperationsResponse": "aws:ListControlOperationsResponse",
+    "GetBaselineOperationResponse": "aws:GetBaselineOperationResponse",
+    "EnableControlRequest": "aws:EnableControlRequest",
+    "GetBaselineResponse": "aws:GetBaselineResponse",
+    "arn": {
+      "@id": "aws:arn",
+      "@type": "xsd:string"
+    },
+    "baselineIdentifier": {
+      "@id": "aws:baseline_identifier",
+      "@type": "xsd:string"
+    },
+    "baselineOperation": {
+      "@id": "aws:baseline_operation",
+      "@type": "xsd:string"
+    },
+    "baselineVersion": {
+      "@id": "aws:baseline_version",
+      "@type": "xsd:string"
+    },
+    "baselines": {
+      "@id": "aws:baselines",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "controlIdentifier": {
+      "@id": "aws:control_identifier",
+      "@type": "xsd:string"
+    },
+    "controlOperation": {
+      "@id": "aws:control_operation",
+      "@type": "xsd:string"
+    },
+    "controlOperations": {
+      "@id": "aws:control_operations",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "description": "schema:description",
+    "driftStatus": {
+      "@id": "aws:drift_status",
+      "@type": "@id"
+    },
+    "driftStatusSummary": {
+      "@id": "aws:drift_status_summary",
+      "@type": "@id"
+    },
+    "enabledBaselineDetails": {
+      "@id": "aws:enabled_baseline_details",
+      "@type": "xsd:string"
+    },
+    "enabledBaselines": {
+      "@id": "aws:enabled_baselines",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "enabledControl": {
+      "@id": "aws:enabled_control",
+      "@type": "xsd:string"
+    },
+    "enabledControlIdentifier": {
+      "@id": "aws:enabled_control_identifier",
+      "@type": "xsd:string"
+    },
+    "enabledControls": {
+      "@id": "aws:enabled_controls",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "endTime": {
+      "@id": "aws:end_time",
+      "@type": "xsd:dateTime"
+    },
+    "key": {
+      "@id": "aws:key",
+      "@type": "xsd:string"
+    },
+    "landingZone": {
+      "@id": "aws:landing_zone",
+      "@type": "xsd:string"
+    },
+    "landingZoneIdentifier": {
+      "@id": "aws:landing_zone_identifier",
+      "@type": "xsd:string"
+    },
+    "landingZoneOperations": {
+      "@id": "aws:landing_zone_operations",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "landingZones": {
+      "@id": "aws:landing_zones",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "lastOperationIdentifier": {
+      "@id": "aws:last_operation_identifier",
+      "@type": "xsd:string"
+    },
+    "latestAvailableVersion": {
+      "@id": "aws:latest_available_version",
+      "@type": "xsd:string"
+    },
+    "manifest": {
+      "@id": "aws:manifest",
+      "@type": "@id"
+    },
+    "name": "schema:name",
+    "nextToken": {
+      "@id": "aws:next_token",
+      "@type": "xsd:string"
+    },
+    "operationDetails": {
+      "@id": "aws:operation_details",
+      "@type": "xsd:string"
+    },
+    "operationIdentifier": {
+      "@id": "aws:operation_identifier",
+      "@type": "xsd:string"
+    },
+    "operationType": {
+      "@id": "aws:operation_type",
+      "@type": "xsd:string"
+    },
+    "parameters": {
+      "@id": "aws:parameters",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "startTime": {
+      "@id": "aws:start_time",
+      "@type": "xsd:dateTime"
+    },
+    "status": {
+      "@id": "aws:status",
+      "@type": "xsd:string"
+    },
+    "statusMessage": {
+      "@id": "aws:status_message",
+      "@type": "xsd:string"
+    },
+    "statusSummary": {
+      "@id": "aws:status_summary",
+      "@type": "@id"
+    },
+    "tags": {
+      "@id": "aws:tags",
+      "@type": "@id"
+    },
+    "targetIdentifier": {
+      "@id": "aws:target_identifier",
+      "@type": "xsd:string"
+    },
+    "value": {
+      "@id": "aws:value",
+      "@type": "xsd:string"
+    },
+    "version": "schema:version"
+  }
+}

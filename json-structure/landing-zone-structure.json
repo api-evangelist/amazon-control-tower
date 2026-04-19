@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-control-tower/refs/heads/main/json-structure/landing-zone-structure.json",
+  "name": "LandingZone",
+  "description": "An AWS Control Tower landing zone.",
+  "type": "object",
+  "properties": {
+    "arn": {
+      "type": "string",
+      "description": "The ARN of the landing zone.",
+      "example": "arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE"
+    },
+    "driftStatus": {
+      "type": "object",
+      "description": "The drift status of the landing zone.",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "DRIFTED",
+            "IN_SYNC",
+            "NOT_CHECKING_FOR_DRIFT",
+            "UNKNOWN"
+          ]
+        }
+      }
+    },
+    "latestAvailableVersion": {
+      "type": "string",
+      "description": "The latest available version of the landing zone.",
+      "example": "3.3"
+    },
+    "manifest": {
+      "type": "object",
+      "description": "The landing zone manifest document."
+    },
+    "status": {
+      "type": "string",
+      "description": "The landing zone deployment status.",
+      "enum": [
+        "ACTIVE",
+        "PROCESSING",
+        "FAILED"
+      ],
+      "example": "ACTIVE"
+    },
+    "version": {
+      "type": "string",
+      "description": "The current deployed version of the landing zone.",
+      "example": "3.3"
+    }
+  }
+}

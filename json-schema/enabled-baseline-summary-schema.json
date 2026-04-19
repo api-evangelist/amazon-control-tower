@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-control-tower/refs/heads/main/json-schema/enabled-baseline-summary-schema.json",
+  "title": "EnabledBaselineSummary",
+  "description": "Summary of an enabled baseline.",
+  "type": "object",
+  "properties": {
+    "arn": {
+      "type": "string"
+    },
+    "baselineIdentifier": {
+      "type": "string"
+    },
+    "statusSummary": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "targetIdentifier": {
+      "type": "string"
+    }
+  }
+}

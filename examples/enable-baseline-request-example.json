@@ -1,0 +1,9 @@
+{
+  "baselineIdentifier": "arn:aws:controltower:us-east-1::baseline/LZACCOUNTBASELINE",
+  "baselineVersion": "2.0",
+  "parameters": [
+    "example-value"
+  ],
+  "tags": {},
+  "targetIdentifier": "arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111"
+}

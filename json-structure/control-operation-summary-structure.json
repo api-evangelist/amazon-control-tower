@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-control-tower/refs/heads/main/json-structure/control-operation-summary-structure.json",
+  "name": "ControlOperationSummary",
+  "description": "Summary of a control operation.",
+  "type": "object",
+  "properties": {
+    "controlIdentifier": {
+      "type": "string"
+    },
+    "operationIdentifier": {
+      "type": "string"
+    },
+    "operationType": {
+      "type": "string"
+    },
+    "startTime": {
+      "type": "datetime"
+    },
+    "status": {
+      "type": "string"
+    }
+  }
+}

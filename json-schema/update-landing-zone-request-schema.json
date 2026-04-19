@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-control-tower/refs/heads/main/json-schema/update-landing-zone-request-schema.json",
+  "title": "UpdateLandingZoneRequest",
+  "description": "UpdateLandingZoneRequest schema from AWS Control Tower API",
+  "type": "object",
+  "properties": {
+    "landingZoneIdentifier": {
+      "type": "string",
+      "description": "The identifier of the landing zone.",
+      "example": "arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE"
+    },
+    "manifest": {
+      "type": "object",
+      "description": "The landing zone manifest document."
+    },
+    "version": {
+      "type": "string",
+      "description": "The target landing zone version.",
+      "example": "3.3"
+    }
+  },
+  "required": [
+    "landingZoneIdentifier",
+    "manifest",
+    "version"
+  ]
+}

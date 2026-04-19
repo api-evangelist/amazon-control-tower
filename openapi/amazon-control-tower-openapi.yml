@@ -1,0 +1,2003 @@
+openapi: 3.1.0
+info:
+  title: AWS Control Tower API
+  description: >-
+    AWS Control Tower provides the easiest way to set up and govern a secure,
+    multi-account AWS environment. The API enables programmatic management of
+    landing zones, controls (guardrails), baselines, and organizational unit
+    registrations within your AWS Control Tower environment.
+  version: "2018-11-28"
+  contact:
+    name: Amazon Web Services
+    url: https://aws.amazon.com/controltower/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  x-generated-from: documentation
+  x-last-validated: "2026-04-19"
+servers:
+  - url: https://controltower.amazonaws.com
+    description: AWS Control Tower API endpoint
+security:
+  - aws_signature: []
+paths:
+  /create-landingzone:
+    post:
+      operationId: createLandingZone
+      summary: AWS Control Tower Create Landing Zone
+      description: >-
+        Creates a new landing zone. This is an asynchronous operation.
+        After you call this operation, you can check the landing zone status
+        by calling GetLandingZone.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateLandingZoneRequest"
+            examples:
+              CreateLandingZoneRequestExample:
+                summary: Default createLandingZone request
+                x-microcks-default: true
+                value:
+                  version: "3.3"
+                  manifest:
+                    governedRegions:
+                      - us-east-1
+                      - us-west-2
+                    organizationStructure:
+                      security:
+                        name: Security
+                      sandbox:
+                        name: Sandbox
+                    centralizedLogging:
+                      accountId: "123456789012"
+                      configurations:
+                        loggingBucket:
+                          retentionDays: 365
+                        accessLoggingBucket:
+                          retentionDays: 365
+      responses:
+        "200":
+          description: Landing zone creation initiated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateLandingZoneResponse"
+              examples:
+                CreateLandingZone200Example:
+                  summary: Default createLandingZone 200 response
+                  x-microcks-default: true
+                  value:
+                    arn: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
+                    operationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLE11111
+        "400":
+          description: Bad request - invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Conflict - landing zone already exists
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      tags:
+        - Landing Zones
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /delete-landingzone:
+    post:
+      operationId: deleteLandingZone
+      summary: AWS Control Tower Delete Landing Zone
+      description: >-
+        Decommissions a landing zone. This is an asynchronous operation.
+        After you call this operation, you can check the landing zone status
+        by calling GetLandingZone.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - landingZoneIdentifier
+              properties:
+                landingZoneIdentifier:
+                  type: string
+                  description: The ARN of the landing zone.
+                  example: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
+            examples:
+              DeleteLandingZoneRequestExample:
+                summary: Default deleteLandingZone request
+                x-microcks-default: true
+                value:
+                  landingZoneIdentifier: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
+      responses:
+        "200":
+          description: Landing zone deletion initiated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteLandingZoneResponse"
+              examples:
+                DeleteLandingZone200Example:
+                  summary: Default deleteLandingZone 200 response
+                  x-microcks-default: true
+                  value:
+                    operationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLE22222
+        "404":
+          description: Landing zone not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      tags:
+        - Landing Zones
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /get-landingzone:
+    post:
+      operationId: getLandingZone
+      summary: AWS Control Tower Get Landing Zone
+      description: Returns details about a landing zone. Includes status and version.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - landingZoneIdentifier
+              properties:
+                landingZoneIdentifier:
+                  type: string
+                  description: The ARN of the landing zone.
+                  example: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetLandingZoneResponse"
+              examples:
+                GetLandingZone200Example:
+                  summary: Default getLandingZone 200 response
+                  x-microcks-default: true
+                  value:
+                    landingZone:
+                      arn: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
+                      driftStatus:
+                        status: NOT_CHECKING_FOR_DRIFT
+                      latestAvailableVersion: "3.3"
+                      manifest: {}
+                      status: ACTIVE
+                      version: "3.3"
+        "404":
+          description: Landing zone not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      tags:
+        - Landing Zones
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /list-landingzones:
+    post:
+      operationId: listLandingZones
+      summary: AWS Control Tower List Landing Zones
+      description: Returns a list of landing zones in the caller's AWS account.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                maxResults:
+                  type: integer
+                  description: The maximum number of results to return.
+                  example: 10
+                nextToken:
+                  type: string
+                  description: The token for the next page of results.
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListLandingZonesResponse"
+              examples:
+                ListLandingZones200Example:
+                  summary: Default listLandingZones 200 response
+                  x-microcks-default: true
+                  value:
+                    landingZones:
+                      - arn: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
+      tags:
+        - Landing Zones
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /update-landingzone:
+    post:
+      operationId: updateLandingZone
+      summary: AWS Control Tower Update Landing Zone
+      description: >-
+        Updates an existing landing zone. This is an asynchronous operation.
+        After you call this operation, you can check the landing zone status
+        by calling GetLandingZone.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateLandingZoneRequest"
+            examples:
+              UpdateLandingZoneRequestExample:
+                summary: Default updateLandingZone request
+                x-microcks-default: true
+                value:
+                  landingZoneIdentifier: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
+                  version: "3.3"
+                  manifest: {}
+      responses:
+        "200":
+          description: Landing zone update initiated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UpdateLandingZoneResponse"
+              examples:
+                UpdateLandingZone200Example:
+                  summary: Default updateLandingZone 200 response
+                  x-microcks-default: true
+                  value:
+                    operationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLE33333
+        "404":
+          description: Landing zone not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      tags:
+        - Landing Zones
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /reset-landingzone:
+    post:
+      operationId: resetLandingZone
+      summary: AWS Control Tower Reset Landing Zone
+      description: >-
+        Re-enables a landing zone after it has been decommissioned, or extends
+        it to new regions. This is an asynchronous operation.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - landingZoneIdentifier
+              properties:
+                landingZoneIdentifier:
+                  type: string
+                  description: The ARN of the landing zone.
+                  example: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
+      responses:
+        "200":
+          description: Landing zone reset initiated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResetLandingZoneResponse"
+              examples:
+                ResetLandingZone200Example:
+                  summary: Default resetLandingZone 200 response
+                  x-microcks-default: true
+                  value:
+                    operationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLE44444
+      tags:
+        - Landing Zones
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /get-landingzone-operation:
+    post:
+      operationId: getLandingZoneOperation
+      summary: AWS Control Tower Get Landing Zone Operation
+      description: Returns the status of a specified landing zone operation.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - operationIdentifier
+              properties:
+                operationIdentifier:
+                  type: string
+                  description: A unique identifier assigned to a landing zone operation.
+                  example: a1b2c3d4-5678-90ab-cdef-EXAMPLE11111
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetLandingZoneOperationResponse"
+              examples:
+                GetLandingZoneOperation200Example:
+                  summary: Default getLandingZoneOperation 200 response
+                  x-microcks-default: true
+                  value:
+                    operationDetails:
+                      operationType: CREATE
+                      startTime: "2025-03-15T14:30:00Z"
+                      status: SUCCEEDED
+        "404":
+          description: Operation not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      tags:
+        - Landing Zones
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /list-landingzone-operations:
+    post:
+      operationId: listLandingZoneOperations
+      summary: AWS Control Tower List Landing Zone Operations
+      description: Lists all landing zone operations from the past 90 days.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filter:
+                  type: object
+                  properties:
+                    statuses:
+                      type: array
+                      items:
+                        type: string
+                        enum:
+                          - SUCCEEDED
+                          - FAILED
+                          - IN_PROGRESS
+                    types:
+                      type: array
+                      items:
+                        type: string
+                        enum:
+                          - CREATE
+                          - UPDATE
+                          - RESET
+                          - DELETE
+                maxResults:
+                  type: integer
+                  example: 20
+                nextToken:
+                  type: string
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListLandingZoneOperationsResponse"
+              examples:
+                ListLandingZoneOperations200Example:
+                  summary: Default listLandingZoneOperations 200 response
+                  x-microcks-default: true
+                  value:
+                    landingZoneOperations:
+                      - operationType: CREATE
+                        operationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLE11111
+                        startTime: "2025-03-15T14:30:00Z"
+                        status: SUCCEEDED
+      tags:
+        - Landing Zones
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /enable-control:
+    post:
+      operationId: enableControl
+      summary: AWS Control Tower Enable Control
+      description: >-
+        Activates a control, otherwise known as a guardrail, upon the specified
+        organizational unit (OU). This operation is asynchronous and returns a
+        control operation identifier that can be used to check the status.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnableControlRequest"
+            examples:
+              EnableControlRequestExample:
+                summary: Default enableControl request
+                x-microcks-default: true
+                value:
+                  controlIdentifier: arn:aws:controltower:us-east-1::control/AWS-GR_ENCRYPTED_VOLUMES
+                  targetIdentifier: arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111
+                  parameters:
+                    - key: AllowedRegions
+                      value:
+                        - us-east-1
+                        - us-west-2
+      responses:
+        "200":
+          description: Control enabled successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EnableControlResponse"
+              examples:
+                EnableControl200Example:
+                  summary: Default enableControl 200 response
+                  x-microcks-default: true
+                  value:
+                    arn: arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE
+                    operationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLE55555
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: Control already enabled on target
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      tags:
+        - Controls
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /disable-control:
+    post:
+      operationId: disableControl
+      summary: AWS Control Tower Disable Control
+      description: >-
+        Deactivates a control by removing it from the specified organizational
+        unit (OU). This operation is asynchronous and returns an operation
+        identifier that can be used to check the status.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - controlIdentifier
+                - targetIdentifier
+              properties:
+                controlIdentifier:
+                  type: string
+                  description: The ARN of the control. Only Strongly recommended and Elective controls are permitted.
+                  example: arn:aws:controltower:us-east-1::control/AWS-GR_ENCRYPTED_VOLUMES
+                targetIdentifier:
+                  type: string
+                  description: The ARN of the organizational unit.
+                  example: arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111
+      responses:
+        "200":
+          description: Control disabled successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DisableControlResponse"
+              examples:
+                DisableControl200Example:
+                  summary: Default disableControl 200 response
+                  x-microcks-default: true
+                  value:
+                    operationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLE66666
+        "404":
+          description: Control not found on target
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      tags:
+        - Controls
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /get-enabled-control:
+    post:
+      operationId: getEnabledControl
+      summary: AWS Control Tower Get Enabled Control
+      description: >-
+        Retrieves details about an enabled control. For usage examples, see
+        the AWS Control Tower controls reference guide.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - enabledControlIdentifier
+              properties:
+                enabledControlIdentifier:
+                  type: string
+                  description: The ARN of the enabled control.
+                  example: arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetEnabledControlResponse"
+              examples:
+                GetEnabledControl200Example:
+                  summary: Default getEnabledControl 200 response
+                  x-microcks-default: true
+                  value:
+                    enabledControl:
+                      arn: arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE
+                      controlIdentifier: arn:aws:controltower:us-east-1::control/AWS-GR_ENCRYPTED_VOLUMES
+                      driftStatusSummary:
+                        driftStatus: NOT_CHECKING_FOR_DRIFT
+                      statusSummary:
+                        lastOperationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLE55555
+                        status: SUCCEEDED
+                      targetIdentifier: arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111
+        "404":
+          description: Enabled control not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      tags:
+        - Controls
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /list-enabled-controls:
+    post:
+      operationId: listEnabledControls
+      summary: AWS Control Tower List Enabled Controls
+      description: >-
+        Lists the controls enabled by AWS Control Tower on the specified
+        organizational unit and the accounts it contains. For usage examples,
+        see the AWS Control Tower controls reference guide.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                targetIdentifier:
+                  type: string
+                  description: The ARN of the organizational unit.
+                  example: arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111
+                filter:
+                  type: object
+                  properties:
+                    controlIdentifiers:
+                      type: array
+                      items:
+                        type: string
+                    statuses:
+                      type: array
+                      items:
+                        type: string
+                maxResults:
+                  type: integer
+                  example: 20
+                nextToken:
+                  type: string
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListEnabledControlsResponse"
+              examples:
+                ListEnabledControls200Example:
+                  summary: Default listEnabledControls 200 response
+                  x-microcks-default: true
+                  value:
+                    enabledControls:
+                      - arn: arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE
+                        controlIdentifier: arn:aws:controltower:us-east-1::control/AWS-GR_ENCRYPTED_VOLUMES
+                        statusSummary:
+                          status: SUCCEEDED
+                        targetIdentifier: arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111
+      tags:
+        - Controls
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /update-enabled-control:
+    post:
+      operationId: updateEnabledControl
+      summary: AWS Control Tower Update Enabled Control
+      description: >-
+        Updates the configuration of an already enabled control. If the enabled
+        control shows an EnablementStatus of FAILED, you can re-run this operation.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - enabledControlIdentifier
+                - parameters
+              properties:
+                enabledControlIdentifier:
+                  type: string
+                  description: The ARN of the enabled control.
+                  example: arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE
+                parameters:
+                  type: array
+                  description: A list of input parameter values.
+                  items:
+                    $ref: "#/components/schemas/EnabledControlParameter"
+      responses:
+        "200":
+          description: Enabled control updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UpdateEnabledControlResponse"
+              examples:
+                UpdateEnabledControl200Example:
+                  summary: Default updateEnabledControl 200 response
+                  x-microcks-default: true
+                  value:
+                    operationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLE77777
+        "404":
+          description: Enabled control not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      tags:
+        - Controls
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /reset-enabled-control:
+    post:
+      operationId: resetEnabledControl
+      summary: AWS Control Tower Reset Enabled Control
+      description: >-
+        Resets a control to its default configuration. This operation is
+        asynchronous and returns an operation identifier.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - enabledControlIdentifier
+              properties:
+                enabledControlIdentifier:
+                  type: string
+                  description: The ARN of the enabled control to be reset.
+                  example: arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE
+      responses:
+        "200":
+          description: Enabled control reset initiated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResetEnabledControlResponse"
+              examples:
+                ResetEnabledControl200Example:
+                  summary: Default resetEnabledControl 200 response
+                  x-microcks-default: true
+                  value:
+                    operationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLE88888
+      tags:
+        - Controls
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /get-control-operation:
+    post:
+      operationId: getControlOperation
+      summary: AWS Control Tower Get Control Operation
+      description: Returns the status of a particular EnableControl or DisableControl operation.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - operationIdentifier
+              properties:
+                operationIdentifier:
+                  type: string
+                  description: The identifier of the operation to check.
+                  example: a1b2c3d4-5678-90ab-cdef-EXAMPLE55555
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetControlOperationResponse"
+              examples:
+                GetControlOperation200Example:
+                  summary: Default getControlOperation 200 response
+                  x-microcks-default: true
+                  value:
+                    controlOperation:
+                      controlIdentifier: arn:aws:controltower:us-east-1::control/AWS-GR_ENCRYPTED_VOLUMES
+                      enabledControlIdentifier: arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE
+                      endTime: "2025-03-15T14:35:00Z"
+                      operationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLE55555
+                      operationType: ENABLE_CONTROL
+                      startTime: "2025-03-15T14:30:00Z"
+                      status: SUCCEEDED
+                      targetIdentifier: arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111
+        "404":
+          description: Operation not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      tags:
+        - Controls
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /list-control-operations:
+    post:
+      operationId: listControlOperations
+      summary: AWS Control Tower List Control Operations
+      description: >-
+        Provides a list of operations in progress or complete within the past
+        90 days. Optionally filter by the status of the operation, the affected target, or the type of operation.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filter:
+                  type: object
+                  properties:
+                    controlIdentifiers:
+                      type: array
+                      items:
+                        type: string
+                    statuses:
+                      type: array
+                      items:
+                        type: string
+                        enum:
+                          - SUCCEEDED
+                          - FAILED
+                          - IN_PROGRESS
+                    targetIdentifiers:
+                      type: array
+                      items:
+                        type: string
+                    types:
+                      type: array
+                      items:
+                        type: string
+                        enum:
+                          - ENABLE_CONTROL
+                          - DISABLE_CONTROL
+                          - UPDATE_ENABLED_CONTROL
+                          - RESET_ENABLED_CONTROL
+                maxResults:
+                  type: integer
+                  example: 20
+                nextToken:
+                  type: string
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListControlOperationsResponse"
+              examples:
+                ListControlOperations200Example:
+                  summary: Default listControlOperations 200 response
+                  x-microcks-default: true
+                  value:
+                    controlOperations:
+                      - controlIdentifier: arn:aws:controltower:us-east-1::control/AWS-GR_ENCRYPTED_VOLUMES
+                        operationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLE55555
+                        operationType: ENABLE_CONTROL
+                        startTime: "2025-03-15T14:30:00Z"
+                        status: SUCCEEDED
+      tags:
+        - Controls
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /enable-baseline:
+    post:
+      operationId: enableBaseline
+      summary: AWS Control Tower Enable Baseline
+      description: >-
+        Enable (apply) a Baseline to a Target. This API starts an asynchronous
+        operation to deploy resources specified by the Baseline to the specified Target.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnableBaselineRequest"
+            examples:
+              EnableBaselineRequestExample:
+                summary: Default enableBaseline request
+                x-microcks-default: true
+                value:
+                  baselineIdentifier: arn:aws:controltower:us-east-1::baseline/LZACCOUNTBASELINE
+                  baselineVersion: "2.0"
+                  targetIdentifier: arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111
+      responses:
+        "200":
+          description: Baseline enabled successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EnableBaselineResponse"
+              examples:
+                EnableBaseline200Example:
+                  summary: Default enableBaseline 200 response
+                  x-microcks-default: true
+                  value:
+                    arn: arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE
+                    operationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLE99999
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      tags:
+        - Baselines
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /disable-baseline:
+    post:
+      operationId: disableBaseline
+      summary: AWS Control Tower Disable Baseline
+      description: >-
+        Disable an EnabledBaseline resource on the specified Target. This API starts
+        an asynchronous operation to remove all resources deployed as part of the baseline enablement.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - enabledBaselineIdentifier
+              properties:
+                enabledBaselineIdentifier:
+                  type: string
+                  description: The ARN of the enabled baseline.
+                  example: arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE
+      responses:
+        "200":
+          description: Baseline disabled successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DisableBaselineResponse"
+              examples:
+                DisableBaseline200Example:
+                  summary: Default disableBaseline 200 response
+                  x-microcks-default: true
+                  value:
+                    operationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLEAAAAA
+        "404":
+          description: Enabled baseline not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      tags:
+        - Baselines
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /get-baseline:
+    post:
+      operationId: getBaseline
+      summary: AWS Control Tower Get Baseline
+      description: Retrieve details about an existing Baseline resource by specifying its identifier.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - baselineIdentifier
+              properties:
+                baselineIdentifier:
+                  type: string
+                  description: The ARN of the Baseline.
+                  example: arn:aws:controltower:us-east-1::baseline/LZACCOUNTBASELINE
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetBaselineResponse"
+              examples:
+                GetBaseline200Example:
+                  summary: Default getBaseline 200 response
+                  x-microcks-default: true
+                  value:
+                    arn: arn:aws:controltower:us-east-1::baseline/LZACCOUNTBASELINE
+                    description: AWS Control Tower Account baseline
+                    name: AWSControlTowerBaseline
+      tags:
+        - Baselines
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /list-baselines:
+    post:
+      operationId: listBaselines
+      summary: AWS Control Tower List Baselines
+      description: Returns a summary list of all available baselines.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                maxResults:
+                  type: integer
+                  example: 10
+                nextToken:
+                  type: string
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListBaselinesResponse"
+              examples:
+                ListBaselines200Example:
+                  summary: Default listBaselines 200 response
+                  x-microcks-default: true
+                  value:
+                    baselines:
+                      - arn: arn:aws:controltower:us-east-1::baseline/LZACCOUNTBASELINE
+                        description: AWS Control Tower Account baseline
+                        name: AWSControlTowerBaseline
+      tags:
+        - Baselines
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /get-enabled-baseline:
+    post:
+      operationId: getEnabledBaseline
+      summary: AWS Control Tower Get Enabled Baseline
+      description: Retrieve details of an EnabledBaseline resource by specifying its identifier.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - enabledBaselineIdentifier
+              properties:
+                enabledBaselineIdentifier:
+                  type: string
+                  description: The ARN of the enabled baseline.
+                  example: arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetEnabledBaselineResponse"
+              examples:
+                GetEnabledBaseline200Example:
+                  summary: Default getEnabledBaseline 200 response
+                  x-microcks-default: true
+                  value:
+                    enabledBaselineDetails:
+                      arn: arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE
+                      baselineIdentifier: arn:aws:controltower:us-east-1::baseline/LZACCOUNTBASELINE
+                      baselineVersion: "2.0"
+                      statusSummary:
+                        lastOperationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLE99999
+                        status: SUCCEEDED
+                      targetIdentifier: arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111
+        "404":
+          description: Enabled baseline not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      tags:
+        - Baselines
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /list-enabled-baselines:
+    post:
+      operationId: listEnabledBaselines
+      summary: AWS Control Tower List Enabled Baselines
+      description: Returns a list of summaries describing EnabledBaseline resources.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filter:
+                  type: object
+                  properties:
+                    baselineIdentifiers:
+                      type: array
+                      items:
+                        type: string
+                    targetIdentifiers:
+                      type: array
+                      items:
+                        type: string
+                    statuses:
+                      type: array
+                      items:
+                        type: string
+                includeChildren:
+                  type: boolean
+                  description: A value that can be set to true to include child OUs.
+                maxResults:
+                  type: integer
+                  example: 20
+                nextToken:
+                  type: string
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListEnabledBaselinesResponse"
+              examples:
+                ListEnabledBaselines200Example:
+                  summary: Default listEnabledBaselines 200 response
+                  x-microcks-default: true
+                  value:
+                    enabledBaselines:
+                      - arn: arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE
+                        baselineIdentifier: arn:aws:controltower:us-east-1::baseline/LZACCOUNTBASELINE
+                        statusSummary:
+                          status: SUCCEEDED
+                        targetIdentifier: arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111
+      tags:
+        - Baselines
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /update-enabled-baseline:
+    post:
+      operationId: updateEnabledBaseline
+      summary: AWS Control Tower Update Enabled Baseline
+      description: >-
+        Updates an EnabledBaseline resource's applied parameters or version.
+        This operation applies only to the managed account resources enrolled
+        through the baseline.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - baselineVersion
+                - enabledBaselineIdentifier
+              properties:
+                enabledBaselineIdentifier:
+                  type: string
+                  description: The ARN of the enabled baseline to be updated.
+                  example: arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE
+                baselineVersion:
+                  type: string
+                  description: Specifies the new Baseline version, to which the EnabledBaseline should be updated.
+                  example: "2.0"
+                parameters:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/EnabledBaselineParameter"
+      responses:
+        "200":
+          description: Enabled baseline updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UpdateEnabledBaselineResponse"
+              examples:
+                UpdateEnabledBaseline200Example:
+                  summary: Default updateEnabledBaseline 200 response
+                  x-microcks-default: true
+                  value:
+                    operationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLEBBBBB
+      tags:
+        - Baselines
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /reset-enabled-baseline:
+    post:
+      operationId: resetEnabledBaseline
+      summary: AWS Control Tower Reset Enabled Baseline
+      description: >-
+        Re-enables an EnabledBaseline resource. For example, this API can re-apply
+        the existing Baseline after a new member account is moved to the target OU.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - enabledBaselineIdentifier
+              properties:
+                enabledBaselineIdentifier:
+                  type: string
+                  description: The ARN of the enabled baseline to be reset.
+                  example: arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE
+      responses:
+        "200":
+          description: Enabled baseline reset initiated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResetEnabledBaselineResponse"
+              examples:
+                ResetEnabledBaseline200Example:
+                  summary: Default resetEnabledBaseline 200 response
+                  x-microcks-default: true
+                  value:
+                    operationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLECCCCC
+      tags:
+        - Baselines
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /get-baseline-operation:
+    post:
+      operationId: getBaselineOperation
+      summary: AWS Control Tower Get Baseline Operation
+      description: Returns the details of an asynchronous baseline operation, as initiated by any of these APIs.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - operationIdentifier
+              properties:
+                operationIdentifier:
+                  type: string
+                  description: The identifier of the asynchronous operation.
+                  example: a1b2c3d4-5678-90ab-cdef-EXAMPLE99999
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetBaselineOperationResponse"
+              examples:
+                GetBaselineOperation200Example:
+                  summary: Default getBaselineOperation 200 response
+                  x-microcks-default: true
+                  value:
+                    baselineOperation:
+                      endTime: "2025-03-15T14:35:00Z"
+                      operationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLE99999
+                      operationType: ENABLE_BASELINE
+                      startTime: "2025-03-15T14:30:00Z"
+                      status: SUCCEEDED
+        "404":
+          description: Operation not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      tags:
+        - Baselines
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /tags/{resourceArn}:
+    get:
+      operationId: listTagsForResource
+      summary: AWS Control Tower List Tags for Resource
+      description: Returns a list of tags associated with the resource.
+      parameters:
+        - name: resourceArn
+          in: path
+          required: true
+          description: The ARN of the resource.
+          schema:
+            type: string
+          example: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tags:
+                    type: object
+                    description: A map of tag keys and values.
+                    additionalProperties:
+                      type: string
+              examples:
+                ListTagsForResource200Example:
+                  summary: Default listTagsForResource 200 response
+                  x-microcks-default: true
+                  value:
+                    tags:
+                      Environment: production
+                      Team: cloud-governance
+        "404":
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      tags:
+        - Tags
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: tagResource
+      summary: AWS Control Tower Tag Resource
+      description: Applies tags to the resource identifier you specify.
+      parameters:
+        - name: resourceArn
+          in: path
+          required: true
+          description: The ARN of the resource to be tagged.
+          schema:
+            type: string
+          example: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - tags
+              properties:
+                tags:
+                  type: object
+                  description: Tags to be applied to the resource.
+                  additionalProperties:
+                    type: string
+            examples:
+              TagResourceRequestExample:
+                summary: Default tagResource request
+                x-microcks-default: true
+                value:
+                  tags:
+                    Environment: production
+                    Team: cloud-governance
+      responses:
+        "200":
+          description: Tags applied successfully
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      tags:
+        - Tags
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: untagResource
+      summary: AWS Control Tower Untag Resource
+      description: Removes tags from the resource.
+      parameters:
+        - name: resourceArn
+          in: path
+          required: true
+          description: The ARN of the resource.
+          schema:
+            type: string
+          example: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
+        - name: tagKeys
+          in: query
+          required: true
+          description: Tag keys to remove from the resource.
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        "200":
+          description: Tags removed successfully
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      tags:
+        - Tags
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    aws_signature:
+      type: http
+      scheme: bearer
+      description: >-
+        AWS Signature Version 4 authentication. Requests must be signed using
+        IAM credentials with appropriate AWS Control Tower permissions.
+  schemas:
+    Error:
+      type: object
+      description: An AWS Control Tower API error response.
+      properties:
+        message:
+          type: string
+          description: The error message.
+          example: The specified resource was not found.
+        code:
+          type: string
+          description: The error code.
+          example: ResourceNotFoundException
+    LandingZone:
+      type: object
+      description: An AWS Control Tower landing zone.
+      properties:
+        arn:
+          type: string
+          description: The ARN of the landing zone.
+          example: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
+        driftStatus:
+          type: object
+          description: The drift status of the landing zone.
+          properties:
+            status:
+              type: string
+              enum:
+                - DRIFTED
+                - IN_SYNC
+                - NOT_CHECKING_FOR_DRIFT
+                - UNKNOWN
+        latestAvailableVersion:
+          type: string
+          description: The latest available version of the landing zone.
+          example: "3.3"
+        manifest:
+          type: object
+          description: The landing zone manifest document.
+        status:
+          type: string
+          description: The landing zone deployment status.
+          enum:
+            - ACTIVE
+            - PROCESSING
+            - FAILED
+          example: ACTIVE
+        version:
+          type: string
+          description: The current deployed version of the landing zone.
+          example: "3.3"
+    LandingZoneSummary:
+      type: object
+      description: Summary information about a landing zone.
+      properties:
+        arn:
+          type: string
+          description: The ARN of the landing zone.
+          example: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
+    LandingZoneOperationDetail:
+      type: object
+      description: Information about a landing zone operation.
+      properties:
+        endTime:
+          type: string
+          format: date-time
+          description: The time the operation completed.
+        operationIdentifier:
+          type: string
+          description: The unique identifier of the operation.
+        operationType:
+          type: string
+          description: The type of landing zone operation.
+          enum:
+            - CREATE
+            - UPDATE
+            - RESET
+            - DELETE
+        startTime:
+          type: string
+          format: date-time
+          description: The time the operation was initiated.
+        status:
+          type: string
+          description: The status of the operation.
+          enum:
+            - SUCCEEDED
+            - FAILED
+            - IN_PROGRESS
+          example: SUCCEEDED
+        statusMessage:
+          type: string
+          description: If the operation result is FAILED, this string contains a message explaining why.
+    LandingZoneOperationSummary:
+      type: object
+      description: Summary of a landing zone operation.
+      properties:
+        operationIdentifier:
+          type: string
+          description: The unique identifier of the operation.
+        operationType:
+          type: string
+          description: The type of the operation.
+        startTime:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+            - SUCCEEDED
+            - FAILED
+            - IN_PROGRESS
+    CreateLandingZoneRequest:
+      type: object
+      required:
+        - manifest
+        - version
+      properties:
+        manifest:
+          type: object
+          description: The landing zone manifest document, a YAML expressible input type.
+        version:
+          type: string
+          description: The landing zone version, for example, 3.3.
+          example: "3.3"
+        tags:
+          type: object
+          description: Tags to apply to the landing zone.
+          additionalProperties:
+            type: string
+    CreateLandingZoneResponse:
+      type: object
+      properties:
+        arn:
+          type: string
+          description: The ARN of the landing zone resource.
+          example: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
+        operationIdentifier:
+          type: string
+          description: A unique identifier assigned to a CreateLandingZone operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE11111
+    DeleteLandingZoneResponse:
+      type: object
+      properties:
+        operationIdentifier:
+          type: string
+          description: A unique identifier assigned to a DeleteLandingZone operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE22222
+    GetLandingZoneResponse:
+      type: object
+      properties:
+        landingZone:
+          $ref: "#/components/schemas/LandingZone"
+    ListLandingZonesResponse:
+      type: object
+      properties:
+        landingZones:
+          type: array
+          items:
+            $ref: "#/components/schemas/LandingZoneSummary"
+        nextToken:
+          type: string
+    UpdateLandingZoneRequest:
+      type: object
+      required:
+        - landingZoneIdentifier
+        - manifest
+        - version
+      properties:
+        landingZoneIdentifier:
+          type: string
+          description: The identifier of the landing zone.
+          example: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
+        manifest:
+          type: object
+          description: The landing zone manifest document.
+        version:
+          type: string
+          description: The target landing zone version.
+          example: "3.3"
+    UpdateLandingZoneResponse:
+      type: object
+      properties:
+        operationIdentifier:
+          type: string
+          description: A unique identifier assigned to the UpdateLandingZone operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE33333
+    ResetLandingZoneResponse:
+      type: object
+      properties:
+        operationIdentifier:
+          type: string
+          description: A unique identifier assigned to the ResetLandingZone operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE44444
+    GetLandingZoneOperationResponse:
+      type: object
+      properties:
+        operationDetails:
+          $ref: "#/components/schemas/LandingZoneOperationDetail"
+    ListLandingZoneOperationsResponse:
+      type: object
+      properties:
+        landingZoneOperations:
+          type: array
+          items:
+            $ref: "#/components/schemas/LandingZoneOperationSummary"
+        nextToken:
+          type: string
+    EnabledControlParameter:
+      type: object
+      description: A key-value pair for a control parameter.
+      required:
+        - key
+        - value
+      properties:
+        key:
+          type: string
+          description: The parameter key.
+          example: AllowedRegions
+        value:
+          description: The parameter value.
+    EnableControlRequest:
+      type: object
+      required:
+        - controlIdentifier
+        - targetIdentifier
+      properties:
+        controlIdentifier:
+          type: string
+          description: The ARN of the control. Only Strongly recommended and Elective controls are permitted.
+          example: arn:aws:controltower:us-east-1::control/AWS-GR_ENCRYPTED_VOLUMES
+        targetIdentifier:
+          type: string
+          description: The ARN of the organizational unit on which the control will be enabled.
+          example: arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111
+        parameters:
+          type: array
+          description: A list of input parameter values that are supplied to enable the control.
+          items:
+            $ref: "#/components/schemas/EnabledControlParameter"
+        tags:
+          type: object
+          description: Tags to apply to the EnabledControl resource.
+          additionalProperties:
+            type: string
+    EnableControlResponse:
+      type: object
+      properties:
+        arn:
+          type: string
+          description: The ARN of the EnabledControl resource.
+          example: arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE
+        operationIdentifier:
+          type: string
+          description: The identifier of the asynchronous operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE55555
+    DisableControlResponse:
+      type: object
+      properties:
+        operationIdentifier:
+          type: string
+          description: The identifier of the asynchronous operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE66666
+    EnabledControl:
+      type: object
+      description: Information about an enabled control.
+      properties:
+        arn:
+          type: string
+          description: The ARN of the enabled control.
+          example: arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE
+        controlIdentifier:
+          type: string
+          description: The control identifier.
+          example: arn:aws:controltower:us-east-1::control/AWS-GR_ENCRYPTED_VOLUMES
+        driftStatusSummary:
+          type: object
+          properties:
+            driftStatus:
+              type: string
+              enum:
+                - DRIFTED
+                - IN_SYNC
+                - NOT_CHECKING_FOR_DRIFT
+                - UNKNOWN
+        parameters:
+          type: array
+          items:
+            $ref: "#/components/schemas/EnabledControlParameter"
+        statusSummary:
+          type: object
+          properties:
+            lastOperationIdentifier:
+              type: string
+            status:
+              type: string
+              enum:
+                - SUCCEEDED
+                - FAILED
+                - UNDER_CHANGE
+        targetIdentifier:
+          type: string
+          description: The ARN of the organizational unit.
+    EnabledControlSummary:
+      type: object
+      description: Summary information about an enabled control.
+      properties:
+        arn:
+          type: string
+          description: The ARN of the enabled control.
+        controlIdentifier:
+          type: string
+          description: The control identifier.
+        statusSummary:
+          type: object
+          properties:
+            status:
+              type: string
+        targetIdentifier:
+          type: string
+    GetEnabledControlResponse:
+      type: object
+      properties:
+        enabledControl:
+          $ref: "#/components/schemas/EnabledControl"
+    ListEnabledControlsResponse:
+      type: object
+      properties:
+        enabledControls:
+          type: array
+          items:
+            $ref: "#/components/schemas/EnabledControlSummary"
+        nextToken:
+          type: string
+    UpdateEnabledControlResponse:
+      type: object
+      properties:
+        operationIdentifier:
+          type: string
+          description: The identifier of the operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE77777
+    ResetEnabledControlResponse:
+      type: object
+      properties:
+        operationIdentifier:
+          type: string
+          description: The identifier of the operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE88888
+    ControlOperation:
+      type: object
+      description: An operation performed on a control.
+      properties:
+        controlIdentifier:
+          type: string
+          description: The identifier of the control.
+        enabledControlIdentifier:
+          type: string
+          description: The ARN of the enabled control.
+        endTime:
+          type: string
+          format: date-time
+        operationIdentifier:
+          type: string
+          description: The unique identifier of the operation.
+        operationType:
+          type: string
+          description: The type of operation.
+          enum:
+            - ENABLE_CONTROL
+            - DISABLE_CONTROL
+            - UPDATE_ENABLED_CONTROL
+            - RESET_ENABLED_CONTROL
+        startTime:
+          type: string
+          format: date-time
+        status:
+          type: string
+          description: The status of the operation.
+          enum:
+            - SUCCEEDED
+            - FAILED
+            - IN_PROGRESS
+        statusMessage:
+          type: string
+          description: An error message if the operation failed.
+        targetIdentifier:
+          type: string
+          description: The ARN of the organizational unit.
+    ControlOperationSummary:
+      type: object
+      description: Summary of a control operation.
+      properties:
+        controlIdentifier:
+          type: string
+        operationIdentifier:
+          type: string
+        operationType:
+          type: string
+        startTime:
+          type: string
+          format: date-time
+        status:
+          type: string
+    GetControlOperationResponse:
+      type: object
+      properties:
+        controlOperation:
+          $ref: "#/components/schemas/ControlOperation"
+    ListControlOperationsResponse:
+      type: object
+      properties:
+        controlOperations:
+          type: array
+          items:
+            $ref: "#/components/schemas/ControlOperationSummary"
+        nextToken:
+          type: string
+    EnabledBaselineParameter:
+      type: object
+      description: A key-value pair for a baseline parameter.
+      required:
+        - key
+        - value
+      properties:
+        key:
+          type: string
+          description: The parameter key.
+          example: IdentityCenterEnabled
+        value:
+          description: The parameter value.
+    Baseline:
+      type: object
+      description: A baseline definition.
+      properties:
+        arn:
+          type: string
+          description: The ARN of the baseline.
+          example: arn:aws:controltower:us-east-1::baseline/LZACCOUNTBASELINE
+        description:
+          type: string
+          description: A description of the baseline.
+          example: AWS Control Tower Account baseline
+        name:
+          type: string
+          description: The name of the baseline.
+          example: AWSControlTowerBaseline
+    EnabledBaseline:
+      type: object
+      description: An enabled baseline for a target organizational unit.
+      properties:
+        arn:
+          type: string
+          description: The ARN of the enabled baseline.
+          example: arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE
+        baselineIdentifier:
+          type: string
+          description: The baseline ARN.
+        baselineVersion:
+          type: string
+          description: The version of the baseline.
+          example: "2.0"
+        parameters:
+          type: array
+          items:
+            $ref: "#/components/schemas/EnabledBaselineParameter"
+        statusSummary:
+          type: object
+          properties:
+            lastOperationIdentifier:
+              type: string
+            status:
+              type: string
+        targetIdentifier:
+          type: string
+          description: The ARN of the target organizational unit.
+    EnabledBaselineSummary:
+      type: object
+      description: Summary of an enabled baseline.
+      properties:
+        arn:
+          type: string
+        baselineIdentifier:
+          type: string
+        statusSummary:
+          type: object
+          properties:
+            status:
+              type: string
+        targetIdentifier:
+          type: string
+    BaselineOperation:
+      type: object
+      description: An operation performed on a baseline.
+      properties:
+        endTime:
+          type: string
+          format: date-time
+        operationIdentifier:
+          type: string
+        operationType:
+          type: string
+          enum:
+            - ENABLE_BASELINE
+            - DISABLE_BASELINE
+            - UPDATE_ENABLED_BASELINE
+            - RESET_ENABLED_BASELINE
+        startTime:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+            - SUCCEEDED
+            - FAILED
+            - IN_PROGRESS
+        statusMessage:
+          type: string
+    EnableBaselineRequest:
+      type: object
+      required:
+        - baselineIdentifier
+        - baselineVersion
+        - targetIdentifier
+      properties:
+        baselineIdentifier:
+          type: string
+          description: The ARN of the baseline.
+          example: arn:aws:controltower:us-east-1::baseline/LZACCOUNTBASELINE
+        baselineVersion:
+          type: string
+          description: The specific version to be enabled.
+          example: "2.0"
+        parameters:
+          type: array
+          description: A list of key-value objects that specify enablement parameters.
+          items:
+            $ref: "#/components/schemas/EnabledBaselineParameter"
+        tags:
+          type: object
+          description: Tags to apply to the EnabledBaseline resource.
+          additionalProperties:
+            type: string
+        targetIdentifier:
+          type: string
+          description: The ARN of the target organizational unit.
+          example: arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111
+    EnableBaselineResponse:
+      type: object
+      properties:
+        arn:
+          type: string
+          description: The ARN of the EnabledBaseline resource.
+          example: arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE
+        operationIdentifier:
+          type: string
+          description: The identifier of the asynchronous operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE99999
+    DisableBaselineResponse:
+      type: object
+      properties:
+        operationIdentifier:
+          type: string
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLEAAAAA
+    GetBaselineResponse:
+      type: object
+      properties:
+        arn:
+          type: string
+        description:
+          type: string
+        name:
+          type: string
+    ListBaselinesResponse:
+      type: object
+      properties:
+        baselines:
+          type: array
+          items:
+            $ref: "#/components/schemas/Baseline"
+        nextToken:
+          type: string
+    GetEnabledBaselineResponse:
+      type: object
+      properties:
+        enabledBaselineDetails:
+          $ref: "#/components/schemas/EnabledBaseline"
+    ListEnabledBaselinesResponse:
+      type: object
+      properties:
+        enabledBaselines:
+          type: array
+          items:
+            $ref: "#/components/schemas/EnabledBaselineSummary"
+        nextToken:
+          type: string
+    UpdateEnabledBaselineResponse:
+      type: object
+      properties:
+        operationIdentifier:
+          type: string
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLEDDDDD
+    ResetEnabledBaselineResponse:
+      type: object
+      properties:
+        operationIdentifier:
+          type: string
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLECCCCC
+    GetBaselineOperationResponse:
+      type: object
+      properties:
+        baselineOperation:
+          $ref: "#/components/schemas/BaselineOperation"
+tags:
+  - name: Landing Zones
+    description: Operations for managing AWS Control Tower landing zones
+  - name: Controls
+    description: Operations for enabling, disabling, and managing guardrail controls on organizational units
+  - name: Baselines
+    description: Operations for applying and managing baselines on organizational units
+  - name: Tags
+    description: Operations for tagging AWS Control Tower resources

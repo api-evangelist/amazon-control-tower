@@ -1,0 +1,10 @@
+{
+  "arn": "arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE",
+  "driftStatus": {
+    "status": "DRIFTED"
+  },
+  "latestAvailableVersion": "3.3",
+  "manifest": {},
+  "status": "ACTIVE",
+  "version": "3.3"
+}

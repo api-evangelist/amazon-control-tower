@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-control-tower/refs/heads/main/json-structure/baseline-operation-structure.json",
+  "name": "BaselineOperation",
+  "description": "An operation performed on a baseline.",
+  "type": "object",
+  "properties": {
+    "endTime": {
+      "type": "datetime"
+    },
+    "operationIdentifier": {
+      "type": "string"
+    },
+    "operationType": {
+      "type": "string",
+      "enum": [
+        "ENABLE_BASELINE",
+        "DISABLE_BASELINE",
+        "UPDATE_ENABLED_BASELINE",
+        "RESET_ENABLED_BASELINE"
+      ]
+    },
+    "startTime": {
+      "type": "datetime"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "SUCCEEDED",
+        "FAILED",
+        "IN_PROGRESS"
+      ]
+    },
+    "statusMessage": {
+      "type": "string"
+    }
+  }
+}

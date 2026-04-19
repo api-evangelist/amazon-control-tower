@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-control-tower/refs/heads/main/json-schema/reset-landing-zone-response-schema.json",
+  "title": "ResetLandingZoneResponse",
+  "description": "ResetLandingZoneResponse schema from AWS Control Tower API",
+  "type": "object",
+  "properties": {
+    "operationIdentifier": {
+      "type": "string",
+      "description": "A unique identifier assigned to the ResetLandingZone operation.",
+      "example": "a1b2c3d4-5678-90ab-cdef-EXAMPLE44444"
+    }
+  }
+}

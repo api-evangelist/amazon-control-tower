@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-control-tower/refs/heads/main/json-structure/enabled-control-structure.json",
+  "name": "EnabledControl",
+  "description": "Information about an enabled control.",
+  "type": "object",
+  "properties": {
+    "arn": {
+      "type": "string",
+      "description": "The ARN of the enabled control.",
+      "example": "arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE"
+    },
+    "controlIdentifier": {
+      "type": "string",
+      "description": "The control identifier.",
+      "example": "arn:aws:controltower:us-east-1::control/AWS-GR_ENCRYPTED_VOLUMES"
+    },
+    "driftStatusSummary": {
+      "type": "object",
+      "properties": {
+        "driftStatus": {
+          "type": "string",
+          "enum": [
+            "DRIFTED",
+            "IN_SYNC",
+            "NOT_CHECKING_FOR_DRIFT",
+            "UNKNOWN"
+          ]
+        }
+      }
+    },
+    "parameters": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/EnabledControlParameter"
+      }
+    },
+    "statusSummary": {
+      "type": "object",
+      "properties": {
+        "lastOperationIdentifier": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "SUCCEEDED",
+            "FAILED",
+            "UNDER_CHANGE"
+          ]
+        }
+      }
+    },
+    "targetIdentifier": {
+      "type": "string",
+      "description": "The ARN of the organizational unit."
+    }
+  }
+}

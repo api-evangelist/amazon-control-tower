@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-control-tower/refs/heads/main/json-structure/disable-baseline-response-structure.json",
+  "name": "DisableBaselineResponse",
+  "description": "DisableBaselineResponse schema from AWS Control Tower API",
+  "type": "object",
+  "properties": {
+    "operationIdentifier": {
+      "type": "string",
+      "example": "a1b2c3d4-5678-90ab-cdef-EXAMPLEAAAAA"
+    }
+  }
+}

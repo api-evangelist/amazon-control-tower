@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-control-tower/refs/heads/main/json-schema/create-landing-zone-request-schema.json",
+  "title": "CreateLandingZoneRequest",
+  "description": "CreateLandingZoneRequest schema from AWS Control Tower API",
+  "type": "object",
+  "properties": {
+    "manifest": {
+      "type": "object",
+      "description": "The landing zone manifest document, a YAML expressible input type."
+    },
+    "version": {
+      "type": "string",
+      "description": "The landing zone version, for example, 3.3.",
+      "example": "3.3"
+    },
+    "tags": {
+      "type": "object",
+      "description": "Tags to apply to the landing zone.",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "manifest",
+    "version"
+  ]
+}

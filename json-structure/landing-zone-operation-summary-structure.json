@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-control-tower/refs/heads/main/json-structure/landing-zone-operation-summary-structure.json",
+  "name": "LandingZoneOperationSummary",
+  "description": "Summary of a landing zone operation.",
+  "type": "object",
+  "properties": {
+    "operationIdentifier": {
+      "type": "string",
+      "description": "The unique identifier of the operation."
+    },
+    "operationType": {
+      "type": "string",
+      "description": "The type of the operation."
+    },
+    "startTime": {
+      "type": "datetime"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "SUCCEEDED",
+        "FAILED",
+        "IN_PROGRESS"
+      ]
+    }
+  }
+}

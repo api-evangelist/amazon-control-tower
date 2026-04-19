@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-control-tower/refs/heads/main/json-structure/list-control-operations-response-structure.json",
+  "name": "ListControlOperationsResponse",
+  "description": "ListControlOperationsResponse schema from AWS Control Tower API",
+  "type": "object",
+  "properties": {
+    "controlOperations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ControlOperationSummary"
+      }
+    },
+    "nextToken": {
+      "type": "string"
+    }
+  }
+}

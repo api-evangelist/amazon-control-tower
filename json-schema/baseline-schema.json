@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-control-tower/refs/heads/main/json-schema/baseline-schema.json",
+  "title": "Baseline",
+  "description": "A baseline definition.",
+  "type": "object",
+  "properties": {
+    "arn": {
+      "type": "string",
+      "description": "The ARN of the baseline.",
+      "example": "arn:aws:controltower:us-east-1::baseline/LZACCOUNTBASELINE"
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the baseline.",
+      "example": "AWS Control Tower Account baseline"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the baseline.",
+      "example": "AWSControlTowerBaseline"
+    }
+  }
+}

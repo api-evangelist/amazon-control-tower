@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-control-tower/refs/heads/main/json-schema/enable-control-response-schema.json",
+  "title": "EnableControlResponse",
+  "description": "EnableControlResponse schema from AWS Control Tower API",
+  "type": "object",
+  "properties": {
+    "arn": {
+      "type": "string",
+      "description": "The ARN of the EnabledControl resource.",
+      "example": "arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE"
+    },
+    "operationIdentifier": {
+      "type": "string",
+      "description": "The identifier of the asynchronous operation.",
+      "example": "a1b2c3d4-5678-90ab-cdef-EXAMPLE55555"
+    }
+  }
+}

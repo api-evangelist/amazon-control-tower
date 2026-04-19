@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-control-tower/refs/heads/main/json-structure/enabled-baseline-parameter-structure.json",
+  "name": "EnabledBaselineParameter",
+  "description": "A key-value pair for a baseline parameter.",
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "The parameter key.",
+      "example": "IdentityCenterEnabled"
+    },
+    "value": {
+      "description": "The parameter value."
+    }
+  },
+  "required": [
+    "key",
+    "value"
+  ]
+}

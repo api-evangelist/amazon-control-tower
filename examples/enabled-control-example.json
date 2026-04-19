@@ -1,0 +1,15 @@
+{
+  "arn": "arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE",
+  "controlIdentifier": "arn:aws:controltower:us-east-1::control/AWS-GR_ENCRYPTED_VOLUMES",
+  "driftStatusSummary": {
+    "driftStatus": "DRIFTED"
+  },
+  "parameters": [
+    "example-value"
+  ],
+  "statusSummary": {
+    "lastOperationIdentifier": "a1b2c3d4-5678-90ab-cdef-EXAMPLE11111",
+    "status": "SUCCEEDED"
+  },
+  "targetIdentifier": "example-value"
+}

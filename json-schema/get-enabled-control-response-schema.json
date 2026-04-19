@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-control-tower/refs/heads/main/json-schema/get-enabled-control-response-schema.json",
+  "title": "GetEnabledControlResponse",
+  "description": "GetEnabledControlResponse schema from AWS Control Tower API",
+  "type": "object",
+  "properties": {
+    "enabledControl": {
+      "$ref": "#/components/schemas/EnabledControl"
+    }
+  }
+}

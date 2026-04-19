@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-control-tower/refs/heads/main/json-structure/list-baselines-response-structure.json",
+  "name": "ListBaselinesResponse",
+  "description": "ListBaselinesResponse schema from AWS Control Tower API",
+  "type": "object",
+  "properties": {
+    "baselines": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Baseline"
+      }
+    },
+    "nextToken": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "landingZoneIdentifier": "arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE",
+  "manifest": {},
+  "version": "3.3"
+}

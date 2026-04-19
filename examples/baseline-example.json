@@ -1,0 +1,5 @@
+{
+  "arn": "arn:aws:controltower:us-east-1::baseline/LZACCOUNTBASELINE",
+  "description": "AWS Control Tower Account baseline",
+  "name": "AWSControlTowerBaseline"
+}

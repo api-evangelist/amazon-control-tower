@@ -1,0 +1,4 @@
+{
+  "arn": "arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE",
+  "operationIdentifier": "a1b2c3d4-5678-90ab-cdef-EXAMPLE99999"
+}

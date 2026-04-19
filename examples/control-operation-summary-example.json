@@ -1,0 +1,7 @@
+{
+  "controlIdentifier": "example-value",
+  "operationIdentifier": "a1b2c3d4-5678-90ab-cdef-EXAMPLE11111",
+  "operationType": "CREATE",
+  "startTime": "2025-03-15T14:30:00Z",
+  "status": "SUCCEEDED"
+}
