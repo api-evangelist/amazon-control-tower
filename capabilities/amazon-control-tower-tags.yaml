@@ -1,0 +1,164 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: AWS Control Tower API — Tags
+  description: 'AWS Control Tower API — Tags. 3 operations. Lead operation: AWS Control Tower List Tags for Resource. Self-contained
+    Naftiko capability covering one Amazon Control Tower business surface.'
+  tags:
+  - Amazon Control Tower
+  - Tags
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_CONTROL_TOWER_API_KEY: AMAZON_CONTROL_TOWER_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: amazon-control-tower-tags
+    baseUri: https://controltower.amazonaws.com
+    description: AWS Control Tower API — Tags business capability. Self-contained, no shared references.
+    resources:
+    - name: tags-resourceArn
+      path: /tags/{resourceArn}
+      operations:
+      - name: listtagsforresource
+        method: GET
+        description: AWS Control Tower List Tags for Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: resourceArn
+          in: path
+          type: string
+          description: The ARN of the resource.
+          required: true
+      - name: tagresource
+        method: POST
+        description: AWS Control Tower Tag Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: resourceArn
+          in: path
+          type: string
+          description: The ARN of the resource to be tagged.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: untagresource
+        method: DELETE
+        description: AWS Control Tower Untag Resource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: resourceArn
+          in: path
+          type: string
+          description: The ARN of the resource.
+          required: true
+        - name: tagKeys
+          in: query
+          type: array
+          description: Tag keys to remove from the resource.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.AMAZON_CONTROL_TOWER_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: amazon-control-tower-tags-rest
+    port: 8080
+    description: REST adapter for AWS Control Tower API — Tags. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/tags/{resourcearn}
+      name: tags-resourcearn
+      description: REST surface for tags-resourceArn.
+      operations:
+      - method: GET
+        name: listtagsforresource
+        description: AWS Control Tower List Tags for Resource
+        call: amazon-control-tower-tags.listtagsforresource
+        with:
+          resourceArn: rest.resourceArn
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: tagresource
+        description: AWS Control Tower Tag Resource
+        call: amazon-control-tower-tags.tagresource
+        with:
+          resourceArn: rest.resourceArn
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: untagresource
+        description: AWS Control Tower Untag Resource
+        call: amazon-control-tower-tags.untagresource
+        with:
+          resourceArn: rest.resourceArn
+          tagKeys: rest.tagKeys
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: amazon-control-tower-tags-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for AWS Control Tower API — Tags. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: aws-control-tower-list-tags
+      description: AWS Control Tower List Tags for Resource
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-control-tower-tags.listtagsforresource
+      with:
+        resourceArn: tools.resourceArn
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aws-control-tower-tag-resource
+      description: AWS Control Tower Tag Resource
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-control-tower-tags.tagresource
+      with:
+        resourceArn: tools.resourceArn
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aws-control-tower-untag-resource
+      description: AWS Control Tower Untag Resource
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: amazon-control-tower-tags.untagresource
+      with:
+        resourceArn: tools.resourceArn
+        tagKeys: tools.tagKeys
+      outputParameters:
+      - type: object
+        mapping: $.

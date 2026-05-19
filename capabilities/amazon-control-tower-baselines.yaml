@@ -1,0 +1,416 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: AWS Control Tower API — Baselines
+  description: 'AWS Control Tower API — Baselines. 9 operations. Lead operation: AWS Control Tower Disable Baseline. Self-contained
+    Naftiko capability covering one Amazon Control Tower business surface.'
+  tags:
+  - Amazon Control Tower
+  - Baselines
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_CONTROL_TOWER_API_KEY: AMAZON_CONTROL_TOWER_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: amazon-control-tower-baselines
+    baseUri: https://controltower.amazonaws.com
+    description: AWS Control Tower API — Baselines business capability. Self-contained, no shared references.
+    resources:
+    - name: disable-baseline
+      path: /disable-baseline
+      operations:
+      - name: disablebaseline
+        method: POST
+        description: AWS Control Tower Disable Baseline
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: enable-baseline
+      path: /enable-baseline
+      operations:
+      - name: enablebaseline
+        method: POST
+        description: AWS Control Tower Enable Baseline
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: get-baseline
+      path: /get-baseline
+      operations:
+      - name: getbaseline
+        method: POST
+        description: AWS Control Tower Get Baseline
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: get-baseline-operation
+      path: /get-baseline-operation
+      operations:
+      - name: getbaselineoperation
+        method: POST
+        description: AWS Control Tower Get Baseline Operation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: get-enabled-baseline
+      path: /get-enabled-baseline
+      operations:
+      - name: getenabledbaseline
+        method: POST
+        description: AWS Control Tower Get Enabled Baseline
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: list-baselines
+      path: /list-baselines
+      operations:
+      - name: listbaselines
+        method: POST
+        description: AWS Control Tower List Baselines
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: list-enabled-baselines
+      path: /list-enabled-baselines
+      operations:
+      - name: listenabledbaselines
+        method: POST
+        description: AWS Control Tower List Enabled Baselines
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: reset-enabled-baseline
+      path: /reset-enabled-baseline
+      operations:
+      - name: resetenabledbaseline
+        method: POST
+        description: AWS Control Tower Reset Enabled Baseline
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: update-enabled-baseline
+      path: /update-enabled-baseline
+      operations:
+      - name: updateenabledbaseline
+        method: POST
+        description: AWS Control Tower Update Enabled Baseline
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.AMAZON_CONTROL_TOWER_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: amazon-control-tower-baselines-rest
+    port: 8080
+    description: REST adapter for AWS Control Tower API — Baselines. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/disable-baseline
+      name: disable-baseline
+      description: REST surface for disable-baseline.
+      operations:
+      - method: POST
+        name: disablebaseline
+        description: AWS Control Tower Disable Baseline
+        call: amazon-control-tower-baselines.disablebaseline
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/enable-baseline
+      name: enable-baseline
+      description: REST surface for enable-baseline.
+      operations:
+      - method: POST
+        name: enablebaseline
+        description: AWS Control Tower Enable Baseline
+        call: amazon-control-tower-baselines.enablebaseline
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/get-baseline
+      name: get-baseline
+      description: REST surface for get-baseline.
+      operations:
+      - method: POST
+        name: getbaseline
+        description: AWS Control Tower Get Baseline
+        call: amazon-control-tower-baselines.getbaseline
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/get-baseline-operation
+      name: get-baseline-operation
+      description: REST surface for get-baseline-operation.
+      operations:
+      - method: POST
+        name: getbaselineoperation
+        description: AWS Control Tower Get Baseline Operation
+        call: amazon-control-tower-baselines.getbaselineoperation
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/get-enabled-baseline
+      name: get-enabled-baseline
+      description: REST surface for get-enabled-baseline.
+      operations:
+      - method: POST
+        name: getenabledbaseline
+        description: AWS Control Tower Get Enabled Baseline
+        call: amazon-control-tower-baselines.getenabledbaseline
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/list-baselines
+      name: list-baselines
+      description: REST surface for list-baselines.
+      operations:
+      - method: POST
+        name: listbaselines
+        description: AWS Control Tower List Baselines
+        call: amazon-control-tower-baselines.listbaselines
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/list-enabled-baselines
+      name: list-enabled-baselines
+      description: REST surface for list-enabled-baselines.
+      operations:
+      - method: POST
+        name: listenabledbaselines
+        description: AWS Control Tower List Enabled Baselines
+        call: amazon-control-tower-baselines.listenabledbaselines
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/reset-enabled-baseline
+      name: reset-enabled-baseline
+      description: REST surface for reset-enabled-baseline.
+      operations:
+      - method: POST
+        name: resetenabledbaseline
+        description: AWS Control Tower Reset Enabled Baseline
+        call: amazon-control-tower-baselines.resetenabledbaseline
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/update-enabled-baseline
+      name: update-enabled-baseline
+      description: REST surface for update-enabled-baseline.
+      operations:
+      - method: POST
+        name: updateenabledbaseline
+        description: AWS Control Tower Update Enabled Baseline
+        call: amazon-control-tower-baselines.updateenabledbaseline
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: amazon-control-tower-baselines-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for AWS Control Tower API — Baselines. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: aws-control-tower-disable-baseline
+      description: AWS Control Tower Disable Baseline
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-control-tower-baselines.disablebaseline
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aws-control-tower-enable-baseline
+      description: AWS Control Tower Enable Baseline
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-control-tower-baselines.enablebaseline
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aws-control-tower-get-baseline
+      description: AWS Control Tower Get Baseline
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: amazon-control-tower-baselines.getbaseline
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aws-control-tower-get-baseline-2
+      description: AWS Control Tower Get Baseline Operation
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: amazon-control-tower-baselines.getbaselineoperation
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aws-control-tower-get-enabled
+      description: AWS Control Tower Get Enabled Baseline
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: amazon-control-tower-baselines.getenabledbaseline
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aws-control-tower-list-baselines
+      description: AWS Control Tower List Baselines
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: amazon-control-tower-baselines.listbaselines
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aws-control-tower-list-enabled
+      description: AWS Control Tower List Enabled Baselines
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: amazon-control-tower-baselines.listenabledbaselines
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aws-control-tower-reset-enabled
+      description: AWS Control Tower Reset Enabled Baseline
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-control-tower-baselines.resetenabledbaseline
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aws-control-tower-update-enabled
+      description: AWS Control Tower Update Enabled Baseline
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-control-tower-baselines.updateenabledbaseline
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

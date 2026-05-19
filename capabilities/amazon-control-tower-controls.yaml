@@ -1,0 +1,374 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: AWS Control Tower API — Controls
+  description: 'AWS Control Tower API — Controls. 8 operations. Lead operation: AWS Control Tower Disable Control. Self-contained
+    Naftiko capability covering one Amazon Control Tower business surface.'
+  tags:
+  - Amazon Control Tower
+  - Controls
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_CONTROL_TOWER_API_KEY: AMAZON_CONTROL_TOWER_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: amazon-control-tower-controls
+    baseUri: https://controltower.amazonaws.com
+    description: AWS Control Tower API — Controls business capability. Self-contained, no shared references.
+    resources:
+    - name: disable-control
+      path: /disable-control
+      operations:
+      - name: disablecontrol
+        method: POST
+        description: AWS Control Tower Disable Control
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: enable-control
+      path: /enable-control
+      operations:
+      - name: enablecontrol
+        method: POST
+        description: AWS Control Tower Enable Control
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: get-control-operation
+      path: /get-control-operation
+      operations:
+      - name: getcontroloperation
+        method: POST
+        description: AWS Control Tower Get Control Operation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: get-enabled-control
+      path: /get-enabled-control
+      operations:
+      - name: getenabledcontrol
+        method: POST
+        description: AWS Control Tower Get Enabled Control
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: list-control-operations
+      path: /list-control-operations
+      operations:
+      - name: listcontroloperations
+        method: POST
+        description: AWS Control Tower List Control Operations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: list-enabled-controls
+      path: /list-enabled-controls
+      operations:
+      - name: listenabledcontrols
+        method: POST
+        description: AWS Control Tower List Enabled Controls
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: reset-enabled-control
+      path: /reset-enabled-control
+      operations:
+      - name: resetenabledcontrol
+        method: POST
+        description: AWS Control Tower Reset Enabled Control
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: update-enabled-control
+      path: /update-enabled-control
+      operations:
+      - name: updateenabledcontrol
+        method: POST
+        description: AWS Control Tower Update Enabled Control
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.AMAZON_CONTROL_TOWER_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: amazon-control-tower-controls-rest
+    port: 8080
+    description: REST adapter for AWS Control Tower API — Controls. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/disable-control
+      name: disable-control
+      description: REST surface for disable-control.
+      operations:
+      - method: POST
+        name: disablecontrol
+        description: AWS Control Tower Disable Control
+        call: amazon-control-tower-controls.disablecontrol
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/enable-control
+      name: enable-control
+      description: REST surface for enable-control.
+      operations:
+      - method: POST
+        name: enablecontrol
+        description: AWS Control Tower Enable Control
+        call: amazon-control-tower-controls.enablecontrol
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/get-control-operation
+      name: get-control-operation
+      description: REST surface for get-control-operation.
+      operations:
+      - method: POST
+        name: getcontroloperation
+        description: AWS Control Tower Get Control Operation
+        call: amazon-control-tower-controls.getcontroloperation
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/get-enabled-control
+      name: get-enabled-control
+      description: REST surface for get-enabled-control.
+      operations:
+      - method: POST
+        name: getenabledcontrol
+        description: AWS Control Tower Get Enabled Control
+        call: amazon-control-tower-controls.getenabledcontrol
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/list-control-operations
+      name: list-control-operations
+      description: REST surface for list-control-operations.
+      operations:
+      - method: POST
+        name: listcontroloperations
+        description: AWS Control Tower List Control Operations
+        call: amazon-control-tower-controls.listcontroloperations
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/list-enabled-controls
+      name: list-enabled-controls
+      description: REST surface for list-enabled-controls.
+      operations:
+      - method: POST
+        name: listenabledcontrols
+        description: AWS Control Tower List Enabled Controls
+        call: amazon-control-tower-controls.listenabledcontrols
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/reset-enabled-control
+      name: reset-enabled-control
+      description: REST surface for reset-enabled-control.
+      operations:
+      - method: POST
+        name: resetenabledcontrol
+        description: AWS Control Tower Reset Enabled Control
+        call: amazon-control-tower-controls.resetenabledcontrol
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/update-enabled-control
+      name: update-enabled-control
+      description: REST surface for update-enabled-control.
+      operations:
+      - method: POST
+        name: updateenabledcontrol
+        description: AWS Control Tower Update Enabled Control
+        call: amazon-control-tower-controls.updateenabledcontrol
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: amazon-control-tower-controls-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for AWS Control Tower API — Controls. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: aws-control-tower-disable-control
+      description: AWS Control Tower Disable Control
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-control-tower-controls.disablecontrol
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aws-control-tower-enable-control
+      description: AWS Control Tower Enable Control
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-control-tower-controls.enablecontrol
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aws-control-tower-get-control
+      description: AWS Control Tower Get Control Operation
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: amazon-control-tower-controls.getcontroloperation
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aws-control-tower-get-enabled
+      description: AWS Control Tower Get Enabled Control
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: amazon-control-tower-controls.getenabledcontrol
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aws-control-tower-list-control
+      description: AWS Control Tower List Control Operations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: amazon-control-tower-controls.listcontroloperations
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aws-control-tower-list-enabled
+      description: AWS Control Tower List Enabled Controls
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: amazon-control-tower-controls.listenabledcontrols
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aws-control-tower-reset-enabled
+      description: AWS Control Tower Reset Enabled Control
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-control-tower-controls.resetenabledcontrol
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: aws-control-tower-update-enabled
+      description: AWS Control Tower Update Enabled Control
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-control-tower-controls.updateenabledcontrol
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
