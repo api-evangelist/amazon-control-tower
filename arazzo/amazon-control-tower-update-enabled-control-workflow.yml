@@ -1,0 +1,104 @@
+arazzo: 1.0.1
+info:
+  title: AWS Control Tower Update Enabled Control and Confirm
+  summary: Reconfigure an already enabled control, poll the async operation, then read back the updated control.
+  description: >-
+    Updates the parameters of an already enabled control, then waits for the
+    asynchronous operation to finish before reading the control back. The
+    workflow calls updateEnabledControl, captures the returned operation
+    identifier, polls getControlOperation until it leaves the IN_PROGRESS state,
+    and on success retrieves the enabled control so the caller sees its refreshed
+    status. Each step spells out its request inline so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: controlTowerApi
+  url: ../openapi/amazon-control-tower-openapi.yml
+  type: openapi
+workflows:
+- workflowId: update-enabled-control
+  summary: Update an enabled control's parameters and wait for the operation to succeed.
+  description: >-
+    Calls updateEnabledControl, then repeatedly checks getControlOperation until
+    the operation status is no longer IN_PROGRESS, branching to getEnabledControl
+    on success.
+  inputs:
+    type: object
+    required:
+    - enabledControlIdentifier
+    - parameters
+    properties:
+      enabledControlIdentifier:
+        type: string
+        description: The ARN of the enabled control to reconfigure.
+      parameters:
+        type: array
+        description: The list of input parameter values to apply to the enabled control.
+        items:
+          type: object
+          properties:
+            key:
+              type: string
+            value: {}
+  steps:
+  - stepId: updateEnabledControl
+    description: >-
+      Start the asynchronous update of the enabled control's parameters and
+      capture the operation identifier used for polling.
+    operationId: updateEnabledControl
+    requestBody:
+      contentType: application/json
+      payload:
+        enabledControlIdentifier: $inputs.enabledControlIdentifier
+        parameters: $inputs.parameters
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      operationIdentifier: $response.body#/operationIdentifier
+  - stepId: pollControlOperation
+    description: >-
+      Check the status of the update operation. Repeats while the operation is
+      still IN_PROGRESS, and proceeds to read the enabled control once it has
+      SUCCEEDED.
+    operationId: getControlOperation
+    requestBody:
+      contentType: application/json
+      payload:
+        operationIdentifier: $steps.updateEnabledControl.outputs.operationIdentifier
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/controlOperation/status
+    onSuccess:
+    - name: stillRunning
+      type: goto
+      stepId: pollControlOperation
+      criteria:
+      - context: $response.body
+        condition: $.controlOperation.status == "IN_PROGRESS"
+        type: jsonpath
+    - name: operationDone
+      type: goto
+      stepId: getEnabledControl
+      criteria:
+      - context: $response.body
+        condition: $.controlOperation.status == "SUCCEEDED"
+        type: jsonpath
+  - stepId: getEnabledControl
+    description: >-
+      Retrieve the enabled control's refreshed details, including its status
+      summary, now that the update operation has completed.
+    operationId: getEnabledControl
+    requestBody:
+      contentType: application/json
+      payload:
+        enabledControlIdentifier: $inputs.enabledControlIdentifier
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      enabledControl: $response.body#/enabledControl
+      status: $response.body#/enabledControl/statusSummary/status
+  outputs:
+    operationIdentifier: $steps.updateEnabledControl.outputs.operationIdentifier
+    operationStatus: $steps.pollControlOperation.outputs.status
+    enabledControl: $steps.getEnabledControl.outputs.enabledControl

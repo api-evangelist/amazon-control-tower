@@ -1,0 +1,109 @@
+arazzo: 1.0.1
+info:
+  title: AWS Control Tower Update Enabled Baseline and Confirm
+  summary: Upgrade an enabled baseline to a new version, poll the async operation, then read back its details.
+  description: >-
+    Updates an already enabled baseline to a new version or applied parameters.
+    Because updating an enabled baseline is asynchronous, the workflow starts the
+    operation, captures the returned operation identifier, polls the baseline
+    operation until it leaves the IN_PROGRESS state, and on success retrieves the
+    enabled baseline so the caller sees its refreshed status and applied version.
+    Each step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: controlTowerApi
+  url: ../openapi/amazon-control-tower-openapi.yml
+  type: openapi
+workflows:
+- workflowId: update-enabled-baseline
+  summary: Update an enabled baseline's version and wait for the operation to succeed.
+  description: >-
+    Calls updateEnabledBaseline, then repeatedly checks getBaselineOperation
+    until the operation status is no longer IN_PROGRESS, branching to
+    getEnabledBaseline on success.
+  inputs:
+    type: object
+    required:
+    - enabledBaselineIdentifier
+    - baselineVersion
+    properties:
+      enabledBaselineIdentifier:
+        type: string
+        description: The ARN of the enabled baseline to update.
+      baselineVersion:
+        type: string
+        description: The new baseline version to apply (e.g. "2.0").
+      parameters:
+        type: array
+        description: Optional list of enabled baseline parameter values to apply.
+        items:
+          type: object
+          properties:
+            key:
+              type: string
+            value: {}
+  steps:
+  - stepId: updateEnabledBaseline
+    description: >-
+      Start the asynchronous update of the enabled baseline and capture the
+      operation identifier used for polling.
+    operationId: updateEnabledBaseline
+    requestBody:
+      contentType: application/json
+      payload:
+        enabledBaselineIdentifier: $inputs.enabledBaselineIdentifier
+        baselineVersion: $inputs.baselineVersion
+        parameters: $inputs.parameters
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      operationIdentifier: $response.body#/operationIdentifier
+  - stepId: pollBaselineOperation
+    description: >-
+      Check the status of the update operation. Repeats while the operation is
+      still IN_PROGRESS, and proceeds to read the enabled baseline once it has
+      SUCCEEDED.
+    operationId: getBaselineOperation
+    requestBody:
+      contentType: application/json
+      payload:
+        operationIdentifier: $steps.updateEnabledBaseline.outputs.operationIdentifier
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/baselineOperation/status
+    onSuccess:
+    - name: stillRunning
+      type: goto
+      stepId: pollBaselineOperation
+      criteria:
+      - context: $response.body
+        condition: $.baselineOperation.status == "IN_PROGRESS"
+        type: jsonpath
+    - name: operationDone
+      type: goto
+      stepId: getEnabledBaseline
+      criteria:
+      - context: $response.body
+        condition: $.baselineOperation.status == "SUCCEEDED"
+        type: jsonpath
+  - stepId: getEnabledBaseline
+    description: >-
+      Retrieve the enabled baseline's refreshed details, including its status
+      summary and applied baseline version, now that the update has completed.
+    operationId: getEnabledBaseline
+    requestBody:
+      contentType: application/json
+      payload:
+        enabledBaselineIdentifier: $inputs.enabledBaselineIdentifier
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      enabledBaselineDetails: $response.body#/enabledBaselineDetails
+      status: $response.body#/enabledBaselineDetails/statusSummary/status
+      baselineVersion: $response.body#/enabledBaselineDetails/baselineVersion
+  outputs:
+    operationIdentifier: $steps.updateEnabledBaseline.outputs.operationIdentifier
+    operationStatus: $steps.pollBaselineOperation.outputs.status
+    enabledBaselineDetails: $steps.getEnabledBaseline.outputs.enabledBaselineDetails

@@ -1,0 +1,102 @@
+arazzo: 1.0.1
+info:
+  title: AWS Control Tower Create Landing Zone and Confirm
+  summary: Create a landing zone, poll the async operation to completion, then read back the landing zone details.
+  description: >-
+    Sets up a new AWS Control Tower landing zone from a supplied manifest and
+    version. Because creating a landing zone is asynchronous, the workflow starts
+    the operation, captures the returned operation identifier and landing zone
+    ARN, polls the landing zone operation until it leaves the IN_PROGRESS state,
+    and on success retrieves the landing zone so the caller has its status,
+    version, and drift status. Each step spells out its request inline so the
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: controlTowerApi
+  url: ../openapi/amazon-control-tower-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-landing-zone
+  summary: Create a landing zone and wait for the operation to succeed.
+  description: >-
+    Calls createLandingZone, then repeatedly checks getLandingZoneOperation until
+    the operation status is no longer IN_PROGRESS, branching to getLandingZone on
+    success.
+  inputs:
+    type: object
+    required:
+    - version
+    - manifest
+    properties:
+      version:
+        type: string
+        description: The landing zone version to deploy (e.g. "3.3").
+      manifest:
+        type: object
+        description: The landing zone manifest describing governed regions, OUs, and logging.
+  steps:
+  - stepId: createLandingZone
+    description: >-
+      Start the asynchronous create-landing-zone operation and capture the
+      operation identifier and the new landing zone ARN.
+    operationId: createLandingZone
+    requestBody:
+      contentType: application/json
+      payload:
+        version: $inputs.version
+        manifest: $inputs.manifest
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      operationIdentifier: $response.body#/operationIdentifier
+      landingZoneArn: $response.body#/arn
+  - stepId: pollLandingZoneOperation
+    description: >-
+      Check the status of the create operation. Repeats while the operation is
+      still IN_PROGRESS, and proceeds to read the landing zone once it has
+      SUCCEEDED.
+    operationId: getLandingZoneOperation
+    requestBody:
+      contentType: application/json
+      payload:
+        operationIdentifier: $steps.createLandingZone.outputs.operationIdentifier
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/operationDetails/status
+    onSuccess:
+    - name: stillRunning
+      type: goto
+      stepId: pollLandingZoneOperation
+      criteria:
+      - context: $response.body
+        condition: $.operationDetails.status == "IN_PROGRESS"
+        type: jsonpath
+    - name: operationDone
+      type: goto
+      stepId: getLandingZone
+      criteria:
+      - context: $response.body
+        condition: $.operationDetails.status == "SUCCEEDED"
+        type: jsonpath
+  - stepId: getLandingZone
+    description: >-
+      Retrieve the landing zone's details, including status, version, and drift
+      status, now that creation has completed.
+    operationId: getLandingZone
+    requestBody:
+      contentType: application/json
+      payload:
+        landingZoneIdentifier: $steps.createLandingZone.outputs.landingZoneArn
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      landingZone: $response.body#/landingZone
+      status: $response.body#/landingZone/status
+      version: $response.body#/landingZone/version
+  outputs:
+    landingZoneArn: $steps.createLandingZone.outputs.landingZoneArn
+    operationIdentifier: $steps.createLandingZone.outputs.operationIdentifier
+    operationStatus: $steps.pollLandingZoneOperation.outputs.status
+    landingZone: $steps.getLandingZone.outputs.landingZone

@@ -1,0 +1,111 @@
+arazzo: 1.0.1
+info:
+  title: AWS Control Tower Enable Control and Confirm
+  summary: Enable a control on an organizational unit, poll the async operation to completion, then read back the enabled control.
+  description: >-
+    Activates a control (guardrail) on a target organizational unit. Because
+    enabling a control is asynchronous, the workflow starts the operation,
+    captures the returned operation identifier and enabled control ARN, polls
+    the control operation until it leaves the IN_PROGRESS state, and finally
+    retrieves the enabled control so the caller has its current status and drift
+    summary. Each step spells out its request inline so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: controlTowerApi
+  url: ../openapi/amazon-control-tower-openapi.yml
+  type: openapi
+workflows:
+- workflowId: enable-control
+  summary: Enable a control on an OU and wait for the operation to succeed.
+  description: >-
+    Calls enableControl, then repeatedly checks getControlOperation until the
+    operation status is no longer IN_PROGRESS, branching to getEnabledControl on
+    success.
+  inputs:
+    type: object
+    required:
+    - controlIdentifier
+    - targetIdentifier
+    properties:
+      controlIdentifier:
+        type: string
+        description: The ARN of the control (guardrail) to activate.
+      targetIdentifier:
+        type: string
+        description: The ARN of the organizational unit to apply the control to.
+      parameters:
+        type: array
+        description: Optional list of control input parameters (key/value pairs).
+        items:
+          type: object
+          properties:
+            key:
+              type: string
+            value: {}
+  steps:
+  - stepId: enableControl
+    description: >-
+      Start the asynchronous enable-control operation on the target OU and
+      capture the operation identifier and the new enabled control ARN.
+    operationId: enableControl
+    requestBody:
+      contentType: application/json
+      payload:
+        controlIdentifier: $inputs.controlIdentifier
+        targetIdentifier: $inputs.targetIdentifier
+        parameters: $inputs.parameters
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      operationIdentifier: $response.body#/operationIdentifier
+      enabledControlArn: $response.body#/arn
+  - stepId: pollControlOperation
+    description: >-
+      Check the status of the enable-control operation. Repeats while the
+      operation is still IN_PROGRESS, and proceeds to read the enabled control
+      once it has SUCCEEDED.
+    operationId: getControlOperation
+    requestBody:
+      contentType: application/json
+      payload:
+        operationIdentifier: $steps.enableControl.outputs.operationIdentifier
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/controlOperation/status
+    onSuccess:
+    - name: stillRunning
+      type: goto
+      stepId: pollControlOperation
+      criteria:
+      - context: $response.body
+        condition: $.controlOperation.status == "IN_PROGRESS"
+        type: jsonpath
+    - name: operationDone
+      type: goto
+      stepId: getEnabledControl
+      criteria:
+      - context: $response.body
+        condition: $.controlOperation.status == "SUCCEEDED"
+        type: jsonpath
+  - stepId: getEnabledControl
+    description: >-
+      Retrieve the enabled control's details, including its status summary and
+      drift status summary, now that the operation has completed.
+    operationId: getEnabledControl
+    requestBody:
+      contentType: application/json
+      payload:
+        enabledControlIdentifier: $steps.enableControl.outputs.enabledControlArn
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      enabledControl: $response.body#/enabledControl
+      status: $response.body#/enabledControl/statusSummary/status
+      driftStatus: $response.body#/enabledControl/driftStatusSummary/driftStatus
+  outputs:
+    enabledControlArn: $steps.enableControl.outputs.enabledControlArn
+    operationIdentifier: $steps.enableControl.outputs.operationIdentifier
+    operationStatus: $steps.pollControlOperation.outputs.status
+    enabledControl: $steps.getEnabledControl.outputs.enabledControl

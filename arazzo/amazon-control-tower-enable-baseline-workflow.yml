@@ -1,0 +1,107 @@
+arazzo: 1.0.1
+info:
+  title: AWS Control Tower Enable Baseline and Confirm
+  summary: Apply a baseline to a target, poll the async operation to completion, then read back the enabled baseline.
+  description: >-
+    Applies (enables) a baseline to a target organizational unit, deploying the
+    resources the baseline specifies. Because enabling a baseline is
+    asynchronous, the workflow starts the operation, captures the returned
+    operation identifier and enabled baseline ARN, polls the baseline operation
+    until it leaves the IN_PROGRESS state, and on success retrieves the enabled
+    baseline so the caller has its status summary and applied version. Each step
+    spells out its request inline so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: controlTowerApi
+  url: ../openapi/amazon-control-tower-openapi.yml
+  type: openapi
+workflows:
+- workflowId: enable-baseline
+  summary: Enable a baseline on a target and wait for the operation to succeed.
+  description: >-
+    Calls enableBaseline, then repeatedly checks getBaselineOperation until the
+    operation status is no longer IN_PROGRESS, branching to getEnabledBaseline on
+    success.
+  inputs:
+    type: object
+    required:
+    - baselineIdentifier
+    - baselineVersion
+    - targetIdentifier
+    properties:
+      baselineIdentifier:
+        type: string
+        description: The ARN of the baseline to apply.
+      baselineVersion:
+        type: string
+        description: The version of the baseline to apply (e.g. "2.0").
+      targetIdentifier:
+        type: string
+        description: The ARN of the target organizational unit.
+  steps:
+  - stepId: enableBaseline
+    description: >-
+      Start the asynchronous enable-baseline operation against the target and
+      capture the operation identifier and the new enabled baseline ARN.
+    operationId: enableBaseline
+    requestBody:
+      contentType: application/json
+      payload:
+        baselineIdentifier: $inputs.baselineIdentifier
+        baselineVersion: $inputs.baselineVersion
+        targetIdentifier: $inputs.targetIdentifier
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      operationIdentifier: $response.body#/operationIdentifier
+      enabledBaselineArn: $response.body#/arn
+  - stepId: pollBaselineOperation
+    description: >-
+      Check the status of the enable-baseline operation. Repeats while the
+      operation is still IN_PROGRESS, and proceeds to read the enabled baseline
+      once it has SUCCEEDED.
+    operationId: getBaselineOperation
+    requestBody:
+      contentType: application/json
+      payload:
+        operationIdentifier: $steps.enableBaseline.outputs.operationIdentifier
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/baselineOperation/status
+    onSuccess:
+    - name: stillRunning
+      type: goto
+      stepId: pollBaselineOperation
+      criteria:
+      - context: $response.body
+        condition: $.baselineOperation.status == "IN_PROGRESS"
+        type: jsonpath
+    - name: operationDone
+      type: goto
+      stepId: getEnabledBaseline
+      criteria:
+      - context: $response.body
+        condition: $.baselineOperation.status == "SUCCEEDED"
+        type: jsonpath
+  - stepId: getEnabledBaseline
+    description: >-
+      Retrieve the enabled baseline's details, including its status summary and
+      applied baseline version, now that the operation has completed.
+    operationId: getEnabledBaseline
+    requestBody:
+      contentType: application/json
+      payload:
+        enabledBaselineIdentifier: $steps.enableBaseline.outputs.enabledBaselineArn
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      enabledBaselineDetails: $response.body#/enabledBaselineDetails
+      status: $response.body#/enabledBaselineDetails/statusSummary/status
+      baselineVersion: $response.body#/enabledBaselineDetails/baselineVersion
+  outputs:
+    enabledBaselineArn: $steps.enableBaseline.outputs.enabledBaselineArn
+    operationIdentifier: $steps.enableBaseline.outputs.operationIdentifier
+    operationStatus: $steps.pollBaselineOperation.outputs.status
+    enabledBaselineDetails: $steps.getEnabledBaseline.outputs.enabledBaselineDetails

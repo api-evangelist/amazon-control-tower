@@ -1,0 +1,81 @@
+arazzo: 1.0.1
+info:
+  title: AWS Control Tower Disable Control and Confirm
+  summary: Disable a control on an organizational unit and poll the async operation until it completes.
+  description: >-
+    Deactivates a control (guardrail) by removing it from a target organizational
+    unit. Disabling a control is asynchronous, so the workflow starts the
+    operation, captures the returned operation identifier, and polls the control
+    operation until it leaves the IN_PROGRESS state, branching to a terminal step
+    once it has SUCCEEDED. Each step spells out its request inline so the flow can
+    be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: controlTowerApi
+  url: ../openapi/amazon-control-tower-openapi.yml
+  type: openapi
+workflows:
+- workflowId: disable-control
+  summary: Disable a control on an OU and wait for the operation to succeed.
+  description: >-
+    Calls disableControl, then repeatedly checks getControlOperation until the
+    operation status is no longer IN_PROGRESS.
+  inputs:
+    type: object
+    required:
+    - controlIdentifier
+    - targetIdentifier
+    properties:
+      controlIdentifier:
+        type: string
+        description: The ARN of the control (guardrail) to deactivate.
+      targetIdentifier:
+        type: string
+        description: The ARN of the organizational unit to remove the control from.
+  steps:
+  - stepId: disableControl
+    description: >-
+      Start the asynchronous disable-control operation on the target OU and
+      capture the operation identifier used for polling.
+    operationId: disableControl
+    requestBody:
+      contentType: application/json
+      payload:
+        controlIdentifier: $inputs.controlIdentifier
+        targetIdentifier: $inputs.targetIdentifier
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      operationIdentifier: $response.body#/operationIdentifier
+  - stepId: pollControlOperation
+    description: >-
+      Check the status of the disable-control operation. Repeats while the
+      operation is still IN_PROGRESS, and ends the workflow once it has
+      SUCCEEDED.
+    operationId: getControlOperation
+    requestBody:
+      contentType: application/json
+      payload:
+        operationIdentifier: $steps.disableControl.outputs.operationIdentifier
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/controlOperation/status
+      operationType: $response.body#/controlOperation/operationType
+    onSuccess:
+    - name: stillRunning
+      type: goto
+      stepId: pollControlOperation
+      criteria:
+      - context: $response.body
+        condition: $.controlOperation.status == "IN_PROGRESS"
+        type: jsonpath
+    - name: operationDone
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.controlOperation.status == "SUCCEEDED"
+        type: jsonpath
+  outputs:
+    operationIdentifier: $steps.disableControl.outputs.operationIdentifier
+    operationStatus: $steps.pollControlOperation.outputs.status

@@ -1,0 +1,104 @@
+arazzo: 1.0.1
+info:
+  title: AWS Control Tower Update Landing Zone and Confirm
+  summary: Update a landing zone's version or manifest, poll the async operation, then read back its details.
+  description: >-
+    Updates an existing AWS Control Tower landing zone to a new version or
+    manifest. Because updating a landing zone is asynchronous, the workflow
+    starts the operation, captures the returned operation identifier, polls the
+    landing zone operation until it leaves the IN_PROGRESS state, and on success
+    retrieves the landing zone so the caller sees its refreshed status and
+    version. Each step spells out its request inline so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: controlTowerApi
+  url: ../openapi/amazon-control-tower-openapi.yml
+  type: openapi
+workflows:
+- workflowId: update-landing-zone
+  summary: Update a landing zone and wait for the operation to succeed.
+  description: >-
+    Calls updateLandingZone, then repeatedly checks getLandingZoneOperation until
+    the operation status is no longer IN_PROGRESS, branching to getLandingZone on
+    success.
+  inputs:
+    type: object
+    required:
+    - landingZoneIdentifier
+    - version
+    - manifest
+    properties:
+      landingZoneIdentifier:
+        type: string
+        description: The ARN of the landing zone to update.
+      version:
+        type: string
+        description: The landing zone version to apply (e.g. "3.3").
+      manifest:
+        type: object
+        description: The landing zone manifest describing the desired configuration.
+  steps:
+  - stepId: updateLandingZone
+    description: >-
+      Start the asynchronous update-landing-zone operation and capture the
+      operation identifier used for polling.
+    operationId: updateLandingZone
+    requestBody:
+      contentType: application/json
+      payload:
+        landingZoneIdentifier: $inputs.landingZoneIdentifier
+        version: $inputs.version
+        manifest: $inputs.manifest
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      operationIdentifier: $response.body#/operationIdentifier
+  - stepId: pollLandingZoneOperation
+    description: >-
+      Check the status of the update operation. Repeats while the operation is
+      still IN_PROGRESS, and proceeds to read the landing zone once it has
+      SUCCEEDED.
+    operationId: getLandingZoneOperation
+    requestBody:
+      contentType: application/json
+      payload:
+        operationIdentifier: $steps.updateLandingZone.outputs.operationIdentifier
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/operationDetails/status
+    onSuccess:
+    - name: stillRunning
+      type: goto
+      stepId: pollLandingZoneOperation
+      criteria:
+      - context: $response.body
+        condition: $.operationDetails.status == "IN_PROGRESS"
+        type: jsonpath
+    - name: operationDone
+      type: goto
+      stepId: getLandingZone
+      criteria:
+      - context: $response.body
+        condition: $.operationDetails.status == "SUCCEEDED"
+        type: jsonpath
+  - stepId: getLandingZone
+    description: >-
+      Retrieve the landing zone's refreshed details, including status and
+      version, now that the update has completed.
+    operationId: getLandingZone
+    requestBody:
+      contentType: application/json
+      payload:
+        landingZoneIdentifier: $inputs.landingZoneIdentifier
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      landingZone: $response.body#/landingZone
+      status: $response.body#/landingZone/status
+      version: $response.body#/landingZone/version
+  outputs:
+    operationIdentifier: $steps.updateLandingZone.outputs.operationIdentifier
+    operationStatus: $steps.pollLandingZoneOperation.outputs.status
+    landingZone: $steps.getLandingZone.outputs.landingZone
