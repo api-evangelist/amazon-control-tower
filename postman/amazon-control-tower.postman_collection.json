@@ -1,0 +1,4152 @@
+{
+  "info": {
+    "_postman_id": "f888cf93-149c-4937-b99a-739304a1be03",
+    "name": "AWS Control Tower API",
+    "description": "AWS Control Tower provides the easiest way to set up and govern a secure, multi-account AWS environment. The API enables programmatic management of landing zones, controls (guardrails), baselines, and organizational unit registrations within your AWS Control Tower environment.\n\nContact Support:\n Name: Amazon Web Services",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:02:51.000Z",
+    "updatedAt": "2026-06-05T15:02:51.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f888cf93-149c-4937-b99a-739304a1be03"
+  },
+  "item": [
+    {
+      "name": "create-landingzone",
+      "item": [
+        {
+          "name": "AWS Control Tower Create Landing Zone",
+          "id": "e5684acc-6105-4176-99e2-d1a16c1d5304",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"manifest\": {},\n  \"version\": \"<string>\",\n  \"tags\": {\n    \"adipisicing1b\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/create-landingzone",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "create-landingzone"
+              ]
+            },
+            "description": "Creates a new landing zone. This is an asynchronous operation. After you call this operation, you can check the landing zone status by calling GetLandingZone."
+          },
+          "response": [
+            {
+              "id": "0724487c-b42c-4c7c-8a5d-257e4fcef8e2",
+              "name": "Landing zone creation initiated successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"manifest\": {},\n  \"version\": \"<string>\",\n  \"tags\": {\n    \"adipisicing1b\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/create-landingzone",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "create-landingzone"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"arn\": \"<string>\",\n  \"operationIdentifier\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-0724487c-b42c-4c7c-8a5d-257e4fcef8e2"
+            },
+            {
+              "id": "b6ab5265-e5b1-4bcd-8ea4-b3c7e54214f9",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"manifest\": {},\n  \"version\": \"<string>\",\n  \"tags\": {\n    \"adipisicing1b\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/create-landingzone",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "create-landingzone"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-b6ab5265-e5b1-4bcd-8ea4-b3c7e54214f9"
+            },
+            {
+              "id": "1781cda2-9500-4df7-b9c5-81c992358bcf",
+              "name": "Conflict - landing zone already exists",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"manifest\": {},\n  \"version\": \"<string>\",\n  \"tags\": {\n    \"adipisicing1b\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/create-landingzone",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "create-landingzone"
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-1781cda2-9500-4df7-b9c5-81c992358bcf"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:51.000Z",
+          "updatedAt": "2026-06-05T15:02:51.000Z",
+          "uid": "35240-e5684acc-6105-4176-99e2-d1a16c1d5304"
+        }
+      ],
+      "id": "f26a6e84-5254-4590-b830-9e7ce3c4ace7",
+      "createdAt": "2026-06-05T15:02:51.000Z",
+      "updatedAt": "2026-06-05T15:02:51.000Z",
+      "uid": "35240-f26a6e84-5254-4590-b830-9e7ce3c4ace7"
+    },
+    {
+      "name": "delete-landingzone",
+      "item": [
+        {
+          "name": "AWS Control Tower Delete Landing Zone",
+          "id": "4e0c86f5-90a1-463b-8907-2e7a8efcd075",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"landingZoneIdentifier\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/delete-landingzone",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "delete-landingzone"
+              ]
+            },
+            "description": "Decommissions a landing zone. This is an asynchronous operation. After you call this operation, you can check the landing zone status by calling GetLandingZone."
+          },
+          "response": [
+            {
+              "id": "79f50e85-7e38-410d-a37b-bf4a8e8dc202",
+              "name": "Landing zone deletion initiated successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"landingZoneIdentifier\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/delete-landingzone",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "delete-landingzone"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"operationIdentifier\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-79f50e85-7e38-410d-a37b-bf4a8e8dc202"
+            },
+            {
+              "id": "76dc8681-c80b-44e4-8cff-47aba9a539f7",
+              "name": "Landing zone not found",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"landingZoneIdentifier\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/delete-landingzone",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "delete-landingzone"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-76dc8681-c80b-44e4-8cff-47aba9a539f7"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:51.000Z",
+          "updatedAt": "2026-06-05T15:02:51.000Z",
+          "uid": "35240-4e0c86f5-90a1-463b-8907-2e7a8efcd075"
+        }
+      ],
+      "id": "1a7094c5-e523-40e8-a331-e9da99a0aab7",
+      "createdAt": "2026-06-05T15:02:51.000Z",
+      "updatedAt": "2026-06-05T15:02:51.000Z",
+      "uid": "35240-1a7094c5-e523-40e8-a331-e9da99a0aab7"
+    },
+    {
+      "name": "get-landingzone",
+      "item": [
+        {
+          "name": "AWS Control Tower Get Landing Zone",
+          "id": "c28d619b-148e-4aee-bb4d-7d6f9c098365",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"landingZoneIdentifier\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/get-landingzone",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "get-landingzone"
+              ]
+            },
+            "description": "Returns details about a landing zone. Includes status and version."
+          },
+          "response": [
+            {
+              "id": "b78ac923-d84d-4b30-a4aa-3a976cfb89f2",
+              "name": "Successful response",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"landingZoneIdentifier\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/get-landingzone",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "get-landingzone"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"landingZone\": {\n    \"arn\": \"<string>\",\n    \"driftStatus\": {\n      \"status\": \"IN_SYNC\"\n    },\n    \"latestAvailableVersion\": \"<string>\",\n    \"manifest\": {},\n    \"status\": \"FAILED\",\n    \"version\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-b78ac923-d84d-4b30-a4aa-3a976cfb89f2"
+            },
+            {
+              "id": "0bd3a79f-dad9-43e9-93c0-a054235315c7",
+              "name": "Landing zone not found",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"landingZoneIdentifier\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/get-landingzone",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "get-landingzone"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-0bd3a79f-dad9-43e9-93c0-a054235315c7"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:51.000Z",
+          "updatedAt": "2026-06-05T15:02:51.000Z",
+          "uid": "35240-c28d619b-148e-4aee-bb4d-7d6f9c098365"
+        }
+      ],
+      "id": "3b79f7d9-30aa-4d1b-9728-7f5e6245ad7c",
+      "createdAt": "2026-06-05T15:02:51.000Z",
+      "updatedAt": "2026-06-05T15:02:51.000Z",
+      "uid": "35240-3b79f7d9-30aa-4d1b-9728-7f5e6245ad7c"
+    },
+    {
+      "name": "list-landingzones",
+      "item": [
+        {
+          "name": "AWS Control Tower List Landing Zones",
+          "id": "caa3ddcb-8f51-435d-a984-2fefe6ce7d1c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"maxResults\": \"<integer>\",\n  \"nextToken\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/list-landingzones",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "list-landingzones"
+              ]
+            },
+            "description": "Returns a list of landing zones in the caller's AWS account."
+          },
+          "response": [
+            {
+              "id": "26bcf7da-1617-4da3-8c66-8b020b6534ca",
+              "name": "Successful response",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"maxResults\": \"<integer>\",\n  \"nextToken\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/list-landingzones",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "list-landingzones"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"landingZones\": [\n    {\n      \"arn\": \"<string>\"\n    },\n    {\n      \"arn\": \"<string>\"\n    }\n  ],\n  \"nextToken\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-26bcf7da-1617-4da3-8c66-8b020b6534ca"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:51.000Z",
+          "updatedAt": "2026-06-05T15:02:51.000Z",
+          "uid": "35240-caa3ddcb-8f51-435d-a984-2fefe6ce7d1c"
+        }
+      ],
+      "id": "2c08637f-3050-4c33-86aa-efa8df304564",
+      "createdAt": "2026-06-05T15:02:51.000Z",
+      "updatedAt": "2026-06-05T15:02:51.000Z",
+      "uid": "35240-2c08637f-3050-4c33-86aa-efa8df304564"
+    },
+    {
+      "name": "update-landingzone",
+      "item": [
+        {
+          "name": "AWS Control Tower Update Landing Zone",
+          "id": "389e93e8-86d1-4fe3-ab42-3d25bf8558eb",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"landingZoneIdentifier\": \"<string>\",\n  \"manifest\": {},\n  \"version\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/update-landingzone",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "update-landingzone"
+              ]
+            },
+            "description": "Updates an existing landing zone. This is an asynchronous operation. After you call this operation, you can check the landing zone status by calling GetLandingZone."
+          },
+          "response": [
+            {
+              "id": "9a617978-6c00-486a-9262-e83e4f4fe71a",
+              "name": "Landing zone update initiated successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"landingZoneIdentifier\": \"<string>\",\n  \"manifest\": {},\n  \"version\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/update-landingzone",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "update-landingzone"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"operationIdentifier\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-9a617978-6c00-486a-9262-e83e4f4fe71a"
+            },
+            {
+              "id": "fd2c62fa-ffd5-406e-85c4-34b5caf4cfce",
+              "name": "Landing zone not found",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"landingZoneIdentifier\": \"<string>\",\n  \"manifest\": {},\n  \"version\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/update-landingzone",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "update-landingzone"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-fd2c62fa-ffd5-406e-85c4-34b5caf4cfce"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:51.000Z",
+          "updatedAt": "2026-06-05T15:02:51.000Z",
+          "uid": "35240-389e93e8-86d1-4fe3-ab42-3d25bf8558eb"
+        }
+      ],
+      "id": "985b5e90-32c9-4c08-bf91-0949df14a49f",
+      "createdAt": "2026-06-05T15:02:51.000Z",
+      "updatedAt": "2026-06-05T15:02:51.000Z",
+      "uid": "35240-985b5e90-32c9-4c08-bf91-0949df14a49f"
+    },
+    {
+      "name": "reset-landingzone",
+      "item": [
+        {
+          "name": "AWS Control Tower Reset Landing Zone",
+          "id": "9ce9c1c6-cd87-4a60-b212-c8fe51acbcc7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"landingZoneIdentifier\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/reset-landingzone",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reset-landingzone"
+              ]
+            },
+            "description": "Re-enables a landing zone after it has been decommissioned, or extends it to new regions. This is an asynchronous operation."
+          },
+          "response": [
+            {
+              "id": "077435b5-78dc-4761-b3b7-d24b606ce909",
+              "name": "Landing zone reset initiated successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"landingZoneIdentifier\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/reset-landingzone",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reset-landingzone"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"operationIdentifier\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-077435b5-78dc-4761-b3b7-d24b606ce909"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:51.000Z",
+          "updatedAt": "2026-06-05T15:02:51.000Z",
+          "uid": "35240-9ce9c1c6-cd87-4a60-b212-c8fe51acbcc7"
+        }
+      ],
+      "id": "2f687567-d48b-4047-bb56-2dfa0a80e81e",
+      "createdAt": "2026-06-05T15:02:51.000Z",
+      "updatedAt": "2026-06-05T15:02:51.000Z",
+      "uid": "35240-2f687567-d48b-4047-bb56-2dfa0a80e81e"
+    },
+    {
+      "name": "get-landingzone-operation",
+      "item": [
+        {
+          "name": "AWS Control Tower Get Landing Zone Operation",
+          "id": "3456386f-3459-4276-aafe-369182d83b41",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"operationIdentifier\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/get-landingzone-operation",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "get-landingzone-operation"
+              ]
+            },
+            "description": "Returns the status of a specified landing zone operation."
+          },
+          "response": [
+            {
+              "id": "8b517eac-c3bb-4c89-b83d-3061068a4c7b",
+              "name": "Successful response",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"operationIdentifier\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/get-landingzone-operation",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "get-landingzone-operation"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"operationDetails\": {\n    \"endTime\": \"<dateTime>\",\n    \"operationIdentifier\": \"<string>\",\n    \"operationType\": \"RESET\",\n    \"startTime\": \"<dateTime>\",\n    \"status\": \"FAILED\",\n    \"statusMessage\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-8b517eac-c3bb-4c89-b83d-3061068a4c7b"
+            },
+            {
+              "id": "73762636-ad45-4c49-8aa7-677ee7c91ef4",
+              "name": "Operation not found",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"operationIdentifier\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/get-landingzone-operation",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "get-landingzone-operation"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-73762636-ad45-4c49-8aa7-677ee7c91ef4"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:51.000Z",
+          "updatedAt": "2026-06-05T15:02:51.000Z",
+          "uid": "35240-3456386f-3459-4276-aafe-369182d83b41"
+        }
+      ],
+      "id": "34825a69-280c-4635-a9f3-7efeb73f48b0",
+      "createdAt": "2026-06-05T15:02:51.000Z",
+      "updatedAt": "2026-06-05T15:02:51.000Z",
+      "uid": "35240-34825a69-280c-4635-a9f3-7efeb73f48b0"
+    },
+    {
+      "name": "list-landingzone-operations",
+      "item": [
+        {
+          "name": "AWS Control Tower List Landing Zone Operations",
+          "id": "49e79561-b980-42af-a2b1-f8b8a7bd4c8f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filter\": {\n    \"statuses\": [\n      \"FAILED\",\n      \"FAILED\"\n    ],\n    \"types\": [\n      \"CREATE\",\n      \"UPDATE\"\n    ]\n  },\n  \"maxResults\": \"<integer>\",\n  \"nextToken\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/list-landingzone-operations",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "list-landingzone-operations"
+              ]
+            },
+            "description": "Lists all landing zone operations from the past 90 days."
+          },
+          "response": [
+            {
+              "id": "9750ef4e-a15d-484c-a83f-8755ead4ef86",
+              "name": "Successful response",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filter\": {\n    \"statuses\": [\n      \"FAILED\",\n      \"FAILED\"\n    ],\n    \"types\": [\n      \"CREATE\",\n      \"UPDATE\"\n    ]\n  },\n  \"maxResults\": \"<integer>\",\n  \"nextToken\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/list-landingzone-operations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "list-landingzone-operations"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"landingZoneOperations\": [\n    {\n      \"operationIdentifier\": \"<string>\",\n      \"operationType\": \"<string>\",\n      \"startTime\": \"<dateTime>\",\n      \"status\": \"IN_PROGRESS\"\n    },\n    {\n      \"operationIdentifier\": \"<string>\",\n      \"operationType\": \"<string>\",\n      \"startTime\": \"<dateTime>\",\n      \"status\": \"IN_PROGRESS\"\n    }\n  ],\n  \"nextToken\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-9750ef4e-a15d-484c-a83f-8755ead4ef86"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:51.000Z",
+          "updatedAt": "2026-06-05T15:02:51.000Z",
+          "uid": "35240-49e79561-b980-42af-a2b1-f8b8a7bd4c8f"
+        }
+      ],
+      "id": "5ae87e2a-33ad-439c-9854-6b1a4113363e",
+      "createdAt": "2026-06-05T15:02:51.000Z",
+      "updatedAt": "2026-06-05T15:02:51.000Z",
+      "uid": "35240-5ae87e2a-33ad-439c-9854-6b1a4113363e"
+    },
+    {
+      "name": "enable-control",
+      "item": [
+        {
+          "name": "AWS Control Tower Enable Control",
+          "id": "5d072a40-a77f-4391-98d5-05e84b2c92b7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"controlIdentifier\": \"<string>\",\n  \"targetIdentifier\": \"<string>\",\n  \"parameters\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": {\n        \"description\": \"The parameter value.\"\n      }\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": {\n        \"description\": \"The parameter value.\"\n      }\n    }\n  ],\n  \"tags\": {\n    \"aute_e\": \"<string>\",\n    \"non_38\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/enable-control",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "enable-control"
+              ]
+            },
+            "description": "Activates a control, otherwise known as a guardrail, upon the specified organizational unit (OU). This operation is asynchronous and returns a control operation identifier that can be used to check the status."
+          },
+          "response": [
+            {
+              "id": "6d3ff5fe-750b-4076-8510-8675ba376f62",
+              "name": "Control enabled successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"controlIdentifier\": \"<string>\",\n  \"targetIdentifier\": \"<string>\",\n  \"parameters\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": {\n        \"description\": \"The parameter value.\"\n      }\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": {\n        \"description\": \"The parameter value.\"\n      }\n    }\n  ],\n  \"tags\": {\n    \"aute_e\": \"<string>\",\n    \"non_38\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/enable-control",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "enable-control"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"arn\": \"<string>\",\n  \"operationIdentifier\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-6d3ff5fe-750b-4076-8510-8675ba376f62"
+            },
+            {
+              "id": "ad7e57f7-9862-472e-a411-65e4c0534e9b",
+              "name": "Bad request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"controlIdentifier\": \"<string>\",\n  \"targetIdentifier\": \"<string>\",\n  \"parameters\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": {\n        \"description\": \"The parameter value.\"\n      }\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": {\n        \"description\": \"The parameter value.\"\n      }\n    }\n  ],\n  \"tags\": {\n    \"aute_e\": \"<string>\",\n    \"non_38\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/enable-control",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "enable-control"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-ad7e57f7-9862-472e-a411-65e4c0534e9b"
+            },
+            {
+              "id": "e929b855-8dad-4125-a89b-335840a6e8b7",
+              "name": "Control already enabled on target",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"controlIdentifier\": \"<string>\",\n  \"targetIdentifier\": \"<string>\",\n  \"parameters\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": {\n        \"description\": \"The parameter value.\"\n      }\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": {\n        \"description\": \"The parameter value.\"\n      }\n    }\n  ],\n  \"tags\": {\n    \"aute_e\": \"<string>\",\n    \"non_38\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/enable-control",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "enable-control"
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-e929b855-8dad-4125-a89b-335840a6e8b7"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:51.000Z",
+          "updatedAt": "2026-06-05T15:02:51.000Z",
+          "uid": "35240-5d072a40-a77f-4391-98d5-05e84b2c92b7"
+        }
+      ],
+      "id": "45a8e95f-0664-49fd-9c9b-873c5bbd2a26",
+      "createdAt": "2026-06-05T15:02:51.000Z",
+      "updatedAt": "2026-06-05T15:02:51.000Z",
+      "uid": "35240-45a8e95f-0664-49fd-9c9b-873c5bbd2a26"
+    },
+    {
+      "name": "disable-control",
+      "item": [
+        {
+          "name": "AWS Control Tower Disable Control",
+          "id": "4f56f88c-7c60-481e-8242-74166bd630c6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"controlIdentifier\": \"<string>\",\n  \"targetIdentifier\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/disable-control",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "disable-control"
+              ]
+            },
+            "description": "Deactivates a control by removing it from the specified organizational unit (OU). This operation is asynchronous and returns an operation identifier that can be used to check the status."
+          },
+          "response": [
+            {
+              "id": "f8fa6083-9f98-4360-b6ac-521f83e3b653",
+              "name": "Control disabled successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"controlIdentifier\": \"<string>\",\n  \"targetIdentifier\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/disable-control",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "disable-control"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"operationIdentifier\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-f8fa6083-9f98-4360-b6ac-521f83e3b653"
+            },
+            {
+              "id": "232bc2ce-b768-436f-9ecd-45f0391d0a16",
+              "name": "Control not found on target",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"controlIdentifier\": \"<string>\",\n  \"targetIdentifier\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/disable-control",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "disable-control"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-232bc2ce-b768-436f-9ecd-45f0391d0a16"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:51.000Z",
+          "updatedAt": "2026-06-05T15:02:51.000Z",
+          "uid": "35240-4f56f88c-7c60-481e-8242-74166bd630c6"
+        }
+      ],
+      "id": "f285d0dc-09c9-4961-a645-021d6aca4ef6",
+      "createdAt": "2026-06-05T15:02:51.000Z",
+      "updatedAt": "2026-06-05T15:02:51.000Z",
+      "uid": "35240-f285d0dc-09c9-4961-a645-021d6aca4ef6"
+    },
+    {
+      "name": "get-enabled-control",
+      "item": [
+        {
+          "name": "AWS Control Tower Get Enabled Control",
+          "id": "38860266-456f-4078-9694-ef6867a16dd0",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabledControlIdentifier\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/get-enabled-control",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "get-enabled-control"
+              ]
+            },
+            "description": "Retrieves details about an enabled control. For usage examples, see the AWS Control Tower controls reference guide."
+          },
+          "response": [
+            {
+              "id": "d0ee7e0b-b74e-459f-bbfb-e47d980c31bc",
+              "name": "Successful response",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabledControlIdentifier\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/get-enabled-control",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "get-enabled-control"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"enabledControl\": {\n    \"arn\": \"<string>\",\n    \"controlIdentifier\": \"<string>\",\n    \"driftStatusSummary\": {\n      \"driftStatus\": \"UNKNOWN\"\n    },\n    \"parameters\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": {\n          \"description\": \"The parameter value.\"\n        }\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": {\n          \"description\": \"The parameter value.\"\n        }\n      }\n    ],\n    \"statusSummary\": {\n      \"lastOperationIdentifier\": \"<string>\",\n      \"status\": \"UNDER_CHANGE\"\n    },\n    \"targetIdentifier\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-d0ee7e0b-b74e-459f-bbfb-e47d980c31bc"
+            },
+            {
+              "id": "468e7691-b4d1-46f4-92fa-7ff777e3fcb7",
+              "name": "Enabled control not found",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabledControlIdentifier\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/get-enabled-control",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "get-enabled-control"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-468e7691-b4d1-46f4-92fa-7ff777e3fcb7"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:51.000Z",
+          "updatedAt": "2026-06-05T15:02:51.000Z",
+          "uid": "35240-38860266-456f-4078-9694-ef6867a16dd0"
+        }
+      ],
+      "id": "63328ab5-eb98-450e-aafb-218f038112fc",
+      "createdAt": "2026-06-05T15:02:51.000Z",
+      "updatedAt": "2026-06-05T15:02:51.000Z",
+      "uid": "35240-63328ab5-eb98-450e-aafb-218f038112fc"
+    },
+    {
+      "name": "list-enabled-controls",
+      "item": [
+        {
+          "name": "AWS Control Tower List Enabled Controls",
+          "id": "190fcad8-cdeb-4845-bcab-87af088b44bf",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"targetIdentifier\": \"<string>\",\n  \"filter\": {\n    \"controlIdentifiers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"statuses\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"maxResults\": \"<integer>\",\n  \"nextToken\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/list-enabled-controls",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "list-enabled-controls"
+              ]
+            },
+            "description": "Lists the controls enabled by AWS Control Tower on the specified organizational unit and the accounts it contains. For usage examples, see the AWS Control Tower controls reference guide."
+          },
+          "response": [
+            {
+              "id": "94544e04-a68b-4691-ab2d-259554e6260a",
+              "name": "Successful response",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"targetIdentifier\": \"<string>\",\n  \"filter\": {\n    \"controlIdentifiers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"statuses\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"maxResults\": \"<integer>\",\n  \"nextToken\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/list-enabled-controls",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "list-enabled-controls"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"enabledControls\": [\n    {\n      \"arn\": \"<string>\",\n      \"controlIdentifier\": \"<string>\",\n      \"statusSummary\": {\n        \"status\": \"<string>\"\n      },\n      \"targetIdentifier\": \"<string>\"\n    },\n    {\n      \"arn\": \"<string>\",\n      \"controlIdentifier\": \"<string>\",\n      \"statusSummary\": {\n        \"status\": \"<string>\"\n      },\n      \"targetIdentifier\": \"<string>\"\n    }\n  ],\n  \"nextToken\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-94544e04-a68b-4691-ab2d-259554e6260a"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:51.000Z",
+          "updatedAt": "2026-06-05T15:02:51.000Z",
+          "uid": "35240-190fcad8-cdeb-4845-bcab-87af088b44bf"
+        }
+      ],
+      "id": "54dfb264-2851-46af-b217-eaea32ac8a36",
+      "createdAt": "2026-06-05T15:02:51.000Z",
+      "updatedAt": "2026-06-05T15:02:51.000Z",
+      "uid": "35240-54dfb264-2851-46af-b217-eaea32ac8a36"
+    },
+    {
+      "name": "update-enabled-control",
+      "item": [
+        {
+          "name": "AWS Control Tower Update Enabled Control",
+          "id": "1ef4d4c7-ae35-4246-a4f9-183a9c586f43",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabledControlIdentifier\": \"<string>\",\n  \"parameters\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": {\n        \"description\": \"The parameter value.\"\n      }\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": {\n        \"description\": \"The parameter value.\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/update-enabled-control",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "update-enabled-control"
+              ]
+            },
+            "description": "Updates the configuration of an already enabled control. If the enabled control shows an EnablementStatus of FAILED, you can re-run this operation."
+          },
+          "response": [
+            {
+              "id": "5caba7ea-94cf-4810-9c58-c8d9a9289adb",
+              "name": "Enabled control updated successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabledControlIdentifier\": \"<string>\",\n  \"parameters\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": {\n        \"description\": \"The parameter value.\"\n      }\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": {\n        \"description\": \"The parameter value.\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/update-enabled-control",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "update-enabled-control"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"operationIdentifier\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-5caba7ea-94cf-4810-9c58-c8d9a9289adb"
+            },
+            {
+              "id": "73bdaa3a-6c0c-4bc1-ac48-0d4c7d896260",
+              "name": "Enabled control not found",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabledControlIdentifier\": \"<string>\",\n  \"parameters\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": {\n        \"description\": \"The parameter value.\"\n      }\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": {\n        \"description\": \"The parameter value.\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/update-enabled-control",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "update-enabled-control"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-73bdaa3a-6c0c-4bc1-ac48-0d4c7d896260"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:51.000Z",
+          "updatedAt": "2026-06-05T15:02:51.000Z",
+          "uid": "35240-1ef4d4c7-ae35-4246-a4f9-183a9c586f43"
+        }
+      ],
+      "id": "349dd50f-1509-4c2d-8301-0762d28a23b9",
+      "createdAt": "2026-06-05T15:02:51.000Z",
+      "updatedAt": "2026-06-05T15:02:51.000Z",
+      "uid": "35240-349dd50f-1509-4c2d-8301-0762d28a23b9"
+    },
+    {
+      "name": "reset-enabled-control",
+      "item": [
+        {
+          "name": "AWS Control Tower Reset Enabled Control",
+          "id": "1bac8097-e768-4289-a7ff-eaae71677c4c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabledControlIdentifier\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/reset-enabled-control",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reset-enabled-control"
+              ]
+            },
+            "description": "Resets a control to its default configuration. This operation is asynchronous and returns an operation identifier."
+          },
+          "response": [
+            {
+              "id": "2f3a1e04-42bf-425a-a0c6-40c567ee192b",
+              "name": "Enabled control reset initiated",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabledControlIdentifier\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/reset-enabled-control",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reset-enabled-control"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"operationIdentifier\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-2f3a1e04-42bf-425a-a0c6-40c567ee192b"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:51.000Z",
+          "updatedAt": "2026-06-05T15:02:51.000Z",
+          "uid": "35240-1bac8097-e768-4289-a7ff-eaae71677c4c"
+        }
+      ],
+      "id": "f9a926a5-f36f-42bb-b311-df03486d2723",
+      "createdAt": "2026-06-05T15:02:51.000Z",
+      "updatedAt": "2026-06-05T15:02:51.000Z",
+      "uid": "35240-f9a926a5-f36f-42bb-b311-df03486d2723"
+    },
+    {
+      "name": "get-control-operation",
+      "item": [
+        {
+          "name": "AWS Control Tower Get Control Operation",
+          "id": "9ee5ed86-3f2b-4dd3-b2d1-b98028b27f5e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"operationIdentifier\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/get-control-operation",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "get-control-operation"
+              ]
+            },
+            "description": "Returns the status of a particular EnableControl or DisableControl operation."
+          },
+          "response": [
+            {
+              "id": "ebd124d2-2aff-4cf5-82c5-5b2e67fc9bc4",
+              "name": "Successful response",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"operationIdentifier\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/get-control-operation",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "get-control-operation"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"controlOperation\": {\n    \"controlIdentifier\": \"<string>\",\n    \"enabledControlIdentifier\": \"<string>\",\n    \"endTime\": \"<dateTime>\",\n    \"operationIdentifier\": \"<string>\",\n    \"operationType\": \"UPDATE_ENABLED_CONTROL\",\n    \"startTime\": \"<dateTime>\",\n    \"status\": \"FAILED\",\n    \"statusMessage\": \"<string>\",\n    \"targetIdentifier\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-ebd124d2-2aff-4cf5-82c5-5b2e67fc9bc4"
+            },
+            {
+              "id": "685fc705-0a11-43cf-963a-c358ce7a05be",
+              "name": "Operation not found",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"operationIdentifier\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/get-control-operation",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "get-control-operation"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-685fc705-0a11-43cf-963a-c358ce7a05be"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:51.000Z",
+          "updatedAt": "2026-06-05T15:02:51.000Z",
+          "uid": "35240-9ee5ed86-3f2b-4dd3-b2d1-b98028b27f5e"
+        }
+      ],
+      "id": "74505f83-f0d4-4dae-9b34-5f52c81a2966",
+      "createdAt": "2026-06-05T15:02:51.000Z",
+      "updatedAt": "2026-06-05T15:02:51.000Z",
+      "uid": "35240-74505f83-f0d4-4dae-9b34-5f52c81a2966"
+    },
+    {
+      "name": "list-control-operations",
+      "item": [
+        {
+          "name": "AWS Control Tower List Control Operations",
+          "id": "835262b9-3b72-42db-97b1-70422fea07e0",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filter\": {\n    \"controlIdentifiers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"statuses\": [\n      \"FAILED\",\n      \"SUCCEEDED\"\n    ],\n    \"targetIdentifiers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"types\": [\n      \"ENABLE_CONTROL\",\n      \"UPDATE_ENABLED_CONTROL\"\n    ]\n  },\n  \"maxResults\": \"<integer>\",\n  \"nextToken\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/list-control-operations",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "list-control-operations"
+              ]
+            },
+            "description": "Provides a list of operations in progress or complete within the past 90 days. Optionally filter by the status of the operation, the affected target, or the type of operation."
+          },
+          "response": [
+            {
+              "id": "13f07d74-5ee6-4106-b701-5151b5e4a31f",
+              "name": "Successful response",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filter\": {\n    \"controlIdentifiers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"statuses\": [\n      \"FAILED\",\n      \"SUCCEEDED\"\n    ],\n    \"targetIdentifiers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"types\": [\n      \"ENABLE_CONTROL\",\n      \"UPDATE_ENABLED_CONTROL\"\n    ]\n  },\n  \"maxResults\": \"<integer>\",\n  \"nextToken\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/list-control-operations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "list-control-operations"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"controlOperations\": [\n    {\n      \"controlIdentifier\": \"<string>\",\n      \"operationIdentifier\": \"<string>\",\n      \"operationType\": \"<string>\",\n      \"startTime\": \"<dateTime>\",\n      \"status\": \"<string>\"\n    },\n    {\n      \"controlIdentifier\": \"<string>\",\n      \"operationIdentifier\": \"<string>\",\n      \"operationType\": \"<string>\",\n      \"startTime\": \"<dateTime>\",\n      \"status\": \"<string>\"\n    }\n  ],\n  \"nextToken\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-13f07d74-5ee6-4106-b701-5151b5e4a31f"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:51.000Z",
+          "updatedAt": "2026-06-05T15:02:51.000Z",
+          "uid": "35240-835262b9-3b72-42db-97b1-70422fea07e0"
+        }
+      ],
+      "id": "9f6339f9-ae07-4c1d-a1a1-b9715d05fa04",
+      "createdAt": "2026-06-05T15:02:51.000Z",
+      "updatedAt": "2026-06-05T15:02:51.000Z",
+      "uid": "35240-9f6339f9-ae07-4c1d-a1a1-b9715d05fa04"
+    },
+    {
+      "name": "enable-baseline",
+      "item": [
+        {
+          "name": "AWS Control Tower Enable Baseline",
+          "id": "bccbd1c9-ae05-41fb-bd8b-2665f7aabdad",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"baselineIdentifier\": \"<string>\",\n  \"baselineVersion\": \"<string>\",\n  \"targetIdentifier\": \"<string>\",\n  \"parameters\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": {\n        \"description\": \"The parameter value.\"\n      }\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": {\n        \"description\": \"The parameter value.\"\n      }\n    }\n  ],\n  \"tags\": {\n    \"laborum0\": \"<string>\",\n    \"culpa_6\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/enable-baseline",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "enable-baseline"
+              ]
+            },
+            "description": "Enable (apply) a Baseline to a Target. This API starts an asynchronous operation to deploy resources specified by the Baseline to the specified Target."
+          },
+          "response": [
+            {
+              "id": "abe219c0-7468-414e-8a7f-87df437bd23b",
+              "name": "Baseline enabled successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"baselineIdentifier\": \"<string>\",\n  \"baselineVersion\": \"<string>\",\n  \"targetIdentifier\": \"<string>\",\n  \"parameters\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": {\n        \"description\": \"The parameter value.\"\n      }\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": {\n        \"description\": \"The parameter value.\"\n      }\n    }\n  ],\n  \"tags\": {\n    \"laborum0\": \"<string>\",\n    \"culpa_6\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/enable-baseline",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "enable-baseline"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"arn\": \"<string>\",\n  \"operationIdentifier\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-abe219c0-7468-414e-8a7f-87df437bd23b"
+            },
+            {
+              "id": "7d971864-cba7-48f3-8d5d-7ced3d402d59",
+              "name": "Bad request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"baselineIdentifier\": \"<string>\",\n  \"baselineVersion\": \"<string>\",\n  \"targetIdentifier\": \"<string>\",\n  \"parameters\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": {\n        \"description\": \"The parameter value.\"\n      }\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": {\n        \"description\": \"The parameter value.\"\n      }\n    }\n  ],\n  \"tags\": {\n    \"laborum0\": \"<string>\",\n    \"culpa_6\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/enable-baseline",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "enable-baseline"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-7d971864-cba7-48f3-8d5d-7ced3d402d59"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:51.000Z",
+          "updatedAt": "2026-06-05T15:02:51.000Z",
+          "uid": "35240-bccbd1c9-ae05-41fb-bd8b-2665f7aabdad"
+        }
+      ],
+      "id": "3e404e86-fbfa-4974-b535-015b32b842f9",
+      "createdAt": "2026-06-05T15:02:51.000Z",
+      "updatedAt": "2026-06-05T15:02:51.000Z",
+      "uid": "35240-3e404e86-fbfa-4974-b535-015b32b842f9"
+    },
+    {
+      "name": "disable-baseline",
+      "item": [
+        {
+          "name": "AWS Control Tower Disable Baseline",
+          "id": "4856a30a-a39f-4ef6-8533-07896920b455",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabledBaselineIdentifier\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/disable-baseline",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "disable-baseline"
+              ]
+            },
+            "description": "Disable an EnabledBaseline resource on the specified Target. This API starts an asynchronous operation to remove all resources deployed as part of the baseline enablement."
+          },
+          "response": [
+            {
+              "id": "43b0c2dd-c5dc-40be-bf4c-4452d198ef00",
+              "name": "Baseline disabled successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabledBaselineIdentifier\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/disable-baseline",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "disable-baseline"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"operationIdentifier\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-43b0c2dd-c5dc-40be-bf4c-4452d198ef00"
+            },
+            {
+              "id": "f96e0a56-337e-47b1-8335-88cb17a512c2",
+              "name": "Enabled baseline not found",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabledBaselineIdentifier\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/disable-baseline",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "disable-baseline"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-f96e0a56-337e-47b1-8335-88cb17a512c2"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:51.000Z",
+          "updatedAt": "2026-06-05T15:02:51.000Z",
+          "uid": "35240-4856a30a-a39f-4ef6-8533-07896920b455"
+        }
+      ],
+      "id": "6f18e6c5-eca2-4b6c-84de-b6befa72cf03",
+      "createdAt": "2026-06-05T15:02:51.000Z",
+      "updatedAt": "2026-06-05T15:02:51.000Z",
+      "uid": "35240-6f18e6c5-eca2-4b6c-84de-b6befa72cf03"
+    },
+    {
+      "name": "get-baseline",
+      "item": [
+        {
+          "name": "AWS Control Tower Get Baseline",
+          "id": "24653bd7-a107-4984-be53-97144ba3956c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"baselineIdentifier\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/get-baseline",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "get-baseline"
+              ]
+            },
+            "description": "Retrieve details about an existing Baseline resource by specifying its identifier."
+          },
+          "response": [
+            {
+              "id": "86646c9c-0d15-4ed9-80e6-8435023c512f",
+              "name": "Successful response",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"baselineIdentifier\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/get-baseline",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "get-baseline"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"arn\": \"<string>\",\n  \"description\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-86646c9c-0d15-4ed9-80e6-8435023c512f"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:51.000Z",
+          "updatedAt": "2026-06-05T15:02:51.000Z",
+          "uid": "35240-24653bd7-a107-4984-be53-97144ba3956c"
+        }
+      ],
+      "id": "5c2e6fe3-6e8e-4c35-bdb5-03f51a23c6fe",
+      "createdAt": "2026-06-05T15:02:51.000Z",
+      "updatedAt": "2026-06-05T15:02:51.000Z",
+      "uid": "35240-5c2e6fe3-6e8e-4c35-bdb5-03f51a23c6fe"
+    },
+    {
+      "name": "list-baselines",
+      "item": [
+        {
+          "name": "AWS Control Tower List Baselines",
+          "id": "883816f8-652f-41fd-b58b-ee5719a8eb1d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"maxResults\": \"<integer>\",\n  \"nextToken\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/list-baselines",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "list-baselines"
+              ]
+            },
+            "description": "Returns a summary list of all available baselines."
+          },
+          "response": [
+            {
+              "id": "f981ada9-044e-4b7f-8a54-a002da144871",
+              "name": "Successful response",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"maxResults\": \"<integer>\",\n  \"nextToken\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/list-baselines",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "list-baselines"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"baselines\": [\n    {\n      \"arn\": \"<string>\",\n      \"description\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"arn\": \"<string>\",\n      \"description\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"nextToken\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-f981ada9-044e-4b7f-8a54-a002da144871"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:51.000Z",
+          "updatedAt": "2026-06-05T15:02:51.000Z",
+          "uid": "35240-883816f8-652f-41fd-b58b-ee5719a8eb1d"
+        }
+      ],
+      "id": "d5404342-941b-428a-b3cd-5aef0081f404",
+      "createdAt": "2026-06-05T15:02:51.000Z",
+      "updatedAt": "2026-06-05T15:02:51.000Z",
+      "uid": "35240-d5404342-941b-428a-b3cd-5aef0081f404"
+    },
+    {
+      "name": "get-enabled-baseline",
+      "item": [
+        {
+          "name": "AWS Control Tower Get Enabled Baseline",
+          "id": "9094291a-397a-4b27-a264-f7a34ce9e210",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabledBaselineIdentifier\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/get-enabled-baseline",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "get-enabled-baseline"
+              ]
+            },
+            "description": "Retrieve details of an EnabledBaseline resource by specifying its identifier."
+          },
+          "response": [
+            {
+              "id": "f03e7a83-eb83-4961-ac00-913eeed60063",
+              "name": "Successful response",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabledBaselineIdentifier\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/get-enabled-baseline",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "get-enabled-baseline"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"enabledBaselineDetails\": {\n    \"arn\": \"<string>\",\n    \"baselineIdentifier\": \"<string>\",\n    \"baselineVersion\": \"<string>\",\n    \"parameters\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": {\n          \"description\": \"The parameter value.\"\n        }\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": {\n          \"description\": \"The parameter value.\"\n        }\n      }\n    ],\n    \"statusSummary\": {\n      \"lastOperationIdentifier\": \"<string>\",\n      \"status\": \"<string>\"\n    },\n    \"targetIdentifier\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-f03e7a83-eb83-4961-ac00-913eeed60063"
+            },
+            {
+              "id": "d272f8c7-8c1d-4449-ae5f-3822bd055e55",
+              "name": "Enabled baseline not found",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabledBaselineIdentifier\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/get-enabled-baseline",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "get-enabled-baseline"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-d272f8c7-8c1d-4449-ae5f-3822bd055e55"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:51.000Z",
+          "updatedAt": "2026-06-05T15:02:51.000Z",
+          "uid": "35240-9094291a-397a-4b27-a264-f7a34ce9e210"
+        }
+      ],
+      "id": "31f51725-5bff-4e59-86d1-490b71734ea2",
+      "createdAt": "2026-06-05T15:02:51.000Z",
+      "updatedAt": "2026-06-05T15:02:51.000Z",
+      "uid": "35240-31f51725-5bff-4e59-86d1-490b71734ea2"
+    },
+    {
+      "name": "list-enabled-baselines",
+      "item": [
+        {
+          "name": "AWS Control Tower List Enabled Baselines",
+          "id": "3943df10-e4fd-4bab-8340-c27b43b56142",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filter\": {\n    \"baselineIdentifiers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"targetIdentifiers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"statuses\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"includeChildren\": \"<boolean>\",\n  \"maxResults\": \"<integer>\",\n  \"nextToken\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/list-enabled-baselines",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "list-enabled-baselines"
+              ]
+            },
+            "description": "Returns a list of summaries describing EnabledBaseline resources."
+          },
+          "response": [
+            {
+              "id": "494ec58d-ed03-47ef-8671-56702ac1c2ed",
+              "name": "Successful response",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filter\": {\n    \"baselineIdentifiers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"targetIdentifiers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"statuses\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"includeChildren\": \"<boolean>\",\n  \"maxResults\": \"<integer>\",\n  \"nextToken\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/list-enabled-baselines",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "list-enabled-baselines"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"enabledBaselines\": [\n    {\n      \"arn\": \"<string>\",\n      \"baselineIdentifier\": \"<string>\",\n      \"statusSummary\": {\n        \"status\": \"<string>\"\n      },\n      \"targetIdentifier\": \"<string>\"\n    },\n    {\n      \"arn\": \"<string>\",\n      \"baselineIdentifier\": \"<string>\",\n      \"statusSummary\": {\n        \"status\": \"<string>\"\n      },\n      \"targetIdentifier\": \"<string>\"\n    }\n  ],\n  \"nextToken\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-494ec58d-ed03-47ef-8671-56702ac1c2ed"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:51.000Z",
+          "updatedAt": "2026-06-05T15:02:51.000Z",
+          "uid": "35240-3943df10-e4fd-4bab-8340-c27b43b56142"
+        }
+      ],
+      "id": "217798c9-3998-44ec-b411-ca06875d04e2",
+      "createdAt": "2026-06-05T15:02:51.000Z",
+      "updatedAt": "2026-06-05T15:02:51.000Z",
+      "uid": "35240-217798c9-3998-44ec-b411-ca06875d04e2"
+    },
+    {
+      "name": "update-enabled-baseline",
+      "item": [
+        {
+          "name": "AWS Control Tower Update Enabled Baseline",
+          "id": "7d531bf7-633f-44d0-822e-9728e10d0d6e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"baselineVersion\": \"<string>\",\n  \"enabledBaselineIdentifier\": \"<string>\",\n  \"parameters\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": {\n        \"description\": \"The parameter value.\"\n      }\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": {\n        \"description\": \"The parameter value.\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/update-enabled-baseline",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "update-enabled-baseline"
+              ]
+            },
+            "description": "Updates an EnabledBaseline resource's applied parameters or version. This operation applies only to the managed account resources enrolled through the baseline."
+          },
+          "response": [
+            {
+              "id": "fdbc5160-f8cc-4bac-b1d4-4ca1cb288c77",
+              "name": "Enabled baseline updated successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"baselineVersion\": \"<string>\",\n  \"enabledBaselineIdentifier\": \"<string>\",\n  \"parameters\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": {\n        \"description\": \"The parameter value.\"\n      }\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": {\n        \"description\": \"The parameter value.\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/update-enabled-baseline",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "update-enabled-baseline"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"operationIdentifier\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-fdbc5160-f8cc-4bac-b1d4-4ca1cb288c77"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:51.000Z",
+          "updatedAt": "2026-06-05T15:02:51.000Z",
+          "uid": "35240-7d531bf7-633f-44d0-822e-9728e10d0d6e"
+        }
+      ],
+      "id": "7fd86930-0fa4-443e-bd34-ec5e64fe7c56",
+      "createdAt": "2026-06-05T15:02:51.000Z",
+      "updatedAt": "2026-06-05T15:02:51.000Z",
+      "uid": "35240-7fd86930-0fa4-443e-bd34-ec5e64fe7c56"
+    },
+    {
+      "name": "reset-enabled-baseline",
+      "item": [
+        {
+          "name": "AWS Control Tower Reset Enabled Baseline",
+          "id": "eb206178-994a-4ace-bfe4-c39afe7d5495",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabledBaselineIdentifier\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/reset-enabled-baseline",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reset-enabled-baseline"
+              ]
+            },
+            "description": "Re-enables an EnabledBaseline resource. For example, this API can re-apply the existing Baseline after a new member account is moved to the target OU."
+          },
+          "response": [
+            {
+              "id": "90f69bb5-1906-47e6-85ce-471dc359f710",
+              "name": "Enabled baseline reset initiated",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabledBaselineIdentifier\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/reset-enabled-baseline",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reset-enabled-baseline"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"operationIdentifier\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-90f69bb5-1906-47e6-85ce-471dc359f710"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:51.000Z",
+          "updatedAt": "2026-06-05T15:02:51.000Z",
+          "uid": "35240-eb206178-994a-4ace-bfe4-c39afe7d5495"
+        }
+      ],
+      "id": "47aec6c6-f500-4905-bb85-afc78db0bed0",
+      "createdAt": "2026-06-05T15:02:51.000Z",
+      "updatedAt": "2026-06-05T15:02:51.000Z",
+      "uid": "35240-47aec6c6-f500-4905-bb85-afc78db0bed0"
+    },
+    {
+      "name": "get-baseline-operation",
+      "item": [
+        {
+          "name": "AWS Control Tower Get Baseline Operation",
+          "id": "990f6ed9-432e-41bb-9012-d22fcb96bc5d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"operationIdentifier\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/get-baseline-operation",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "get-baseline-operation"
+              ]
+            },
+            "description": "Returns the details of an asynchronous baseline operation, as initiated by any of these APIs."
+          },
+          "response": [
+            {
+              "id": "8d041e57-ee78-4f78-a75e-09357e98c9eb",
+              "name": "Successful response",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"operationIdentifier\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/get-baseline-operation",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "get-baseline-operation"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"baselineOperation\": {\n    \"endTime\": \"<dateTime>\",\n    \"operationIdentifier\": \"<string>\",\n    \"operationType\": \"RESET_ENABLED_BASELINE\",\n    \"startTime\": \"<dateTime>\",\n    \"status\": \"IN_PROGRESS\",\n    \"statusMessage\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-8d041e57-ee78-4f78-a75e-09357e98c9eb"
+            },
+            {
+              "id": "6a5e012c-a905-4db8-85a1-848e70c46bb7",
+              "name": "Operation not found",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"operationIdentifier\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/get-baseline-operation",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "get-baseline-operation"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-6a5e012c-a905-4db8-85a1-848e70c46bb7"
+            }
+          ],
+          "createdAt": "2026-06-05T15:02:51.000Z",
+          "updatedAt": "2026-06-05T15:02:51.000Z",
+          "uid": "35240-990f6ed9-432e-41bb-9012-d22fcb96bc5d"
+        }
+      ],
+      "id": "04526a11-13cf-4abe-9cbb-86e73f885f12",
+      "createdAt": "2026-06-05T15:02:51.000Z",
+      "updatedAt": "2026-06-05T15:02:51.000Z",
+      "uid": "35240-04526a11-13cf-4abe-9cbb-86e73f885f12"
+    },
+    {
+      "name": "tags",
+      "item": [
+        {
+          "name": "{resourceArn}",
+          "item": [
+            {
+              "name": "AWS Control Tower List Tags for Resource",
+              "id": "0c2e0918-7108-4210-b170-dbaa97e355cf",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tags/:resourceArn",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tags",
+                    ":resourceArn"
+                  ],
+                  "variable": [
+                    {
+                      "id": "654f6ed6-2ec6-498d-9350-376f1bfefaf7",
+                      "key": "resourceArn",
+                      "value": "<string>",
+                      "description": "(Required) The ARN of the resource."
+                    }
+                  ]
+                },
+                "description": "Returns a list of tags associated with the resource."
+              },
+              "response": [
+                {
+                  "id": "a8249d97-eb60-4687-b0ac-017e8b404863",
+                  "name": "Successful response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tags/:resourceArn",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tags",
+                        ":resourceArn"
+                      ],
+                      "variable": [
+                        {
+                          "key": "resourceArn"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"tags\": {\n    \"elit_6d\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:02:51.000Z",
+                  "updatedAt": "2026-06-05T15:02:51.000Z",
+                  "uid": "35240-a8249d97-eb60-4687-b0ac-017e8b404863"
+                },
+                {
+                  "id": "bc191035-a26d-4db8-beb5-c8aa0fec4a96",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tags/:resourceArn",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tags",
+                        ":resourceArn"
+                      ],
+                      "variable": [
+                        {
+                          "key": "resourceArn"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:02:51.000Z",
+                  "updatedAt": "2026-06-05T15:02:51.000Z",
+                  "uid": "35240-bc191035-a26d-4db8-beb5-c8aa0fec4a96"
+                }
+              ],
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-0c2e0918-7108-4210-b170-dbaa97e355cf"
+            },
+            {
+              "name": "AWS Control Tower Tag Resource",
+              "id": "abe5de6e-b289-4f12-8472-1f29ec566110",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tags\": {\n    \"aliqua162\": \"<string>\",\n    \"ea28\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/tags/:resourceArn",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tags",
+                    ":resourceArn"
+                  ],
+                  "variable": [
+                    {
+                      "id": "285cf9fe-d588-407d-84b2-bcc901c45ccb",
+                      "key": "resourceArn",
+                      "value": "<string>",
+                      "description": "(Required) The ARN of the resource to be tagged."
+                    }
+                  ]
+                },
+                "description": "Applies tags to the resource identifier you specify."
+              },
+              "response": [
+                {
+                  "id": "6403024a-e204-4a0e-9881-3152c5a89148",
+                  "name": "Tags applied successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"tags\": {\n    \"aliqua162\": \"<string>\",\n    \"ea28\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/tags/:resourceArn",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tags",
+                        ":resourceArn"
+                      ],
+                      "variable": [
+                        {
+                          "key": "resourceArn"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:02:51.000Z",
+                  "updatedAt": "2026-06-05T15:02:51.000Z",
+                  "uid": "35240-6403024a-e204-4a0e-9881-3152c5a89148"
+                },
+                {
+                  "id": "dced3963-d231-4445-9fc1-1632ef4aafb0",
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"tags\": {\n    \"aliqua162\": \"<string>\",\n    \"ea28\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/tags/:resourceArn",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tags",
+                        ":resourceArn"
+                      ],
+                      "variable": [
+                        {
+                          "key": "resourceArn"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:02:51.000Z",
+                  "updatedAt": "2026-06-05T15:02:51.000Z",
+                  "uid": "35240-dced3963-d231-4445-9fc1-1632ef4aafb0"
+                }
+              ],
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-abe5de6e-b289-4f12-8472-1f29ec566110"
+            },
+            {
+              "name": "AWS Control Tower Untag Resource",
+              "id": "14acb932-bc9f-4d74-a1f7-024e8fbf6e9e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tags/:resourceArn?tagKeys=<string>&tagKeys=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tags",
+                    ":resourceArn"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Tag keys to remove from the resource.",
+                      "key": "tagKeys",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Tag keys to remove from the resource.",
+                      "key": "tagKeys",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "d0419c62-b12a-463a-8354-6848c8b6cfe5",
+                      "key": "resourceArn",
+                      "value": "<string>",
+                      "description": "(Required) The ARN of the resource."
+                    }
+                  ]
+                },
+                "description": "Removes tags from the resource."
+              },
+              "response": [
+                {
+                  "id": "1af16400-8045-4d21-a147-12167552010d",
+                  "name": "Tags removed successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tags/:resourceArn?tagKeys=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tags",
+                        ":resourceArn"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Tag keys to remove from the resource.",
+                          "key": "tagKeys",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "resourceArn"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:02:51.000Z",
+                  "updatedAt": "2026-06-05T15:02:51.000Z",
+                  "uid": "35240-1af16400-8045-4d21-a147-12167552010d"
+                },
+                {
+                  "id": "72d9c094-423b-4c48-874e-6036aac8d6e6",
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tags/:resourceArn?tagKeys=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tags",
+                        ":resourceArn"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Tag keys to remove from the resource.",
+                          "key": "tagKeys",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "resourceArn"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:02:51.000Z",
+                  "updatedAt": "2026-06-05T15:02:51.000Z",
+                  "uid": "35240-72d9c094-423b-4c48-874e-6036aac8d6e6"
+                }
+              ],
+              "createdAt": "2026-06-05T15:02:51.000Z",
+              "updatedAt": "2026-06-05T15:02:51.000Z",
+              "uid": "35240-14acb932-bc9f-4d74-a1f7-024e8fbf6e9e"
+            }
+          ],
+          "id": "4ac8be9c-d2cc-451e-bb73-8a32e0757381",
+          "createdAt": "2026-06-05T15:02:51.000Z",
+          "updatedAt": "2026-06-05T15:02:51.000Z",
+          "uid": "35240-4ac8be9c-d2cc-451e-bb73-8a32e0757381"
+        }
+      ],
+      "id": "213a19e4-39ce-488c-98df-aa10d4235e7f",
+      "createdAt": "2026-06-05T15:02:51.000Z",
+      "updatedAt": "2026-06-05T15:02:51.000Z",
+      "uid": "35240-213a19e4-39ce-488c-98df-aa10d4235e7f"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://controltower.amazonaws.com"
+    }
+  ]
+}

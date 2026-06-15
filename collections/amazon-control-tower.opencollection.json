@@ -1,0 +1,490 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AWS Control Tower API",
+    "version": "2018-11-28"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Landing Zones",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AWS Control Tower Create Landing Zone",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/create-landingzone",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new landing zone. This is an asynchronous operation. After you call this operation, you can check the landing zone status by calling GetLandingZone."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Delete Landing Zone",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/delete-landingzone",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Decommissions a landing zone. This is an asynchronous operation. After you call this operation, you can check the landing zone status by calling GetLandingZone."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Get Landing Zone",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/get-landingzone",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns details about a landing zone. Includes status and version."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower List Landing Zones",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/list-landingzones",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a list of landing zones in the caller's AWS account."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Update Landing Zone",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/update-landingzone",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing landing zone. This is an asynchronous operation. After you call this operation, you can check the landing zone status by calling GetLandingZone."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Reset Landing Zone",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/reset-landingzone",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Re-enables a landing zone after it has been decommissioned, or extends it to new regions. This is an asynchronous operation."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Get Landing Zone Operation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/get-landingzone-operation",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the status of a specified landing zone operation."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower List Landing Zone Operations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/list-landingzone-operations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Lists all landing zone operations from the past 90 days."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Controls",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AWS Control Tower Enable Control",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/enable-control",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Activates a control, otherwise known as a guardrail, upon the specified organizational unit (OU). This operation is asynchronous and returns a control operation identifier that can be used to check the status."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Disable Control",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/disable-control",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deactivates a control by removing it from the specified organizational unit (OU). This operation is asynchronous and returns an operation identifier that can be used to check the status."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Get Enabled Control",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/get-enabled-control",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieves details about an enabled control. For usage examples, see the AWS Control Tower controls reference guide."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower List Enabled Controls",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/list-enabled-controls",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Lists the controls enabled by AWS Control Tower on the specified organizational unit and the accounts it contains. For usage examples, see the AWS Control Tower controls reference guide."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Update Enabled Control",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/update-enabled-control",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of an already enabled control. If the enabled control shows an EnablementStatus of FAILED, you can re-run this operation."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Reset Enabled Control",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/reset-enabled-control",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Resets a control to its default configuration. This operation is asynchronous and returns an operation identifier."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Get Control Operation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/get-control-operation",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the status of a particular EnableControl or DisableControl operation."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower List Control Operations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/list-control-operations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Provides a list of operations in progress or complete within the past 90 days. Optionally filter by the status of the operation, the affected target, or the type of operation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Baselines",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AWS Control Tower Enable Baseline",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/enable-baseline",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enable (apply) a Baseline to a Target. This API starts an asynchronous operation to deploy resources specified by the Baseline to the specified Target."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Disable Baseline",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/disable-baseline",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Disable an EnabledBaseline resource on the specified Target. This API starts an asynchronous operation to remove all resources deployed as part of the baseline enablement."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Get Baseline",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/get-baseline",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve details about an existing Baseline resource by specifying its identifier."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower List Baselines",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/list-baselines",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a summary list of all available baselines."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Get Enabled Baseline",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/get-enabled-baseline",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve details of an EnabledBaseline resource by specifying its identifier."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower List Enabled Baselines",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/list-enabled-baselines",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a list of summaries describing EnabledBaseline resources."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Update Enabled Baseline",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/update-enabled-baseline",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an EnabledBaseline resource's applied parameters or version. This operation applies only to the managed account resources enrolled through the baseline."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Reset Enabled Baseline",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/reset-enabled-baseline",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Re-enables an EnabledBaseline resource. For example, this API can re-apply the existing Baseline after a new member account is moved to the target OU."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Get Baseline Operation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/get-baseline-operation",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the details of an asynchronous baseline operation, as initiated by any of these APIs."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AWS Control Tower List Tags for Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://controltower.amazonaws.com/tags/:resourceArn",
+            "params": [
+              {
+                "name": "resourceArn",
+                "value": "arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE",
+                "type": "path",
+                "description": "The ARN of the resource."
+              }
+            ]
+          },
+          "docs": "Returns a list of tags associated with the resource."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Tag Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/tags/:resourceArn",
+            "params": [
+              {
+                "name": "resourceArn",
+                "value": "arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE",
+                "type": "path",
+                "description": "The ARN of the resource to be tagged."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Applies tags to the resource identifier you specify."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Untag Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://controltower.amazonaws.com/tags/:resourceArn",
+            "params": [
+              {
+                "name": "resourceArn",
+                "value": "arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE",
+                "type": "path",
+                "description": "The ARN of the resource."
+              },
+              {
+                "name": "tagKeys",
+                "value": "",
+                "type": "query",
+                "description": "Tag keys to remove from the resource."
+              }
+            ]
+          },
+          "docs": "Removes tags from the resource."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
