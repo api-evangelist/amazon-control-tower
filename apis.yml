@@ -6,7 +6,7 @@ description: >-
   maintain compliance and manage accounts at scale. With over 750 preconfigured controls, it automates account creation,
   OU registration, and compliance enforcement across the entire AWS organization.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - AWS
   - Compliance
