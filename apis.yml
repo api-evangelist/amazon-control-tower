@@ -62,32 +62,27 @@ apis:
 common:
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/amazon-control-tower/overview
-  - type: ArazzoWorkflows
-    url: arazzo/
-    workflows:
-      - url: arazzo/amazon-control-tower-create-landing-zone-workflow.yml
-        name: AWS Control Tower Create Landing Zone and Confirm
-        summary: Create a landing zone, poll the async operation to completion, then read back the landing zone details.
-      - url: arazzo/amazon-control-tower-disable-control-workflow.yml
-        name: AWS Control Tower Disable Control and Confirm
-        summary: Disable a control on an organizational unit and poll the async operation until it completes.
-      - url: arazzo/amazon-control-tower-enable-baseline-workflow.yml
-        name: AWS Control Tower Enable Baseline and Confirm
-        summary: Apply a baseline to a target, poll the async operation to completion, then read back the enabled baseline.
-      - url: arazzo/amazon-control-tower-enable-control-workflow.yml
-        name: AWS Control Tower Enable Control and Confirm
-        summary: >-
-          Enable a control on an organizational unit, poll the async operation to completion, then read back the enabled
-          control.
-      - url: arazzo/amazon-control-tower-update-enabled-baseline-workflow.yml
-        name: AWS Control Tower Update Enabled Baseline and Confirm
-        summary: Upgrade an enabled baseline to a new version, poll the async operation, then read back its details.
-      - url: arazzo/amazon-control-tower-update-enabled-control-workflow.yml
-        name: AWS Control Tower Update Enabled Control and Confirm
-        summary: Reconfigure an already enabled control, poll the async operation, then read back the updated control.
-      - url: arazzo/amazon-control-tower-update-landing-zone-workflow.yml
-        name: AWS Control Tower Update Landing Zone and Confirm
-        summary: Update a landing zone's version or manifest, poll the async operation, then read back its details.
+  - type: Arazzo
+    url: arazzo/amazon-control-tower-create-landing-zone-workflow.yml
+    name: AWS Control Tower Create Landing Zone and Confirm
+  - type: Arazzo
+    url: arazzo/amazon-control-tower-disable-control-workflow.yml
+    name: AWS Control Tower Disable Control and Confirm
+  - type: Arazzo
+    url: arazzo/amazon-control-tower-enable-baseline-workflow.yml
+    name: AWS Control Tower Enable Baseline and Confirm
+  - type: Arazzo
+    url: arazzo/amazon-control-tower-enable-control-workflow.yml
+    name: AWS Control Tower Enable Control and Confirm
+  - type: Arazzo
+    url: arazzo/amazon-control-tower-update-enabled-baseline-workflow.yml
+    name: AWS Control Tower Update Enabled Baseline and Confirm
+  - type: Arazzo
+    url: arazzo/amazon-control-tower-update-enabled-control-workflow.yml
+    name: AWS Control Tower Update Enabled Control and Confirm
+  - type: Arazzo
+    url: arazzo/amazon-control-tower-update-landing-zone-workflow.yml
+    name: AWS Control Tower Update Landing Zone and Confirm
   - type: Portal
     url: https://aws.amazon.com/controltower/
   - type: DeveloperPortal
@@ -106,7 +101,7 @@ common:
     url: https://github.com/aws
   - type: Console
     url: https://console.aws.amazon.com/controltower/
-  - type: SignUp
+  - type: Signup
     url: https://portal.aws.amazon.com/billing/signup
   - type: Login
     url: https://signin.aws.amazon.com/
