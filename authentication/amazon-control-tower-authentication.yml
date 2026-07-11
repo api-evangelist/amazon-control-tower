@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/amazon-control-tower-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: aws_signature
+  type: http
+  scheme: bearer
+  description: AWS Signature Version 4 authentication. Requests must be signed using IAM credentials
+    with appropriate AWS Control Tower permissions.
+  sources:
+  - openapi/amazon-control-tower-openapi.yml

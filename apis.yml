@@ -60,6 +60,14 @@ apis:
       - type: JSONLD
         url: json-ld/amazon-control-tower-context.jsonld
 common:
+  - type: TrustCenter
+    url: security/amazon-control-tower-trust-center.yml
+  - type: VulnerabilityDisclosure
+    url: security/amazon-control-tower-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/amazon-control-tower-domain-security.yml
+  - type: Authentication
+    url: authentication/amazon-control-tower-authentication.yml
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/amazon-control-tower/overview
   - type: Arazzo
