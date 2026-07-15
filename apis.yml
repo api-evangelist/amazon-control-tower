@@ -60,6 +60,8 @@ apis:
       - type: JSONLD
         url: json-ld/amazon-control-tower-context.jsonld
 common:
+  - type: AgenticAccess
+    url: agentic-access/amazon-control-tower-agentic-access.yml
   - type: TrustCenter
     url: security/amazon-control-tower-trust-center.yml
   - type: VulnerabilityDisclosure
