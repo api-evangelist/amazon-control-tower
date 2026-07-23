@@ -1,0 +1,633 @@
+openapi: 3.1.0
+info:
+  title: AWS Control Tower Baselines API
+  description: AWS Control Tower provides the easiest way to set up and govern a secure, multi-account AWS environment. The API enables programmatic management of landing zones, controls (guardrails), baselines, and organizational unit registrations within your AWS Control Tower environment.
+  version: '2018-11-28'
+  contact:
+    name: Amazon Web Services
+    url: https://aws.amazon.com/controltower/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  x-generated-from: documentation
+  x-last-validated: '2026-04-19'
+servers:
+- url: https://controltower.amazonaws.com
+  description: AWS Control Tower API endpoint
+security:
+- aws_signature: []
+tags:
+- name: Baselines
+  description: Operations for applying and managing baselines on organizational units
+paths:
+  /enable-baseline:
+    post:
+      operationId: enableBaseline
+      summary: AWS Control Tower Enable Baseline
+      description: Enable (apply) a Baseline to a Target. This API starts an asynchronous operation to deploy resources specified by the Baseline to the specified Target.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnableBaselineRequest'
+            examples:
+              EnableBaselineRequestExample:
+                summary: Default enableBaseline request
+                x-microcks-default: true
+                value:
+                  baselineIdentifier: arn:aws:controltower:us-east-1::baseline/LZACCOUNTBASELINE
+                  baselineVersion: '2.0'
+                  targetIdentifier: arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111
+      responses:
+        '200':
+          description: Baseline enabled successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnableBaselineResponse'
+              examples:
+                EnableBaseline200Example:
+                  summary: Default enableBaseline 200 response
+                  x-microcks-default: true
+                  value:
+                    arn: arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE
+                    operationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLE99999
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+      - Baselines
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /disable-baseline:
+    post:
+      operationId: disableBaseline
+      summary: AWS Control Tower Disable Baseline
+      description: Disable an EnabledBaseline resource on the specified Target. This API starts an asynchronous operation to remove all resources deployed as part of the baseline enablement.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - enabledBaselineIdentifier
+              properties:
+                enabledBaselineIdentifier:
+                  type: string
+                  description: The ARN of the enabled baseline.
+                  example: arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE
+      responses:
+        '200':
+          description: Baseline disabled successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisableBaselineResponse'
+              examples:
+                DisableBaseline200Example:
+                  summary: Default disableBaseline 200 response
+                  x-microcks-default: true
+                  value:
+                    operationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLEAAAAA
+        '404':
+          description: Enabled baseline not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+      - Baselines
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /get-baseline:
+    post:
+      operationId: getBaseline
+      summary: AWS Control Tower Get Baseline
+      description: Retrieve details about an existing Baseline resource by specifying its identifier.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - baselineIdentifier
+              properties:
+                baselineIdentifier:
+                  type: string
+                  description: The ARN of the Baseline.
+                  example: arn:aws:controltower:us-east-1::baseline/LZACCOUNTBASELINE
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetBaselineResponse'
+              examples:
+                GetBaseline200Example:
+                  summary: Default getBaseline 200 response
+                  x-microcks-default: true
+                  value:
+                    arn: arn:aws:controltower:us-east-1::baseline/LZACCOUNTBASELINE
+                    description: AWS Control Tower Account baseline
+                    name: AWSControlTowerBaseline
+      tags:
+      - Baselines
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /list-baselines:
+    post:
+      operationId: listBaselines
+      summary: AWS Control Tower List Baselines
+      description: Returns a summary list of all available baselines.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                maxResults:
+                  type: integer
+                  example: 10
+                nextToken:
+                  type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListBaselinesResponse'
+              examples:
+                ListBaselines200Example:
+                  summary: Default listBaselines 200 response
+                  x-microcks-default: true
+                  value:
+                    baselines:
+                    - arn: arn:aws:controltower:us-east-1::baseline/LZACCOUNTBASELINE
+                      description: AWS Control Tower Account baseline
+                      name: AWSControlTowerBaseline
+      tags:
+      - Baselines
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /get-enabled-baseline:
+    post:
+      operationId: getEnabledBaseline
+      summary: AWS Control Tower Get Enabled Baseline
+      description: Retrieve details of an EnabledBaseline resource by specifying its identifier.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - enabledBaselineIdentifier
+              properties:
+                enabledBaselineIdentifier:
+                  type: string
+                  description: The ARN of the enabled baseline.
+                  example: arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetEnabledBaselineResponse'
+              examples:
+                GetEnabledBaseline200Example:
+                  summary: Default getEnabledBaseline 200 response
+                  x-microcks-default: true
+                  value:
+                    enabledBaselineDetails:
+                      arn: arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE
+                      baselineIdentifier: arn:aws:controltower:us-east-1::baseline/LZACCOUNTBASELINE
+                      baselineVersion: '2.0'
+                      statusSummary:
+                        lastOperationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLE99999
+                        status: SUCCEEDED
+                      targetIdentifier: arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111
+        '404':
+          description: Enabled baseline not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+      - Baselines
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /list-enabled-baselines:
+    post:
+      operationId: listEnabledBaselines
+      summary: AWS Control Tower List Enabled Baselines
+      description: Returns a list of summaries describing EnabledBaseline resources.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filter:
+                  type: object
+                  properties:
+                    baselineIdentifiers:
+                      type: array
+                      items:
+                        type: string
+                    targetIdentifiers:
+                      type: array
+                      items:
+                        type: string
+                    statuses:
+                      type: array
+                      items:
+                        type: string
+                includeChildren:
+                  type: boolean
+                  description: A value that can be set to true to include child OUs.
+                maxResults:
+                  type: integer
+                  example: 20
+                nextToken:
+                  type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListEnabledBaselinesResponse'
+              examples:
+                ListEnabledBaselines200Example:
+                  summary: Default listEnabledBaselines 200 response
+                  x-microcks-default: true
+                  value:
+                    enabledBaselines:
+                    - arn: arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE
+                      baselineIdentifier: arn:aws:controltower:us-east-1::baseline/LZACCOUNTBASELINE
+                      statusSummary:
+                        status: SUCCEEDED
+                      targetIdentifier: arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111
+      tags:
+      - Baselines
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /update-enabled-baseline:
+    post:
+      operationId: updateEnabledBaseline
+      summary: AWS Control Tower Update Enabled Baseline
+      description: Updates an EnabledBaseline resource's applied parameters or version. This operation applies only to the managed account resources enrolled through the baseline.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - baselineVersion
+              - enabledBaselineIdentifier
+              properties:
+                enabledBaselineIdentifier:
+                  type: string
+                  description: The ARN of the enabled baseline to be updated.
+                  example: arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE
+                baselineVersion:
+                  type: string
+                  description: Specifies the new Baseline version, to which the EnabledBaseline should be updated.
+                  example: '2.0'
+                parameters:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/EnabledBaselineParameter'
+      responses:
+        '200':
+          description: Enabled baseline updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateEnabledBaselineResponse'
+              examples:
+                UpdateEnabledBaseline200Example:
+                  summary: Default updateEnabledBaseline 200 response
+                  x-microcks-default: true
+                  value:
+                    operationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLEBBBBB
+      tags:
+      - Baselines
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /reset-enabled-baseline:
+    post:
+      operationId: resetEnabledBaseline
+      summary: AWS Control Tower Reset Enabled Baseline
+      description: Re-enables an EnabledBaseline resource. For example, this API can re-apply the existing Baseline after a new member account is moved to the target OU.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - enabledBaselineIdentifier
+              properties:
+                enabledBaselineIdentifier:
+                  type: string
+                  description: The ARN of the enabled baseline to be reset.
+                  example: arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE
+      responses:
+        '200':
+          description: Enabled baseline reset initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResetEnabledBaselineResponse'
+              examples:
+                ResetEnabledBaseline200Example:
+                  summary: Default resetEnabledBaseline 200 response
+                  x-microcks-default: true
+                  value:
+                    operationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLECCCCC
+      tags:
+      - Baselines
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /get-baseline-operation:
+    post:
+      operationId: getBaselineOperation
+      summary: AWS Control Tower Get Baseline Operation
+      description: Returns the details of an asynchronous baseline operation, as initiated by any of these APIs.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - operationIdentifier
+              properties:
+                operationIdentifier:
+                  type: string
+                  description: The identifier of the asynchronous operation.
+                  example: a1b2c3d4-5678-90ab-cdef-EXAMPLE99999
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetBaselineOperationResponse'
+              examples:
+                GetBaselineOperation200Example:
+                  summary: Default getBaselineOperation 200 response
+                  x-microcks-default: true
+                  value:
+                    baselineOperation:
+                      endTime: '2025-03-15T14:35:00Z'
+                      operationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLE99999
+                      operationType: ENABLE_BASELINE
+                      startTime: '2025-03-15T14:30:00Z'
+                      status: SUCCEEDED
+        '404':
+          description: Operation not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+      - Baselines
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    EnabledBaselineSummary:
+      type: object
+      description: Summary of an enabled baseline.
+      properties:
+        arn:
+          type: string
+        baselineIdentifier:
+          type: string
+        statusSummary:
+          type: object
+          properties:
+            status:
+              type: string
+        targetIdentifier:
+          type: string
+    GetEnabledBaselineResponse:
+      type: object
+      properties:
+        enabledBaselineDetails:
+          $ref: '#/components/schemas/EnabledBaseline'
+    EnableBaselineResponse:
+      type: object
+      properties:
+        arn:
+          type: string
+          description: The ARN of the EnabledBaseline resource.
+          example: arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE
+        operationIdentifier:
+          type: string
+          description: The identifier of the asynchronous operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE99999
+    DisableBaselineResponse:
+      type: object
+      properties:
+        operationIdentifier:
+          type: string
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLEAAAAA
+    ResetEnabledBaselineResponse:
+      type: object
+      properties:
+        operationIdentifier:
+          type: string
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLECCCCC
+    EnableBaselineRequest:
+      type: object
+      required:
+      - baselineIdentifier
+      - baselineVersion
+      - targetIdentifier
+      properties:
+        baselineIdentifier:
+          type: string
+          description: The ARN of the baseline.
+          example: arn:aws:controltower:us-east-1::baseline/LZACCOUNTBASELINE
+        baselineVersion:
+          type: string
+          description: The specific version to be enabled.
+          example: '2.0'
+        parameters:
+          type: array
+          description: A list of key-value objects that specify enablement parameters.
+          items:
+            $ref: '#/components/schemas/EnabledBaselineParameter'
+        tags:
+          type: object
+          description: Tags to apply to the EnabledBaseline resource.
+          additionalProperties:
+            type: string
+        targetIdentifier:
+          type: string
+          description: The ARN of the target organizational unit.
+          example: arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111
+    EnabledBaselineParameter:
+      type: object
+      description: A key-value pair for a baseline parameter.
+      required:
+      - key
+      - value
+      properties:
+        key:
+          type: string
+          description: The parameter key.
+          example: IdentityCenterEnabled
+        value:
+          description: The parameter value.
+    GetBaselineResponse:
+      type: object
+      properties:
+        arn:
+          type: string
+        description:
+          type: string
+        name:
+          type: string
+    ListBaselinesResponse:
+      type: object
+      properties:
+        baselines:
+          type: array
+          items:
+            $ref: '#/components/schemas/Baseline'
+        nextToken:
+          type: string
+    UpdateEnabledBaselineResponse:
+      type: object
+      properties:
+        operationIdentifier:
+          type: string
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLEDDDDD
+    BaselineOperation:
+      type: object
+      description: An operation performed on a baseline.
+      properties:
+        endTime:
+          type: string
+          format: date-time
+        operationIdentifier:
+          type: string
+        operationType:
+          type: string
+          enum:
+          - ENABLE_BASELINE
+          - DISABLE_BASELINE
+          - UPDATE_ENABLED_BASELINE
+          - RESET_ENABLED_BASELINE
+        startTime:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+          - SUCCEEDED
+          - FAILED
+          - IN_PROGRESS
+        statusMessage:
+          type: string
+    Baseline:
+      type: object
+      description: A baseline definition.
+      properties:
+        arn:
+          type: string
+          description: The ARN of the baseline.
+          example: arn:aws:controltower:us-east-1::baseline/LZACCOUNTBASELINE
+        description:
+          type: string
+          description: A description of the baseline.
+          example: AWS Control Tower Account baseline
+        name:
+          type: string
+          description: The name of the baseline.
+          example: AWSControlTowerBaseline
+    GetBaselineOperationResponse:
+      type: object
+      properties:
+        baselineOperation:
+          $ref: '#/components/schemas/BaselineOperation'
+    EnabledBaseline:
+      type: object
+      description: An enabled baseline for a target organizational unit.
+      properties:
+        arn:
+          type: string
+          description: The ARN of the enabled baseline.
+          example: arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE
+        baselineIdentifier:
+          type: string
+          description: The baseline ARN.
+        baselineVersion:
+          type: string
+          description: The version of the baseline.
+          example: '2.0'
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnabledBaselineParameter'
+        statusSummary:
+          type: object
+          properties:
+            lastOperationIdentifier:
+              type: string
+            status:
+              type: string
+        targetIdentifier:
+          type: string
+          description: The ARN of the target organizational unit.
+    ListEnabledBaselinesResponse:
+      type: object
+      properties:
+        enabledBaselines:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnabledBaselineSummary'
+        nextToken:
+          type: string
+    Error:
+      type: object
+      description: An AWS Control Tower API error response.
+      properties:
+        message:
+          type: string
+          description: The error message.
+          example: The specified resource was not found.
+        code:
+          type: string
+          description: The error code.
+          example: ResourceNotFoundException
+  securitySchemes:
+    aws_signature:
+      type: http
+      scheme: bearer
+      description: AWS Signature Version 4 authentication. Requests must be signed using IAM credentials with appropriate AWS Control Tower permissions.

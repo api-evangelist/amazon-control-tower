@@ -1,0 +1,618 @@
+openapi: 3.1.0
+info:
+  title: AWS Control Tower Baselines Landing Zones API
+  description: AWS Control Tower provides the easiest way to set up and govern a secure, multi-account AWS environment. The API enables programmatic management of landing zones, controls (guardrails), baselines, and organizational unit registrations within your AWS Control Tower environment.
+  version: '2018-11-28'
+  contact:
+    name: Amazon Web Services
+    url: https://aws.amazon.com/controltower/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  x-generated-from: documentation
+  x-last-validated: '2026-04-19'
+servers:
+- url: https://controltower.amazonaws.com
+  description: AWS Control Tower API endpoint
+security:
+- aws_signature: []
+tags:
+- name: Landing Zones
+  description: Operations for managing AWS Control Tower landing zones
+paths:
+  /create-landingzone:
+    post:
+      operationId: createLandingZone
+      summary: AWS Control Tower Create Landing Zone
+      description: Creates a new landing zone. This is an asynchronous operation. After you call this operation, you can check the landing zone status by calling GetLandingZone.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateLandingZoneRequest'
+            examples:
+              CreateLandingZoneRequestExample:
+                summary: Default createLandingZone request
+                x-microcks-default: true
+                value:
+                  version: '3.3'
+                  manifest:
+                    governedRegions:
+                    - us-east-1
+                    - us-west-2
+                    organizationStructure:
+                      security:
+                        name: Security
+                      sandbox:
+                        name: Sandbox
+                    centralizedLogging:
+                      accountId: '123456789012'
+                      configurations:
+                        loggingBucket:
+                          retentionDays: 365
+                        accessLoggingBucket:
+                          retentionDays: 365
+      responses:
+        '200':
+          description: Landing zone creation initiated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateLandingZoneResponse'
+              examples:
+                CreateLandingZone200Example:
+                  summary: Default createLandingZone 200 response
+                  x-microcks-default: true
+                  value:
+                    arn: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
+                    operationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLE11111
+        '400':
+          description: Bad request - invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: Conflict - landing zone already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+      - Landing Zones
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /delete-landingzone:
+    post:
+      operationId: deleteLandingZone
+      summary: AWS Control Tower Delete Landing Zone
+      description: Decommissions a landing zone. This is an asynchronous operation. After you call this operation, you can check the landing zone status by calling GetLandingZone.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - landingZoneIdentifier
+              properties:
+                landingZoneIdentifier:
+                  type: string
+                  description: The ARN of the landing zone.
+                  example: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
+            examples:
+              DeleteLandingZoneRequestExample:
+                summary: Default deleteLandingZone request
+                x-microcks-default: true
+                value:
+                  landingZoneIdentifier: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
+      responses:
+        '200':
+          description: Landing zone deletion initiated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteLandingZoneResponse'
+              examples:
+                DeleteLandingZone200Example:
+                  summary: Default deleteLandingZone 200 response
+                  x-microcks-default: true
+                  value:
+                    operationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLE22222
+        '404':
+          description: Landing zone not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+      - Landing Zones
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /get-landingzone:
+    post:
+      operationId: getLandingZone
+      summary: AWS Control Tower Get Landing Zone
+      description: Returns details about a landing zone. Includes status and version.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - landingZoneIdentifier
+              properties:
+                landingZoneIdentifier:
+                  type: string
+                  description: The ARN of the landing zone.
+                  example: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetLandingZoneResponse'
+              examples:
+                GetLandingZone200Example:
+                  summary: Default getLandingZone 200 response
+                  x-microcks-default: true
+                  value:
+                    landingZone:
+                      arn: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
+                      driftStatus:
+                        status: NOT_CHECKING_FOR_DRIFT
+                      latestAvailableVersion: '3.3'
+                      manifest: {}
+                      status: ACTIVE
+                      version: '3.3'
+        '404':
+          description: Landing zone not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+      - Landing Zones
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /list-landingzones:
+    post:
+      operationId: listLandingZones
+      summary: AWS Control Tower List Landing Zones
+      description: Returns a list of landing zones in the caller's AWS account.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                maxResults:
+                  type: integer
+                  description: The maximum number of results to return.
+                  example: 10
+                nextToken:
+                  type: string
+                  description: The token for the next page of results.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListLandingZonesResponse'
+              examples:
+                ListLandingZones200Example:
+                  summary: Default listLandingZones 200 response
+                  x-microcks-default: true
+                  value:
+                    landingZones:
+                    - arn: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
+      tags:
+      - Landing Zones
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /update-landingzone:
+    post:
+      operationId: updateLandingZone
+      summary: AWS Control Tower Update Landing Zone
+      description: Updates an existing landing zone. This is an asynchronous operation. After you call this operation, you can check the landing zone status by calling GetLandingZone.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateLandingZoneRequest'
+            examples:
+              UpdateLandingZoneRequestExample:
+                summary: Default updateLandingZone request
+                x-microcks-default: true
+                value:
+                  landingZoneIdentifier: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
+                  version: '3.3'
+                  manifest: {}
+      responses:
+        '200':
+          description: Landing zone update initiated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateLandingZoneResponse'
+              examples:
+                UpdateLandingZone200Example:
+                  summary: Default updateLandingZone 200 response
+                  x-microcks-default: true
+                  value:
+                    operationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLE33333
+        '404':
+          description: Landing zone not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+      - Landing Zones
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /reset-landingzone:
+    post:
+      operationId: resetLandingZone
+      summary: AWS Control Tower Reset Landing Zone
+      description: Re-enables a landing zone after it has been decommissioned, or extends it to new regions. This is an asynchronous operation.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - landingZoneIdentifier
+              properties:
+                landingZoneIdentifier:
+                  type: string
+                  description: The ARN of the landing zone.
+                  example: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
+      responses:
+        '200':
+          description: Landing zone reset initiated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResetLandingZoneResponse'
+              examples:
+                ResetLandingZone200Example:
+                  summary: Default resetLandingZone 200 response
+                  x-microcks-default: true
+                  value:
+                    operationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLE44444
+      tags:
+      - Landing Zones
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /get-landingzone-operation:
+    post:
+      operationId: getLandingZoneOperation
+      summary: AWS Control Tower Get Landing Zone Operation
+      description: Returns the status of a specified landing zone operation.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - operationIdentifier
+              properties:
+                operationIdentifier:
+                  type: string
+                  description: A unique identifier assigned to a landing zone operation.
+                  example: a1b2c3d4-5678-90ab-cdef-EXAMPLE11111
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetLandingZoneOperationResponse'
+              examples:
+                GetLandingZoneOperation200Example:
+                  summary: Default getLandingZoneOperation 200 response
+                  x-microcks-default: true
+                  value:
+                    operationDetails:
+                      operationType: CREATE
+                      startTime: '2025-03-15T14:30:00Z'
+                      status: SUCCEEDED
+        '404':
+          description: Operation not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+      - Landing Zones
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /list-landingzone-operations:
+    post:
+      operationId: listLandingZoneOperations
+      summary: AWS Control Tower List Landing Zone Operations
+      description: Lists all landing zone operations from the past 90 days.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filter:
+                  type: object
+                  properties:
+                    statuses:
+                      type: array
+                      items:
+                        type: string
+                        enum:
+                        - SUCCEEDED
+                        - FAILED
+                        - IN_PROGRESS
+                    types:
+                      type: array
+                      items:
+                        type: string
+                        enum:
+                        - CREATE
+                        - UPDATE
+                        - RESET
+                        - DELETE
+                maxResults:
+                  type: integer
+                  example: 20
+                nextToken:
+                  type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListLandingZoneOperationsResponse'
+              examples:
+                ListLandingZoneOperations200Example:
+                  summary: Default listLandingZoneOperations 200 response
+                  x-microcks-default: true
+                  value:
+                    landingZoneOperations:
+                    - operationType: CREATE
+                      operationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLE11111
+                      startTime: '2025-03-15T14:30:00Z'
+                      status: SUCCEEDED
+      tags:
+      - Landing Zones
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    GetLandingZoneOperationResponse:
+      type: object
+      properties:
+        operationDetails:
+          $ref: '#/components/schemas/LandingZoneOperationDetail'
+    LandingZoneOperationDetail:
+      type: object
+      description: Information about a landing zone operation.
+      properties:
+        endTime:
+          type: string
+          format: date-time
+          description: The time the operation completed.
+        operationIdentifier:
+          type: string
+          description: The unique identifier of the operation.
+        operationType:
+          type: string
+          description: The type of landing zone operation.
+          enum:
+          - CREATE
+          - UPDATE
+          - RESET
+          - DELETE
+        startTime:
+          type: string
+          format: date-time
+          description: The time the operation was initiated.
+        status:
+          type: string
+          description: The status of the operation.
+          enum:
+          - SUCCEEDED
+          - FAILED
+          - IN_PROGRESS
+          example: SUCCEEDED
+        statusMessage:
+          type: string
+          description: If the operation result is FAILED, this string contains a message explaining why.
+    ResetLandingZoneResponse:
+      type: object
+      properties:
+        operationIdentifier:
+          type: string
+          description: A unique identifier assigned to the ResetLandingZone operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE44444
+    CreateLandingZoneResponse:
+      type: object
+      properties:
+        arn:
+          type: string
+          description: The ARN of the landing zone resource.
+          example: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
+        operationIdentifier:
+          type: string
+          description: A unique identifier assigned to a CreateLandingZone operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE11111
+    ListLandingZonesResponse:
+      type: object
+      properties:
+        landingZones:
+          type: array
+          items:
+            $ref: '#/components/schemas/LandingZoneSummary'
+        nextToken:
+          type: string
+    ListLandingZoneOperationsResponse:
+      type: object
+      properties:
+        landingZoneOperations:
+          type: array
+          items:
+            $ref: '#/components/schemas/LandingZoneOperationSummary'
+        nextToken:
+          type: string
+    LandingZone:
+      type: object
+      description: An AWS Control Tower landing zone.
+      properties:
+        arn:
+          type: string
+          description: The ARN of the landing zone.
+          example: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
+        driftStatus:
+          type: object
+          description: The drift status of the landing zone.
+          properties:
+            status:
+              type: string
+              enum:
+              - DRIFTED
+              - IN_SYNC
+              - NOT_CHECKING_FOR_DRIFT
+              - UNKNOWN
+        latestAvailableVersion:
+          type: string
+          description: The latest available version of the landing zone.
+          example: '3.3'
+        manifest:
+          type: object
+          description: The landing zone manifest document.
+        status:
+          type: string
+          description: The landing zone deployment status.
+          enum:
+          - ACTIVE
+          - PROCESSING
+          - FAILED
+          example: ACTIVE
+        version:
+          type: string
+          description: The current deployed version of the landing zone.
+          example: '3.3'
+    LandingZoneOperationSummary:
+      type: object
+      description: Summary of a landing zone operation.
+      properties:
+        operationIdentifier:
+          type: string
+          description: The unique identifier of the operation.
+        operationType:
+          type: string
+          description: The type of the operation.
+        startTime:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+          - SUCCEEDED
+          - FAILED
+          - IN_PROGRESS
+    UpdateLandingZoneRequest:
+      type: object
+      required:
+      - landingZoneIdentifier
+      - manifest
+      - version
+      properties:
+        landingZoneIdentifier:
+          type: string
+          description: The identifier of the landing zone.
+          example: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
+        manifest:
+          type: object
+          description: The landing zone manifest document.
+        version:
+          type: string
+          description: The target landing zone version.
+          example: '3.3'
+    UpdateLandingZoneResponse:
+      type: object
+      properties:
+        operationIdentifier:
+          type: string
+          description: A unique identifier assigned to the UpdateLandingZone operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE33333
+    GetLandingZoneResponse:
+      type: object
+      properties:
+        landingZone:
+          $ref: '#/components/schemas/LandingZone'
+    LandingZoneSummary:
+      type: object
+      description: Summary information about a landing zone.
+      properties:
+        arn:
+          type: string
+          description: The ARN of the landing zone.
+          example: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
+    Error:
+      type: object
+      description: An AWS Control Tower API error response.
+      properties:
+        message:
+          type: string
+          description: The error message.
+          example: The specified resource was not found.
+        code:
+          type: string
+          description: The error code.
+          example: ResourceNotFoundException
+    CreateLandingZoneRequest:
+      type: object
+      required:
+      - manifest
+      - version
+      properties:
+        manifest:
+          type: object
+          description: The landing zone manifest document, a YAML expressible input type.
+        version:
+          type: string
+          description: The landing zone version, for example, 3.3.
+          example: '3.3'
+        tags:
+          type: object
+          description: Tags to apply to the landing zone.
+          additionalProperties:
+            type: string
+    DeleteLandingZoneResponse:
+      type: object
+      properties:
+        operationIdentifier:
+          type: string
+          description: A unique identifier assigned to a DeleteLandingZone operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE22222
+  securitySchemes:
+    aws_signature:
+      type: http
+      scheme: bearer
+      description: AWS Signature Version 4 authentication. Requests must be signed using IAM credentials with appropriate AWS Control Tower permissions.

@@ -1,0 +1,658 @@
+openapi: 3.1.0
+info:
+  title: AWS Control Tower Baselines Controls API
+  description: AWS Control Tower provides the easiest way to set up and govern a secure, multi-account AWS environment. The API enables programmatic management of landing zones, controls (guardrails), baselines, and organizational unit registrations within your AWS Control Tower environment.
+  version: '2018-11-28'
+  contact:
+    name: Amazon Web Services
+    url: https://aws.amazon.com/controltower/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  x-generated-from: documentation
+  x-last-validated: '2026-04-19'
+servers:
+- url: https://controltower.amazonaws.com
+  description: AWS Control Tower API endpoint
+security:
+- aws_signature: []
+tags:
+- name: Controls
+  description: Operations for enabling, disabling, and managing guardrail controls on organizational units
+paths:
+  /enable-control:
+    post:
+      operationId: enableControl
+      summary: AWS Control Tower Enable Control
+      description: Activates a control, otherwise known as a guardrail, upon the specified organizational unit (OU). This operation is asynchronous and returns a control operation identifier that can be used to check the status.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnableControlRequest'
+            examples:
+              EnableControlRequestExample:
+                summary: Default enableControl request
+                x-microcks-default: true
+                value:
+                  controlIdentifier: arn:aws:controltower:us-east-1::control/AWS-GR_ENCRYPTED_VOLUMES
+                  targetIdentifier: arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111
+                  parameters:
+                  - key: AllowedRegions
+                    value:
+                    - us-east-1
+                    - us-west-2
+      responses:
+        '200':
+          description: Control enabled successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnableControlResponse'
+              examples:
+                EnableControl200Example:
+                  summary: Default enableControl 200 response
+                  x-microcks-default: true
+                  value:
+                    arn: arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE
+                    operationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLE55555
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: Control already enabled on target
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+      - Controls
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /disable-control:
+    post:
+      operationId: disableControl
+      summary: AWS Control Tower Disable Control
+      description: Deactivates a control by removing it from the specified organizational unit (OU). This operation is asynchronous and returns an operation identifier that can be used to check the status.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - controlIdentifier
+              - targetIdentifier
+              properties:
+                controlIdentifier:
+                  type: string
+                  description: The ARN of the control. Only Strongly recommended and Elective controls are permitted.
+                  example: arn:aws:controltower:us-east-1::control/AWS-GR_ENCRYPTED_VOLUMES
+                targetIdentifier:
+                  type: string
+                  description: The ARN of the organizational unit.
+                  example: arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111
+      responses:
+        '200':
+          description: Control disabled successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisableControlResponse'
+              examples:
+                DisableControl200Example:
+                  summary: Default disableControl 200 response
+                  x-microcks-default: true
+                  value:
+                    operationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLE66666
+        '404':
+          description: Control not found on target
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+      - Controls
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /get-enabled-control:
+    post:
+      operationId: getEnabledControl
+      summary: AWS Control Tower Get Enabled Control
+      description: Retrieves details about an enabled control. For usage examples, see the AWS Control Tower controls reference guide.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - enabledControlIdentifier
+              properties:
+                enabledControlIdentifier:
+                  type: string
+                  description: The ARN of the enabled control.
+                  example: arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetEnabledControlResponse'
+              examples:
+                GetEnabledControl200Example:
+                  summary: Default getEnabledControl 200 response
+                  x-microcks-default: true
+                  value:
+                    enabledControl:
+                      arn: arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE
+                      controlIdentifier: arn:aws:controltower:us-east-1::control/AWS-GR_ENCRYPTED_VOLUMES
+                      driftStatusSummary:
+                        driftStatus: NOT_CHECKING_FOR_DRIFT
+                      statusSummary:
+                        lastOperationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLE55555
+                        status: SUCCEEDED
+                      targetIdentifier: arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111
+        '404':
+          description: Enabled control not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+      - Controls
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /list-enabled-controls:
+    post:
+      operationId: listEnabledControls
+      summary: AWS Control Tower List Enabled Controls
+      description: Lists the controls enabled by AWS Control Tower on the specified organizational unit and the accounts it contains. For usage examples, see the AWS Control Tower controls reference guide.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                targetIdentifier:
+                  type: string
+                  description: The ARN of the organizational unit.
+                  example: arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111
+                filter:
+                  type: object
+                  properties:
+                    controlIdentifiers:
+                      type: array
+                      items:
+                        type: string
+                    statuses:
+                      type: array
+                      items:
+                        type: string
+                maxResults:
+                  type: integer
+                  example: 20
+                nextToken:
+                  type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListEnabledControlsResponse'
+              examples:
+                ListEnabledControls200Example:
+                  summary: Default listEnabledControls 200 response
+                  x-microcks-default: true
+                  value:
+                    enabledControls:
+                    - arn: arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE
+                      controlIdentifier: arn:aws:controltower:us-east-1::control/AWS-GR_ENCRYPTED_VOLUMES
+                      statusSummary:
+                        status: SUCCEEDED
+                      targetIdentifier: arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111
+      tags:
+      - Controls
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /update-enabled-control:
+    post:
+      operationId: updateEnabledControl
+      summary: AWS Control Tower Update Enabled Control
+      description: Updates the configuration of an already enabled control. If the enabled control shows an EnablementStatus of FAILED, you can re-run this operation.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - enabledControlIdentifier
+              - parameters
+              properties:
+                enabledControlIdentifier:
+                  type: string
+                  description: The ARN of the enabled control.
+                  example: arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE
+                parameters:
+                  type: array
+                  description: A list of input parameter values.
+                  items:
+                    $ref: '#/components/schemas/EnabledControlParameter'
+      responses:
+        '200':
+          description: Enabled control updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateEnabledControlResponse'
+              examples:
+                UpdateEnabledControl200Example:
+                  summary: Default updateEnabledControl 200 response
+                  x-microcks-default: true
+                  value:
+                    operationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLE77777
+        '404':
+          description: Enabled control not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+      - Controls
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /reset-enabled-control:
+    post:
+      operationId: resetEnabledControl
+      summary: AWS Control Tower Reset Enabled Control
+      description: Resets a control to its default configuration. This operation is asynchronous and returns an operation identifier.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - enabledControlIdentifier
+              properties:
+                enabledControlIdentifier:
+                  type: string
+                  description: The ARN of the enabled control to be reset.
+                  example: arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE
+      responses:
+        '200':
+          description: Enabled control reset initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResetEnabledControlResponse'
+              examples:
+                ResetEnabledControl200Example:
+                  summary: Default resetEnabledControl 200 response
+                  x-microcks-default: true
+                  value:
+                    operationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLE88888
+      tags:
+      - Controls
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /get-control-operation:
+    post:
+      operationId: getControlOperation
+      summary: AWS Control Tower Get Control Operation
+      description: Returns the status of a particular EnableControl or DisableControl operation.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - operationIdentifier
+              properties:
+                operationIdentifier:
+                  type: string
+                  description: The identifier of the operation to check.
+                  example: a1b2c3d4-5678-90ab-cdef-EXAMPLE55555
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetControlOperationResponse'
+              examples:
+                GetControlOperation200Example:
+                  summary: Default getControlOperation 200 response
+                  x-microcks-default: true
+                  value:
+                    controlOperation:
+                      controlIdentifier: arn:aws:controltower:us-east-1::control/AWS-GR_ENCRYPTED_VOLUMES
+                      enabledControlIdentifier: arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE
+                      endTime: '2025-03-15T14:35:00Z'
+                      operationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLE55555
+                      operationType: ENABLE_CONTROL
+                      startTime: '2025-03-15T14:30:00Z'
+                      status: SUCCEEDED
+                      targetIdentifier: arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111
+        '404':
+          description: Operation not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+      - Controls
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /list-control-operations:
+    post:
+      operationId: listControlOperations
+      summary: AWS Control Tower List Control Operations
+      description: Provides a list of operations in progress or complete within the past 90 days. Optionally filter by the status of the operation, the affected target, or the type of operation.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filter:
+                  type: object
+                  properties:
+                    controlIdentifiers:
+                      type: array
+                      items:
+                        type: string
+                    statuses:
+                      type: array
+                      items:
+                        type: string
+                        enum:
+                        - SUCCEEDED
+                        - FAILED
+                        - IN_PROGRESS
+                    targetIdentifiers:
+                      type: array
+                      items:
+                        type: string
+                    types:
+                      type: array
+                      items:
+                        type: string
+                        enum:
+                        - ENABLE_CONTROL
+                        - DISABLE_CONTROL
+                        - UPDATE_ENABLED_CONTROL
+                        - RESET_ENABLED_CONTROL
+                maxResults:
+                  type: integer
+                  example: 20
+                nextToken:
+                  type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListControlOperationsResponse'
+              examples:
+                ListControlOperations200Example:
+                  summary: Default listControlOperations 200 response
+                  x-microcks-default: true
+                  value:
+                    controlOperations:
+                    - controlIdentifier: arn:aws:controltower:us-east-1::control/AWS-GR_ENCRYPTED_VOLUMES
+                      operationIdentifier: a1b2c3d4-5678-90ab-cdef-EXAMPLE55555
+                      operationType: ENABLE_CONTROL
+                      startTime: '2025-03-15T14:30:00Z'
+                      status: SUCCEEDED
+      tags:
+      - Controls
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    UpdateEnabledControlResponse:
+      type: object
+      properties:
+        operationIdentifier:
+          type: string
+          description: The identifier of the operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE77777
+    ListControlOperationsResponse:
+      type: object
+      properties:
+        controlOperations:
+          type: array
+          items:
+            $ref: '#/components/schemas/ControlOperationSummary'
+        nextToken:
+          type: string
+    EnableControlResponse:
+      type: object
+      properties:
+        arn:
+          type: string
+          description: The ARN of the EnabledControl resource.
+          example: arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE
+        operationIdentifier:
+          type: string
+          description: The identifier of the asynchronous operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE55555
+    EnabledControlSummary:
+      type: object
+      description: Summary information about an enabled control.
+      properties:
+        arn:
+          type: string
+          description: The ARN of the enabled control.
+        controlIdentifier:
+          type: string
+          description: The control identifier.
+        statusSummary:
+          type: object
+          properties:
+            status:
+              type: string
+        targetIdentifier:
+          type: string
+    ControlOperationSummary:
+      type: object
+      description: Summary of a control operation.
+      properties:
+        controlIdentifier:
+          type: string
+        operationIdentifier:
+          type: string
+        operationType:
+          type: string
+        startTime:
+          type: string
+          format: date-time
+        status:
+          type: string
+    EnabledControlParameter:
+      type: object
+      description: A key-value pair for a control parameter.
+      required:
+      - key
+      - value
+      properties:
+        key:
+          type: string
+          description: The parameter key.
+          example: AllowedRegions
+        value:
+          description: The parameter value.
+    ResetEnabledControlResponse:
+      type: object
+      properties:
+        operationIdentifier:
+          type: string
+          description: The identifier of the operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE88888
+    GetEnabledControlResponse:
+      type: object
+      properties:
+        enabledControl:
+          $ref: '#/components/schemas/EnabledControl'
+    GetControlOperationResponse:
+      type: object
+      properties:
+        controlOperation:
+          $ref: '#/components/schemas/ControlOperation'
+    ControlOperation:
+      type: object
+      description: An operation performed on a control.
+      properties:
+        controlIdentifier:
+          type: string
+          description: The identifier of the control.
+        enabledControlIdentifier:
+          type: string
+          description: The ARN of the enabled control.
+        endTime:
+          type: string
+          format: date-time
+        operationIdentifier:
+          type: string
+          description: The unique identifier of the operation.
+        operationType:
+          type: string
+          description: The type of operation.
+          enum:
+          - ENABLE_CONTROL
+          - DISABLE_CONTROL
+          - UPDATE_ENABLED_CONTROL
+          - RESET_ENABLED_CONTROL
+        startTime:
+          type: string
+          format: date-time
+        status:
+          type: string
+          description: The status of the operation.
+          enum:
+          - SUCCEEDED
+          - FAILED
+          - IN_PROGRESS
+        statusMessage:
+          type: string
+          description: An error message if the operation failed.
+        targetIdentifier:
+          type: string
+          description: The ARN of the organizational unit.
+    EnabledControl:
+      type: object
+      description: Information about an enabled control.
+      properties:
+        arn:
+          type: string
+          description: The ARN of the enabled control.
+          example: arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE
+        controlIdentifier:
+          type: string
+          description: The control identifier.
+          example: arn:aws:controltower:us-east-1::control/AWS-GR_ENCRYPTED_VOLUMES
+        driftStatusSummary:
+          type: object
+          properties:
+            driftStatus:
+              type: string
+              enum:
+              - DRIFTED
+              - IN_SYNC
+              - NOT_CHECKING_FOR_DRIFT
+              - UNKNOWN
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnabledControlParameter'
+        statusSummary:
+          type: object
+          properties:
+            lastOperationIdentifier:
+              type: string
+            status:
+              type: string
+              enum:
+              - SUCCEEDED
+              - FAILED
+              - UNDER_CHANGE
+        targetIdentifier:
+          type: string
+          description: The ARN of the organizational unit.
+    DisableControlResponse:
+      type: object
+      properties:
+        operationIdentifier:
+          type: string
+          description: The identifier of the asynchronous operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE66666
+    EnableControlRequest:
+      type: object
+      required:
+      - controlIdentifier
+      - targetIdentifier
+      properties:
+        controlIdentifier:
+          type: string
+          description: The ARN of the control. Only Strongly recommended and Elective controls are permitted.
+          example: arn:aws:controltower:us-east-1::control/AWS-GR_ENCRYPTED_VOLUMES
+        targetIdentifier:
+          type: string
+          description: The ARN of the organizational unit on which the control will be enabled.
+          example: arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111
+        parameters:
+          type: array
+          description: A list of input parameter values that are supplied to enable the control.
+          items:
+            $ref: '#/components/schemas/EnabledControlParameter'
+        tags:
+          type: object
+          description: Tags to apply to the EnabledControl resource.
+          additionalProperties:
+            type: string
+    ListEnabledControlsResponse:
+      type: object
+      properties:
+        enabledControls:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnabledControlSummary'
+        nextToken:
+          type: string
+    Error:
+      type: object
+      description: An AWS Control Tower API error response.
+      properties:
+        message:
+          type: string
+          description: The error message.
+          example: The specified resource was not found.
+        code:
+          type: string
+          description: The error code.
+          example: ResourceNotFoundException
+  securitySchemes:
+    aws_signature:
+      type: http
+      scheme: bearer
+      description: AWS Signature Version 4 authentication. Requests must be signed using IAM credentials with appropriate AWS Control Tower permissions.

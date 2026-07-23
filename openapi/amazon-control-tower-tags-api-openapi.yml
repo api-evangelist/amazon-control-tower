@@ -1,0 +1,168 @@
+openapi: 3.1.0
+info:
+  title: AWS Control Tower Baselines Tags API
+  description: AWS Control Tower provides the easiest way to set up and govern a secure, multi-account AWS environment. The API enables programmatic management of landing zones, controls (guardrails), baselines, and organizational unit registrations within your AWS Control Tower environment.
+  version: '2018-11-28'
+  contact:
+    name: Amazon Web Services
+    url: https://aws.amazon.com/controltower/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  x-generated-from: documentation
+  x-last-validated: '2026-04-19'
+servers:
+- url: https://controltower.amazonaws.com
+  description: AWS Control Tower API endpoint
+security:
+- aws_signature: []
+tags:
+- name: Tags
+  description: Operations for tagging AWS Control Tower resources
+paths:
+  /tags/{resourceArn}:
+    get:
+      operationId: listTagsForResource
+      summary: AWS Control Tower List Tags for Resource
+      description: Returns a list of tags associated with the resource.
+      parameters:
+      - name: resourceArn
+        in: path
+        required: true
+        description: The ARN of the resource.
+        schema:
+          type: string
+        example: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tags:
+                    type: object
+                    description: A map of tag keys and values.
+                    additionalProperties:
+                      type: string
+              examples:
+                ListTagsForResource200Example:
+                  summary: Default listTagsForResource 200 response
+                  x-microcks-default: true
+                  value:
+                    tags:
+                      Environment: production
+                      Team: cloud-governance
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+      - Tags
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: tagResource
+      summary: AWS Control Tower Tag Resource
+      description: Applies tags to the resource identifier you specify.
+      parameters:
+      - name: resourceArn
+        in: path
+        required: true
+        description: The ARN of the resource to be tagged.
+        schema:
+          type: string
+        example: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - tags
+              properties:
+                tags:
+                  type: object
+                  description: Tags to be applied to the resource.
+                  additionalProperties:
+                    type: string
+            examples:
+              TagResourceRequestExample:
+                summary: Default tagResource request
+                x-microcks-default: true
+                value:
+                  tags:
+                    Environment: production
+                    Team: cloud-governance
+      responses:
+        '200':
+          description: Tags applied successfully
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+      - Tags
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: untagResource
+      summary: AWS Control Tower Untag Resource
+      description: Removes tags from the resource.
+      parameters:
+      - name: resourceArn
+        in: path
+        required: true
+        description: The ARN of the resource.
+        schema:
+          type: string
+        example: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
+      - name: tagKeys
+        in: query
+        required: true
+        description: Tag keys to remove from the resource.
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: Tags removed successfully
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+      - Tags
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Error:
+      type: object
+      description: An AWS Control Tower API error response.
+      properties:
+        message:
+          type: string
+          description: The error message.
+          example: The specified resource was not found.
+        code:
+          type: string
+          description: The error code.
+          example: ResourceNotFoundException
+  securitySchemes:
+    aws_signature:
+      type: http
+      scheme: bearer
+      description: AWS Signature Version 4 authentication. Requests must be signed using IAM credentials with appropriate AWS Control Tower permissions.
