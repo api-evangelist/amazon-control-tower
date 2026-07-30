@@ -6,7 +6,20 @@ description: >-
   maintain compliance and manage accounts at scale. With over 750 preconfigured controls, it automates account creation,
   OU registration, and compliance enforcement across the entire AWS organization.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/amazon-control-tower.png
 tags:
   - AWS
   - Compliance
@@ -20,45 +33,127 @@ created: '2026-03-16'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: amazon-control-tower:aws-control-tower-api
-    name: AWS Control Tower API
-    description: >-
-      The AWS Control Tower API provides programmatic access to manage landing zones, organizational units, accounts,
-      controls (guardrails), and baselines within your AWS environment, enabling automated governance at scale. Supports
-      operations for landing zone lifecycle, control enablement/disablement, and OU baseline registration.
-    humanURL: https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html
-    baseURL: https://controltower.amazonaws.com
-    tags:
-      - Governance
-      - Landing Zone
-      - Multi-Account
-      - Controls
-      - Baselines
-    properties:
-      - type: Documentation
-        url: https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html
-      - type: OpenAPI
-        url: openapi/amazon-control-tower-openapi.yml
-      - type: OpenAPI
-        url: https://api.apis.guru/v2/specs/amazonaws.com/controltower/2018-11-28/openapi.yaml
-      - type: GettingStarted
-        url: https://aws.amazon.com/controltower/getting-started/
-      - type: Pricing
-        url: https://aws.amazon.com/controltower/pricing/
-      - type: FAQ
-        url: https://aws.amazon.com/controltower/faqs/
-      - type: APIReference
-        url: https://docs.aws.amazon.com/controltower/latest/APIReference/API_Operations.html
-      - type: Documentation
-        url: https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html
-      - type: JSONSchema
-        url: json-schema/landing-zone-schema.json
-      - type: JSONSchema
-        url: json-schema/enabled-control-schema.json
-      - type: JSONSchema
-        url: json-schema/enabled-baseline-schema.json
-      - type: JSONLD
-        url: json-ld/amazon-control-tower-context.jsonld
+- aid: amazon-control-tower:amazon-control-tower-baselines-api
+  name: Amazon Control Tower Baselines API
+  description: Operations for applying and managing baselines on organizational units
+  humanURL: https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html
+  baseURL: https://controltower.amazonaws.com
+  tags:
+  - Baselines
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-control-tower-baselines-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html
+  - type: GettingStarted
+    url: https://aws.amazon.com/controltower/getting-started/
+  - type: Pricing
+    url: https://aws.amazon.com/controltower/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/controltower/faqs/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/controltower/latest/APIReference/API_Operations.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html
+  - type: JSONSchema
+    url: json-schema/landing-zone-schema.json
+  - type: JSONSchema
+    url: json-schema/enabled-control-schema.json
+  - type: JSONSchema
+    url: json-schema/enabled-baseline-schema.json
+  - type: JSONLD
+    url: json-ld/amazon-control-tower-context.jsonld
+- aid: amazon-control-tower:amazon-control-tower-controls-api
+  name: Amazon Control Tower Controls API
+  description: >-
+    Operations for enabling, disabling, and managing guardrail controls on organizational units
+  humanURL: https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html
+  baseURL: https://controltower.amazonaws.com
+  tags:
+  - Controls
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-control-tower-controls-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html
+  - type: GettingStarted
+    url: https://aws.amazon.com/controltower/getting-started/
+  - type: Pricing
+    url: https://aws.amazon.com/controltower/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/controltower/faqs/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/controltower/latest/APIReference/API_Operations.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html
+  - type: JSONSchema
+    url: json-schema/landing-zone-schema.json
+  - type: JSONSchema
+    url: json-schema/enabled-control-schema.json
+  - type: JSONSchema
+    url: json-schema/enabled-baseline-schema.json
+  - type: JSONLD
+    url: json-ld/amazon-control-tower-context.jsonld
+- aid: amazon-control-tower:amazon-control-tower-landing-zones-api
+  name: Amazon Control Tower Landing Zones API
+  description: Operations for managing AWS Control Tower landing zones
+  humanURL: https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html
+  baseURL: https://controltower.amazonaws.com
+  tags:
+  - Landing Zones
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-control-tower-landing-zones-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html
+  - type: GettingStarted
+    url: https://aws.amazon.com/controltower/getting-started/
+  - type: Pricing
+    url: https://aws.amazon.com/controltower/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/controltower/faqs/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/controltower/latest/APIReference/API_Operations.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html
+  - type: JSONSchema
+    url: json-schema/landing-zone-schema.json
+  - type: JSONSchema
+    url: json-schema/enabled-control-schema.json
+  - type: JSONSchema
+    url: json-schema/enabled-baseline-schema.json
+  - type: JSONLD
+    url: json-ld/amazon-control-tower-context.jsonld
+- aid: amazon-control-tower:amazon-control-tower-tags-api
+  name: Amazon Control Tower Tags API
+  description: Operations for tagging AWS Control Tower resources
+  humanURL: https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html
+  baseURL: https://controltower.amazonaws.com
+  tags:
+  - Tags
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-control-tower-tags-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html
+  - type: GettingStarted
+    url: https://aws.amazon.com/controltower/getting-started/
+  - type: Pricing
+    url: https://aws.amazon.com/controltower/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/controltower/faqs/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/controltower/latest/APIReference/API_Operations.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html
+  - type: JSONSchema
+    url: json-schema/landing-zone-schema.json
+  - type: JSONSchema
+    url: json-schema/enabled-control-schema.json
+  - type: JSONSchema
+    url: json-schema/enabled-baseline-schema.json
+  - type: JSONLD
+    url: json-ld/amazon-control-tower-context.jsonld
 common:
   - type: AgenticAccess
     url: agentic-access/amazon-control-tower-agentic-access.yml
