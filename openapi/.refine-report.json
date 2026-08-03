@@ -1,0 +1,20 @@
+{
+  "provider": "amazon-control-tower",
+  "sources": [
+    "amazon-control-tower-baselines-api-openapi.yml",
+    "amazon-control-tower-controls-api-openapi.yml",
+    "amazon-control-tower-landing-zones-api-openapi.yml",
+    "amazon-control-tower-tags-api-openapi.yml"
+  ],
+  "outputs": [
+    "amazon-control-tower-baselines-api-openapi.yml",
+    "amazon-control-tower-controls-api-openapi.yml",
+    "amazon-control-tower-landing-zones-api-openapi.yml",
+    "amazon-control-tower-tags-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
