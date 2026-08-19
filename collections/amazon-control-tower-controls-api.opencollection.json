@@ -1,0 +1,144 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AWS Control Tower Baselines Controls API",
+    "version": "2018-11-28"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Controls",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AWS Control Tower Enable Control",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/enable-control",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Activates a control, otherwise known as a guardrail, upon the specified organizational unit (OU). This operation is asynchronous and returns a control operation identifier that can be used to check the status."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Disable Control",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/disable-control",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deactivates a control by removing it from the specified organizational unit (OU). This operation is asynchronous and returns an operation identifier that can be used to check the status."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Get Enabled Control",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/get-enabled-control",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieves details about an enabled control. For usage examples, see the AWS Control Tower controls reference guide."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower List Enabled Controls",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/list-enabled-controls",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Lists the controls enabled by AWS Control Tower on the specified organizational unit and the accounts it contains. For usage examples, see the AWS Control Tower controls reference guide."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Update Enabled Control",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/update-enabled-control",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of an already enabled control. If the enabled control shows an EnablementStatus of FAILED, you can re-run this operation."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Reset Enabled Control",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/reset-enabled-control",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Resets a control to its default configuration. This operation is asynchronous and returns an operation identifier."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Get Control Operation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/get-control-operation",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the status of a particular EnableControl or DisableControl operation."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower List Control Operations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/list-control-operations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Provides a list of operations in progress or complete within the past 90 days. Optionally filter by the status of the operation, the affected target, or the type of operation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

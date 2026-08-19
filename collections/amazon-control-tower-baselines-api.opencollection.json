@@ -1,0 +1,159 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AWS Control Tower Baselines API",
+    "version": "2018-11-28"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Baselines",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AWS Control Tower Enable Baseline",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/enable-baseline",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enable (apply) a Baseline to a Target. This API starts an asynchronous operation to deploy resources specified by the Baseline to the specified Target."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Disable Baseline",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/disable-baseline",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Disable an EnabledBaseline resource on the specified Target. This API starts an asynchronous operation to remove all resources deployed as part of the baseline enablement."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Get Baseline",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/get-baseline",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve details about an existing Baseline resource by specifying its identifier."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower List Baselines",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/list-baselines",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a summary list of all available baselines."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Get Enabled Baseline",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/get-enabled-baseline",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve details of an EnabledBaseline resource by specifying its identifier."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower List Enabled Baselines",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/list-enabled-baselines",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a list of summaries describing EnabledBaseline resources."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Update Enabled Baseline",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/update-enabled-baseline",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an EnabledBaseline resource's applied parameters or version. This operation applies only to the managed account resources enrolled through the baseline."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Reset Enabled Baseline",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/reset-enabled-baseline",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Re-enables an EnabledBaseline resource. For example, this API can re-apply the existing Baseline after a new member account is moved to the target OU."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Get Baseline Operation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/get-baseline-operation",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the details of an asynchronous baseline operation, as initiated by any of these APIs."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

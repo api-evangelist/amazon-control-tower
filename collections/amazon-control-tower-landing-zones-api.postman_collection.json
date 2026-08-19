@@ -1,0 +1,1139 @@
+{
+  "item": [
+    {
+      "id": "f70d3b57-8205-4d2f-b775-e1005fe96497",
+      "name": "Landing Zones",
+      "description": {
+        "content": "Operations for managing AWS Control Tower landing zones",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "845f2066-d456-4c5f-a650-8a11b8fa01ad",
+          "name": "AWS Control Tower Create Landing Zone",
+          "request": {
+            "name": "AWS Control Tower Create Landing Zone",
+            "description": {
+              "content": "Creates a new landing zone. This is an asynchronous operation. After you call this operation, you can check the landing zone status by calling GetLandingZone.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "create-landingzone"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"manifest\": \"<object>\",\n  \"version\": \"<string>\",\n  \"tags\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ec4a2537-4807-44c6-91e8-58dc381b499d",
+              "name": "Landing zone creation initiated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "create-landingzone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"version\": \"3.3\",\n  \"manifest\": {\n    \"governedRegions\": [\n      \"us-east-1\",\n      \"us-west-2\"\n    ],\n    \"organizationStructure\": {\n      \"security\": {\n        \"name\": \"Security\"\n      },\n      \"sandbox\": {\n        \"name\": \"Sandbox\"\n      }\n    },\n    \"centralizedLogging\": {\n      \"accountId\": \"123456789012\",\n      \"configurations\": {\n        \"loggingBucket\": {\n          \"retentionDays\": 365\n        },\n        \"accessLoggingBucket\": {\n          \"retentionDays\": 365\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"arn\": \"arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE\",\n  \"operationIdentifier\": \"a1b2c3d4-5678-90ab-cdef-EXAMPLE11111\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "545b8050-d36f-48db-87d9-e109289aa275",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "create-landingzone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"version\": \"3.3\",\n  \"manifest\": {\n    \"governedRegions\": [\n      \"us-east-1\",\n      \"us-west-2\"\n    ],\n    \"organizationStructure\": {\n      \"security\": {\n        \"name\": \"Security\"\n      },\n      \"sandbox\": {\n        \"name\": \"Sandbox\"\n      }\n    },\n    \"centralizedLogging\": {\n      \"accountId\": \"123456789012\",\n      \"configurations\": {\n        \"loggingBucket\": {\n          \"retentionDays\": 365\n        },\n        \"accessLoggingBucket\": {\n          \"retentionDays\": 365\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"The specified resource was not found.\",\n  \"code\": \"ResourceNotFoundException\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a5a26e3b-27c6-45f4-b9e5-fcdbb9227ffe",
+              "name": "Conflict - landing zone already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "create-landingzone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"version\": \"3.3\",\n  \"manifest\": {\n    \"governedRegions\": [\n      \"us-east-1\",\n      \"us-west-2\"\n    ],\n    \"organizationStructure\": {\n      \"security\": {\n        \"name\": \"Security\"\n      },\n      \"sandbox\": {\n        \"name\": \"Sandbox\"\n      }\n    },\n    \"centralizedLogging\": {\n      \"accountId\": \"123456789012\",\n      \"configurations\": {\n        \"loggingBucket\": {\n          \"retentionDays\": 365\n        },\n        \"accessLoggingBucket\": {\n          \"retentionDays\": 365\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"The specified resource was not found.\",\n  \"code\": \"ResourceNotFoundException\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23c823fc-f5b2-470a-9cc6-9aa69c17d4dd",
+          "name": "AWS Control Tower Delete Landing Zone",
+          "request": {
+            "name": "AWS Control Tower Delete Landing Zone",
+            "description": {
+              "content": "Decommissions a landing zone. This is an asynchronous operation. After you call this operation, you can check the landing zone status by calling GetLandingZone.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "delete-landingzone"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"landingZoneIdentifier\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bd4bd100-068a-4cc4-82af-a95ac0d00d69",
+              "name": "Landing zone deletion initiated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "delete-landingzone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"landingZoneIdentifier\": \"arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"operationIdentifier\": \"a1b2c3d4-5678-90ab-cdef-EXAMPLE22222\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "05fae194-9339-4418-8802-421e0601f868",
+              "name": "Landing zone not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "delete-landingzone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"landingZoneIdentifier\": \"arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"The specified resource was not found.\",\n  \"code\": \"ResourceNotFoundException\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "52bbecfc-7c86-4fe8-87c7-fa8f958e4538",
+          "name": "AWS Control Tower Get Landing Zone",
+          "request": {
+            "name": "AWS Control Tower Get Landing Zone",
+            "description": {
+              "content": "Returns details about a landing zone. Includes status and version.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "get-landingzone"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"landingZoneIdentifier\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1826701a-c021-419c-9372-5cfdcb4be318",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "get-landingzone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"landingZoneIdentifier\": \"arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"landingZone\": {\n    \"arn\": \"arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE\",\n    \"driftStatus\": {\n      \"status\": \"NOT_CHECKING_FOR_DRIFT\"\n    },\n    \"latestAvailableVersion\": \"3.3\",\n    \"manifest\": {},\n    \"status\": \"ACTIVE\",\n    \"version\": \"3.3\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a8e0fd58-b25c-4897-b1ec-3c1a9799d7ab",
+              "name": "Landing zone not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "get-landingzone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"landingZoneIdentifier\": \"arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"The specified resource was not found.\",\n  \"code\": \"ResourceNotFoundException\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4a5a366e-9792-4dc6-8a22-7add584eca84",
+          "name": "AWS Control Tower List Landing Zones",
+          "request": {
+            "name": "AWS Control Tower List Landing Zones",
+            "description": {
+              "content": "Returns a list of landing zones in the caller's AWS account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "list-landingzones"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"maxResults\": \"<integer>\",\n  \"nextToken\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d98fbe4d-bbba-4c2f-9392-ce3552431fa3",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-landingzones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"maxResults\": 10,\n  \"nextToken\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"landingZones\": [\n    {\n      \"arn\": \"arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a19998c3-0442-497a-ae75-d4b8b48cc716",
+          "name": "AWS Control Tower Update Landing Zone",
+          "request": {
+            "name": "AWS Control Tower Update Landing Zone",
+            "description": {
+              "content": "Updates an existing landing zone. This is an asynchronous operation. After you call this operation, you can check the landing zone status by calling GetLandingZone.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "update-landingzone"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"landingZoneIdentifier\": \"<string>\",\n  \"manifest\": \"<object>\",\n  \"version\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6b226e48-2239-4a9e-a166-1068c601bc15",
+              "name": "Landing zone update initiated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "update-landingzone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"landingZoneIdentifier\": \"arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE\",\n  \"version\": \"3.3\",\n  \"manifest\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"operationIdentifier\": \"a1b2c3d4-5678-90ab-cdef-EXAMPLE33333\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e03fbf83-dbf6-46f6-a51b-8dfaa265148f",
+              "name": "Landing zone not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "update-landingzone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"landingZoneIdentifier\": \"arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE\",\n  \"version\": \"3.3\",\n  \"manifest\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"The specified resource was not found.\",\n  \"code\": \"ResourceNotFoundException\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dc9045ae-ea58-422b-8a41-64c22343e13a",
+          "name": "AWS Control Tower Reset Landing Zone",
+          "request": {
+            "name": "AWS Control Tower Reset Landing Zone",
+            "description": {
+              "content": "Re-enables a landing zone after it has been decommissioned, or extends it to new regions. This is an asynchronous operation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reset-landingzone"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"landingZoneIdentifier\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "aae55ab0-3017-4a9b-85ff-7b076468f27f",
+              "name": "Landing zone reset initiated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reset-landingzone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"landingZoneIdentifier\": \"arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"operationIdentifier\": \"a1b2c3d4-5678-90ab-cdef-EXAMPLE44444\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6f1cce5a-ecee-465c-97d9-f32d00692195",
+          "name": "AWS Control Tower Get Landing Zone Operation",
+          "request": {
+            "name": "AWS Control Tower Get Landing Zone Operation",
+            "description": {
+              "content": "Returns the status of a specified landing zone operation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "get-landingzone-operation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"operationIdentifier\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b23ec95b-1667-41c5-86a2-bd48929fbac9",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "get-landingzone-operation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"operationIdentifier\": \"a1b2c3d4-5678-90ab-cdef-EXAMPLE11111\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"operationDetails\": {\n    \"operationType\": \"CREATE\",\n    \"startTime\": \"2025-03-15T14:30:00Z\",\n    \"status\": \"SUCCEEDED\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fdec24ad-6191-406b-8f7c-ca91936f92d9",
+              "name": "Operation not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "get-landingzone-operation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"operationIdentifier\": \"a1b2c3d4-5678-90ab-cdef-EXAMPLE11111\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"The specified resource was not found.\",\n  \"code\": \"ResourceNotFoundException\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9f25d415-3f67-4770-aa04-5416b2694f85",
+          "name": "AWS Control Tower List Landing Zone Operations",
+          "request": {
+            "name": "AWS Control Tower List Landing Zone Operations",
+            "description": {
+              "content": "Lists all landing zone operations from the past 90 days.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "list-landingzone-operations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filter\": {\n    \"statuses\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"types\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"maxResults\": \"<integer>\",\n  \"nextToken\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "651d6b89-66ae-4c9d-8eaf-d2ee8c7405f2",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-landingzone-operations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filter\": {\n    \"statuses\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"types\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"maxResults\": 20,\n  \"nextToken\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"landingZoneOperations\": [\n    {\n      \"operationType\": \"CREATE\",\n      \"operationIdentifier\": \"a1b2c3d4-5678-90ab-cdef-EXAMPLE11111\",\n      \"startTime\": \"2025-03-15T14:30:00Z\",\n      \"status\": \"SUCCEEDED\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://controltower.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bb44df0e-b07b-4230-878e-3660d5f1482b",
+    "name": "AWS Control Tower Baselines Landing Zones API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "AWS Control Tower provides the easiest way to set up and govern a secure, multi-account AWS environment. The API enables programmatic management of landing zones, controls (guardrails), baselines, and organizational unit registrations within your AWS Control Tower environment.\n\nContact Support:\n Name: Amazon Web Services",
+      "type": "text/plain"
+    }
+  }
+}

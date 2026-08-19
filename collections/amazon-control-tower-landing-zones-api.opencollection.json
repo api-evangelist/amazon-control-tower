@@ -1,0 +1,144 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AWS Control Tower Baselines Landing Zones API",
+    "version": "2018-11-28"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Landing Zones",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AWS Control Tower Create Landing Zone",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/create-landingzone",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new landing zone. This is an asynchronous operation. After you call this operation, you can check the landing zone status by calling GetLandingZone."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Delete Landing Zone",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/delete-landingzone",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Decommissions a landing zone. This is an asynchronous operation. After you call this operation, you can check the landing zone status by calling GetLandingZone."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Get Landing Zone",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/get-landingzone",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns details about a landing zone. Includes status and version."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower List Landing Zones",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/list-landingzones",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a list of landing zones in the caller's AWS account."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Update Landing Zone",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/update-landingzone",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing landing zone. This is an asynchronous operation. After you call this operation, you can check the landing zone status by calling GetLandingZone."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Reset Landing Zone",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/reset-landingzone",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Re-enables a landing zone after it has been decommissioned, or extends it to new regions. This is an asynchronous operation."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Get Landing Zone Operation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/get-landingzone-operation",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the status of a specified landing zone operation."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower List Landing Zone Operations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/list-landingzone-operations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Lists all landing zone operations from the past 90 days."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

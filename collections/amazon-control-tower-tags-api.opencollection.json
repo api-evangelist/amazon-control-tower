@@ -1,0 +1,91 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AWS Control Tower Baselines Tags API",
+    "version": "2018-11-28"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AWS Control Tower List Tags for Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://controltower.amazonaws.com/tags/:resourceArn",
+            "params": [
+              {
+                "name": "resourceArn",
+                "value": "arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE",
+                "type": "path",
+                "description": "The ARN of the resource."
+              }
+            ]
+          },
+          "docs": "Returns a list of tags associated with the resource."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Tag Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://controltower.amazonaws.com/tags/:resourceArn",
+            "params": [
+              {
+                "name": "resourceArn",
+                "value": "arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE",
+                "type": "path",
+                "description": "The ARN of the resource to be tagged."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Applies tags to the resource identifier you specify."
+        },
+        {
+          "info": {
+            "name": "AWS Control Tower Untag Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://controltower.amazonaws.com/tags/:resourceArn",
+            "params": [
+              {
+                "name": "resourceArn",
+                "value": "arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE",
+                "type": "path",
+                "description": "The ARN of the resource."
+              },
+              {
+                "name": "tagKeys",
+                "value": "",
+                "type": "query",
+                "description": "Tag keys to remove from the resource."
+              }
+            ]
+          },
+          "docs": "Removes tags from the resource."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

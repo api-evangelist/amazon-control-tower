@@ -1,0 +1,1139 @@
+{
+  "item": [
+    {
+      "id": "6649cf5c-cc6f-4ae5-be73-c9c1371b01f7",
+      "name": "Controls",
+      "description": {
+        "content": "Operations for enabling, disabling, and managing guardrail controls on organizational units",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "abc1e1a5-c3f6-4cad-96a2-0c16cedb0d5d",
+          "name": "AWS Control Tower Enable Control",
+          "request": {
+            "name": "AWS Control Tower Enable Control",
+            "description": {
+              "content": "Activates a control, otherwise known as a guardrail, upon the specified organizational unit (OU). This operation is asynchronous and returns a control operation identifier that can be used to check the status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enable-control"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"controlIdentifier\": \"<string>\",\n  \"targetIdentifier\": \"<string>\",\n  \"parameters\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": {}\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": {}\n    }\n  ],\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b9e0c4f7-8662-4cc1-88b4-e57e21eb29f0",
+              "name": "Control enabled successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enable-control"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"controlIdentifier\": \"arn:aws:controltower:us-east-1::control/AWS-GR_ENCRYPTED_VOLUMES\",\n  \"targetIdentifier\": \"arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111\",\n  \"parameters\": [\n    {\n      \"key\": \"AllowedRegions\",\n      \"value\": [\n        \"us-east-1\",\n        \"us-west-2\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"arn\": \"arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE\",\n  \"operationIdentifier\": \"a1b2c3d4-5678-90ab-cdef-EXAMPLE55555\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "921b2dd3-7f2c-4cfb-9aff-24693ff9fa16",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enable-control"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"controlIdentifier\": \"arn:aws:controltower:us-east-1::control/AWS-GR_ENCRYPTED_VOLUMES\",\n  \"targetIdentifier\": \"arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111\",\n  \"parameters\": [\n    {\n      \"key\": \"AllowedRegions\",\n      \"value\": [\n        \"us-east-1\",\n        \"us-west-2\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"The specified resource was not found.\",\n  \"code\": \"ResourceNotFoundException\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0d34d82-a286-4635-b5df-54a6e18a00fe",
+              "name": "Control already enabled on target",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enable-control"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"controlIdentifier\": \"arn:aws:controltower:us-east-1::control/AWS-GR_ENCRYPTED_VOLUMES\",\n  \"targetIdentifier\": \"arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111\",\n  \"parameters\": [\n    {\n      \"key\": \"AllowedRegions\",\n      \"value\": [\n        \"us-east-1\",\n        \"us-west-2\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"The specified resource was not found.\",\n  \"code\": \"ResourceNotFoundException\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "59da713f-e0bc-4be5-90a3-dbaa4b47abde",
+          "name": "AWS Control Tower Disable Control",
+          "request": {
+            "name": "AWS Control Tower Disable Control",
+            "description": {
+              "content": "Deactivates a control by removing it from the specified organizational unit (OU). This operation is asynchronous and returns an operation identifier that can be used to check the status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "disable-control"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"controlIdentifier\": \"<string>\",\n  \"targetIdentifier\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2906ed88-5648-47cb-82ff-125d334ded46",
+              "name": "Control disabled successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "disable-control"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"controlIdentifier\": \"arn:aws:controltower:us-east-1::control/AWS-GR_ENCRYPTED_VOLUMES\",\n  \"targetIdentifier\": \"arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"operationIdentifier\": \"a1b2c3d4-5678-90ab-cdef-EXAMPLE66666\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91dce234-106e-4142-87bc-b27e92fd96a3",
+              "name": "Control not found on target",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "disable-control"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"controlIdentifier\": \"arn:aws:controltower:us-east-1::control/AWS-GR_ENCRYPTED_VOLUMES\",\n  \"targetIdentifier\": \"arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"The specified resource was not found.\",\n  \"code\": \"ResourceNotFoundException\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df41691e-395b-4e44-a182-46a4769dd555",
+          "name": "AWS Control Tower Get Enabled Control",
+          "request": {
+            "name": "AWS Control Tower Get Enabled Control",
+            "description": {
+              "content": "Retrieves details about an enabled control. For usage examples, see the AWS Control Tower controls reference guide.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "get-enabled-control"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabledControlIdentifier\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a77c52c2-805e-471a-84d1-8c7a82032a46",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "get-enabled-control"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabledControlIdentifier\": \"arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"enabledControl\": {\n    \"arn\": \"arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE\",\n    \"controlIdentifier\": \"arn:aws:controltower:us-east-1::control/AWS-GR_ENCRYPTED_VOLUMES\",\n    \"driftStatusSummary\": {\n      \"driftStatus\": \"NOT_CHECKING_FOR_DRIFT\"\n    },\n    \"statusSummary\": {\n      \"lastOperationIdentifier\": \"a1b2c3d4-5678-90ab-cdef-EXAMPLE55555\",\n      \"status\": \"SUCCEEDED\"\n    },\n    \"targetIdentifier\": \"arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1eaae1e5-5d8c-45fa-9518-81cfc55ccac5",
+              "name": "Enabled control not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "get-enabled-control"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabledControlIdentifier\": \"arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"The specified resource was not found.\",\n  \"code\": \"ResourceNotFoundException\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ffdee495-5a7b-4815-971e-af98f0a77388",
+          "name": "AWS Control Tower List Enabled Controls",
+          "request": {
+            "name": "AWS Control Tower List Enabled Controls",
+            "description": {
+              "content": "Lists the controls enabled by AWS Control Tower on the specified organizational unit and the accounts it contains. For usage examples, see the AWS Control Tower controls reference guide.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "list-enabled-controls"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"targetIdentifier\": \"<string>\",\n  \"filter\": {\n    \"controlIdentifiers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"statuses\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"maxResults\": \"<integer>\",\n  \"nextToken\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a350284e-ce26-476c-8154-9b0f6dda9d16",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-enabled-controls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"targetIdentifier\": \"arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111\",\n  \"filter\": {\n    \"controlIdentifiers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"statuses\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"maxResults\": 20,\n  \"nextToken\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"enabledControls\": [\n    {\n      \"arn\": \"arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE\",\n      \"controlIdentifier\": \"arn:aws:controltower:us-east-1::control/AWS-GR_ENCRYPTED_VOLUMES\",\n      \"statusSummary\": {\n        \"status\": \"SUCCEEDED\"\n      },\n      \"targetIdentifier\": \"arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f4226030-5d71-4e2b-ba35-83341ade0108",
+          "name": "AWS Control Tower Update Enabled Control",
+          "request": {
+            "name": "AWS Control Tower Update Enabled Control",
+            "description": {
+              "content": "Updates the configuration of an already enabled control. If the enabled control shows an EnablementStatus of FAILED, you can re-run this operation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "update-enabled-control"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabledControlIdentifier\": \"<string>\",\n  \"parameters\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": {}\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": {}\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c03a2333-fde0-4041-ad8b-db6a61249d45",
+              "name": "Enabled control updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "update-enabled-control"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabledControlIdentifier\": \"arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE\",\n  \"parameters\": [\n    {\n      \"key\": \"AllowedRegions\",\n      \"value\": {}\n    },\n    {\n      \"key\": \"AllowedRegions\",\n      \"value\": {}\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"operationIdentifier\": \"a1b2c3d4-5678-90ab-cdef-EXAMPLE77777\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c6517dba-0219-4964-92e2-00eb7362ad52",
+              "name": "Enabled control not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "update-enabled-control"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabledControlIdentifier\": \"arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE\",\n  \"parameters\": [\n    {\n      \"key\": \"AllowedRegions\",\n      \"value\": {}\n    },\n    {\n      \"key\": \"AllowedRegions\",\n      \"value\": {}\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"The specified resource was not found.\",\n  \"code\": \"ResourceNotFoundException\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fcedd2cf-252a-46eb-b4b1-de3c73b4dfa1",
+          "name": "AWS Control Tower Reset Enabled Control",
+          "request": {
+            "name": "AWS Control Tower Reset Enabled Control",
+            "description": {
+              "content": "Resets a control to its default configuration. This operation is asynchronous and returns an operation identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reset-enabled-control"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabledControlIdentifier\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "51b06ef8-9445-4eab-aa72-45a24a7a24fe",
+              "name": "Enabled control reset initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reset-enabled-control"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabledControlIdentifier\": \"arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"operationIdentifier\": \"a1b2c3d4-5678-90ab-cdef-EXAMPLE88888\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7589c533-3990-467c-b034-bde5419a268b",
+          "name": "AWS Control Tower Get Control Operation",
+          "request": {
+            "name": "AWS Control Tower Get Control Operation",
+            "description": {
+              "content": "Returns the status of a particular EnableControl or DisableControl operation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "get-control-operation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"operationIdentifier\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a646982e-e43d-421c-a271-3771cc212db2",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "get-control-operation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"operationIdentifier\": \"a1b2c3d4-5678-90ab-cdef-EXAMPLE55555\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"controlOperation\": {\n    \"controlIdentifier\": \"arn:aws:controltower:us-east-1::control/AWS-GR_ENCRYPTED_VOLUMES\",\n    \"enabledControlIdentifier\": \"arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE\",\n    \"endTime\": \"2025-03-15T14:35:00Z\",\n    \"operationIdentifier\": \"a1b2c3d4-5678-90ab-cdef-EXAMPLE55555\",\n    \"operationType\": \"ENABLE_CONTROL\",\n    \"startTime\": \"2025-03-15T14:30:00Z\",\n    \"status\": \"SUCCEEDED\",\n    \"targetIdentifier\": \"arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8c0d2e7a-5751-419e-b459-daa903d05882",
+              "name": "Operation not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "get-control-operation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"operationIdentifier\": \"a1b2c3d4-5678-90ab-cdef-EXAMPLE55555\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"The specified resource was not found.\",\n  \"code\": \"ResourceNotFoundException\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1a9fb766-8f85-4b70-a85a-66f21716791c",
+          "name": "AWS Control Tower List Control Operations",
+          "request": {
+            "name": "AWS Control Tower List Control Operations",
+            "description": {
+              "content": "Provides a list of operations in progress or complete within the past 90 days. Optionally filter by the status of the operation, the affected target, or the type of operation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "list-control-operations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filter\": {\n    \"controlIdentifiers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"statuses\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"targetIdentifiers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"types\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"maxResults\": \"<integer>\",\n  \"nextToken\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0b7c12c5-982f-4c2d-a50e-b6bb47b7eb20",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-control-operations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filter\": {\n    \"controlIdentifiers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"statuses\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"targetIdentifiers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"types\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"maxResults\": 20,\n  \"nextToken\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"controlOperations\": [\n    {\n      \"controlIdentifier\": \"arn:aws:controltower:us-east-1::control/AWS-GR_ENCRYPTED_VOLUMES\",\n      \"operationIdentifier\": \"a1b2c3d4-5678-90ab-cdef-EXAMPLE55555\",\n      \"operationType\": \"ENABLE_CONTROL\",\n      \"startTime\": \"2025-03-15T14:30:00Z\",\n      \"status\": \"SUCCEEDED\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://controltower.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c5903307-3aa2-4a02-911e-024ce223d91d",
+    "name": "AWS Control Tower Baselines Controls API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "AWS Control Tower provides the easiest way to set up and govern a secure, multi-account AWS environment. The API enables programmatic management of landing zones, controls (guardrails), baselines, and organizational unit registrations within your AWS Control Tower environment.\n\nContact Support:\n Name: Amazon Web Services",
+      "type": "text/plain"
+    }
+  }
+}

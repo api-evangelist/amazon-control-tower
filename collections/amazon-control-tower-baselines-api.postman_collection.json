@@ -1,0 +1,1136 @@
+{
+  "item": [
+    {
+      "id": "ba02dace-2382-4f02-ba73-84d99ab8cf5d",
+      "name": "Baselines",
+      "description": {
+        "content": "Operations for applying and managing baselines on organizational units",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1487b4bc-d46f-4cb6-8f78-a9549055aebe",
+          "name": "AWS Control Tower Enable Baseline",
+          "request": {
+            "name": "AWS Control Tower Enable Baseline",
+            "description": {
+              "content": "Enable (apply) a Baseline to a Target. This API starts an asynchronous operation to deploy resources specified by the Baseline to the specified Target.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enable-baseline"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"baselineIdentifier\": \"<string>\",\n  \"baselineVersion\": \"<string>\",\n  \"targetIdentifier\": \"<string>\",\n  \"parameters\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": {}\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": {}\n    }\n  ],\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "410770c2-d166-4b31-a6da-8f7c96a89b0e",
+              "name": "Baseline enabled successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enable-baseline"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"baselineIdentifier\": \"arn:aws:controltower:us-east-1::baseline/LZACCOUNTBASELINE\",\n  \"baselineVersion\": \"2.0\",\n  \"targetIdentifier\": \"arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"arn\": \"arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE\",\n  \"operationIdentifier\": \"a1b2c3d4-5678-90ab-cdef-EXAMPLE99999\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "155222e0-396f-4975-bc8b-f3469a485b9d",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enable-baseline"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"baselineIdentifier\": \"arn:aws:controltower:us-east-1::baseline/LZACCOUNTBASELINE\",\n  \"baselineVersion\": \"2.0\",\n  \"targetIdentifier\": \"arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"The specified resource was not found.\",\n  \"code\": \"ResourceNotFoundException\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6cf55acb-b9c1-4231-8da5-0e20f218920f",
+          "name": "AWS Control Tower Disable Baseline",
+          "request": {
+            "name": "AWS Control Tower Disable Baseline",
+            "description": {
+              "content": "Disable an EnabledBaseline resource on the specified Target. This API starts an asynchronous operation to remove all resources deployed as part of the baseline enablement.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "disable-baseline"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabledBaselineIdentifier\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9f77be03-8297-4152-a473-8e1860a296a2",
+              "name": "Baseline disabled successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "disable-baseline"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabledBaselineIdentifier\": \"arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"operationIdentifier\": \"a1b2c3d4-5678-90ab-cdef-EXAMPLEAAAAA\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c142e61-81c8-40f5-8821-cce893a728fa",
+              "name": "Enabled baseline not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "disable-baseline"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabledBaselineIdentifier\": \"arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"The specified resource was not found.\",\n  \"code\": \"ResourceNotFoundException\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef5a1226-e70c-4be7-8ed1-793ca85ad5a4",
+          "name": "AWS Control Tower Get Baseline",
+          "request": {
+            "name": "AWS Control Tower Get Baseline",
+            "description": {
+              "content": "Retrieve details about an existing Baseline resource by specifying its identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "get-baseline"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"baselineIdentifier\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1c1fcf51-7560-4f7d-a2e2-800e55b959a1",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "get-baseline"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"baselineIdentifier\": \"arn:aws:controltower:us-east-1::baseline/LZACCOUNTBASELINE\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"arn\": \"arn:aws:controltower:us-east-1::baseline/LZACCOUNTBASELINE\",\n  \"description\": \"AWS Control Tower Account baseline\",\n  \"name\": \"AWSControlTowerBaseline\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ac16d72-ac8a-44f2-8cf3-b21cfc09043c",
+          "name": "AWS Control Tower List Baselines",
+          "request": {
+            "name": "AWS Control Tower List Baselines",
+            "description": {
+              "content": "Returns a summary list of all available baselines.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "list-baselines"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"maxResults\": \"<integer>\",\n  \"nextToken\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "017a71e8-c672-4916-8b85-02971bc1ebbb",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-baselines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"maxResults\": 10,\n  \"nextToken\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"baselines\": [\n    {\n      \"arn\": \"arn:aws:controltower:us-east-1::baseline/LZACCOUNTBASELINE\",\n      \"description\": \"AWS Control Tower Account baseline\",\n      \"name\": \"AWSControlTowerBaseline\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f5eb719e-7c70-4740-8ab0-932513bb8aa2",
+          "name": "AWS Control Tower Get Enabled Baseline",
+          "request": {
+            "name": "AWS Control Tower Get Enabled Baseline",
+            "description": {
+              "content": "Retrieve details of an EnabledBaseline resource by specifying its identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "get-enabled-baseline"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabledBaselineIdentifier\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3b7f0f2b-358f-4662-94fa-e4c0b1ad3e9b",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "get-enabled-baseline"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabledBaselineIdentifier\": \"arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"enabledBaselineDetails\": {\n    \"arn\": \"arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE\",\n    \"baselineIdentifier\": \"arn:aws:controltower:us-east-1::baseline/LZACCOUNTBASELINE\",\n    \"baselineVersion\": \"2.0\",\n    \"statusSummary\": {\n      \"lastOperationIdentifier\": \"a1b2c3d4-5678-90ab-cdef-EXAMPLE99999\",\n      \"status\": \"SUCCEEDED\"\n    },\n    \"targetIdentifier\": \"arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c9ecafa5-0d61-49e9-8141-4db11e83d939",
+              "name": "Enabled baseline not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "get-enabled-baseline"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabledBaselineIdentifier\": \"arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"The specified resource was not found.\",\n  \"code\": \"ResourceNotFoundException\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "51a5847b-aa0a-4135-bcef-0e7ef48d16a0",
+          "name": "AWS Control Tower List Enabled Baselines",
+          "request": {
+            "name": "AWS Control Tower List Enabled Baselines",
+            "description": {
+              "content": "Returns a list of summaries describing EnabledBaseline resources.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "list-enabled-baselines"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filter\": {\n    \"baselineIdentifiers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"targetIdentifiers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"statuses\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"includeChildren\": \"<boolean>\",\n  \"maxResults\": \"<integer>\",\n  \"nextToken\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "285b7e29-8ce5-4c02-9c0d-440ed4afc39c",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-enabled-baselines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filter\": {\n    \"baselineIdentifiers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"targetIdentifiers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"statuses\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"includeChildren\": \"<boolean>\",\n  \"maxResults\": 20,\n  \"nextToken\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"enabledBaselines\": [\n    {\n      \"arn\": \"arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE\",\n      \"baselineIdentifier\": \"arn:aws:controltower:us-east-1::baseline/LZACCOUNTBASELINE\",\n      \"statusSummary\": {\n        \"status\": \"SUCCEEDED\"\n      },\n      \"targetIdentifier\": \"arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f0ff32cf-0263-4db9-85ba-791e295f59ef",
+          "name": "AWS Control Tower Update Enabled Baseline",
+          "request": {
+            "name": "AWS Control Tower Update Enabled Baseline",
+            "description": {
+              "content": "Updates an EnabledBaseline resource's applied parameters or version. This operation applies only to the managed account resources enrolled through the baseline.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "update-enabled-baseline"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"baselineVersion\": \"<string>\",\n  \"enabledBaselineIdentifier\": \"<string>\",\n  \"parameters\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": {}\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": {}\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d92d45cf-65bf-4070-8c0e-2e280a47b21f",
+              "name": "Enabled baseline updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "update-enabled-baseline"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"baselineVersion\": \"2.0\",\n  \"enabledBaselineIdentifier\": \"arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE\",\n  \"parameters\": [\n    {\n      \"key\": \"IdentityCenterEnabled\",\n      \"value\": {}\n    },\n    {\n      \"key\": \"IdentityCenterEnabled\",\n      \"value\": {}\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"operationIdentifier\": \"a1b2c3d4-5678-90ab-cdef-EXAMPLEBBBBB\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "91bee1ca-b0f7-4801-a412-e69d363527ba",
+          "name": "AWS Control Tower Reset Enabled Baseline",
+          "request": {
+            "name": "AWS Control Tower Reset Enabled Baseline",
+            "description": {
+              "content": "Re-enables an EnabledBaseline resource. For example, this API can re-apply the existing Baseline after a new member account is moved to the target OU.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reset-enabled-baseline"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabledBaselineIdentifier\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9a6cdc13-cccf-47b5-a2ec-79cd4029d024",
+              "name": "Enabled baseline reset initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reset-enabled-baseline"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabledBaselineIdentifier\": \"arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"operationIdentifier\": \"a1b2c3d4-5678-90ab-cdef-EXAMPLECCCCC\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "64285cdc-362d-42e2-9e37-0c319c4ac7bd",
+          "name": "AWS Control Tower Get Baseline Operation",
+          "request": {
+            "name": "AWS Control Tower Get Baseline Operation",
+            "description": {
+              "content": "Returns the details of an asynchronous baseline operation, as initiated by any of these APIs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "get-baseline-operation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"operationIdentifier\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bfef3822-d17f-4005-a806-b1728382be53",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "get-baseline-operation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"operationIdentifier\": \"a1b2c3d4-5678-90ab-cdef-EXAMPLE99999\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"baselineOperation\": {\n    \"endTime\": \"2025-03-15T14:35:00Z\",\n    \"operationIdentifier\": \"a1b2c3d4-5678-90ab-cdef-EXAMPLE99999\",\n    \"operationType\": \"ENABLE_BASELINE\",\n    \"startTime\": \"2025-03-15T14:30:00Z\",\n    \"status\": \"SUCCEEDED\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99a4da17-b124-4111-be38-4f60aa860a9a",
+              "name": "Operation not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "get-baseline-operation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"operationIdentifier\": \"a1b2c3d4-5678-90ab-cdef-EXAMPLE99999\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"The specified resource was not found.\",\n  \"code\": \"ResourceNotFoundException\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://controltower.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c1ead20f-5c25-43c3-b89c-dab68eb6d0f9",
+    "name": "AWS Control Tower Baselines API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "AWS Control Tower provides the easiest way to set up and govern a secure, multi-account AWS environment. The API enables programmatic management of landing zones, controls (guardrails), baselines, and organizational unit registrations within your AWS Control Tower environment.\n\nContact Support:\n Name: Amazon Web Services",
+      "type": "text/plain"
+    }
+  }
+}
