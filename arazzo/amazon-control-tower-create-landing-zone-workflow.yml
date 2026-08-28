@@ -13,8 +13,8 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: controlTowerApi
-  url: ../openapi/amazon-control-tower-openapi.yml
+- name: landingZonesApi
+  url: ../openapi/amazon-control-tower-landing-zones-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: create-landing-zone

@@ -13,8 +13,8 @@ info:
     opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: controlTowerApi
-  url: ../openapi/amazon-control-tower-openapi.yml
+- name: baselinesApi
+  url: ../openapi/amazon-control-tower-baselines-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: enable-baseline
