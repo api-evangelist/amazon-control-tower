@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: AWS Control Tower Baselines Controls API
   description: AWS Control Tower provides the easiest way to set up and govern a secure, multi-account AWS environment. The API enables programmatic management of landing zones, controls (guardrails), baselines, and organizational unit registrations within your AWS Control Tower environment.
@@ -430,33 +430,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    UpdateEnabledControlResponse:
-      type: object
-      properties:
-        operationIdentifier:
-          type: string
-          description: The identifier of the operation.
-          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE77777
-    ListControlOperationsResponse:
-      type: object
-      properties:
-        controlOperations:
-          type: array
-          items:
-            $ref: '#/components/schemas/ControlOperationSummary'
-        nextToken:
-          type: string
-    EnableControlResponse:
-      type: object
-      properties:
-        arn:
-          type: string
-          description: The ARN of the EnabledControl resource.
-          example: arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE
-        operationIdentifier:
-          type: string
-          description: The identifier of the asynchronous operation.
-          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE55555
     EnabledControlSummary:
       type: object
       description: Summary information about an enabled control.
@@ -474,21 +447,6 @@ components:
               type: string
         targetIdentifier:
           type: string
-    ControlOperationSummary:
-      type: object
-      description: Summary of a control operation.
-      properties:
-        controlIdentifier:
-          type: string
-        operationIdentifier:
-          type: string
-        operationType:
-          type: string
-        startTime:
-          type: string
-          format: date-time
-        status:
-          type: string
     EnabledControlParameter:
       type: object
       description: A key-value pair for a control parameter.
@@ -502,23 +460,15 @@ components:
           example: AllowedRegions
         value:
           description: The parameter value.
-    ResetEnabledControlResponse:
+    ListControlOperationsResponse:
       type: object
       properties:
-        operationIdentifier:
+        controlOperations:
+          type: array
+          items:
+            $ref: '#/components/schemas/ControlOperationSummary'
+        nextToken:
           type: string
-          description: The identifier of the operation.
-          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE88888
-    GetEnabledControlResponse:
-      type: object
-      properties:
-        enabledControl:
-          $ref: '#/components/schemas/EnabledControl'
-    GetControlOperationResponse:
-      type: object
-      properties:
-        controlOperation:
-          $ref: '#/components/schemas/ControlOperation'
     ControlOperation:
       type: object
       description: An operation performed on a control.
@@ -559,6 +509,108 @@ components:
         targetIdentifier:
           type: string
           description: The ARN of the organizational unit.
+    GetControlOperationResponse:
+      type: object
+      properties:
+        controlOperation:
+          $ref: '#/components/schemas/ControlOperation'
+    Error:
+      type: object
+      description: An AWS Control Tower API error response.
+      properties:
+        message:
+          type: string
+          description: The error message.
+          example: The specified resource was not found.
+        code:
+          type: string
+          description: The error code.
+          example: ResourceNotFoundException
+    GetEnabledControlResponse:
+      type: object
+      properties:
+        enabledControl:
+          $ref: '#/components/schemas/EnabledControl'
+    ControlOperationSummary:
+      type: object
+      description: Summary of a control operation.
+      properties:
+        controlIdentifier:
+          type: string
+        operationIdentifier:
+          type: string
+        operationType:
+          type: string
+        startTime:
+          type: string
+          format: date-time
+        status:
+          type: string
+    DisableControlResponse:
+      type: object
+      properties:
+        operationIdentifier:
+          type: string
+          description: The identifier of the asynchronous operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE66666
+    ListEnabledControlsResponse:
+      type: object
+      properties:
+        enabledControls:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnabledControlSummary'
+        nextToken:
+          type: string
+    EnableControlResponse:
+      type: object
+      properties:
+        arn:
+          type: string
+          description: The ARN of the EnabledControl resource.
+          example: arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE
+        operationIdentifier:
+          type: string
+          description: The identifier of the asynchronous operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE55555
+    UpdateEnabledControlResponse:
+      type: object
+      properties:
+        operationIdentifier:
+          type: string
+          description: The identifier of the operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE77777
+    EnableControlRequest:
+      type: object
+      required:
+      - controlIdentifier
+      - targetIdentifier
+      properties:
+        controlIdentifier:
+          type: string
+          description: The ARN of the control. Only Strongly recommended and Elective controls are permitted.
+          example: arn:aws:controltower:us-east-1::control/AWS-GR_ENCRYPTED_VOLUMES
+        targetIdentifier:
+          type: string
+          description: The ARN of the organizational unit on which the control will be enabled.
+          example: arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111
+        parameters:
+          type: array
+          description: A list of input parameter values that are supplied to enable the control.
+          items:
+            $ref: '#/components/schemas/EnabledControlParameter'
+        tags:
+          type: object
+          description: Tags to apply to the EnabledControl resource.
+          additionalProperties:
+            type: string
+    ResetEnabledControlResponse:
+      type: object
+      properties:
+        operationIdentifier:
+          type: string
+          description: The identifier of the operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE88888
     EnabledControl:
       type: object
       description: Information about an enabled control.
@@ -599,58 +651,6 @@ components:
         targetIdentifier:
           type: string
           description: The ARN of the organizational unit.
-    DisableControlResponse:
-      type: object
-      properties:
-        operationIdentifier:
-          type: string
-          description: The identifier of the asynchronous operation.
-          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE66666
-    EnableControlRequest:
-      type: object
-      required:
-      - controlIdentifier
-      - targetIdentifier
-      properties:
-        controlIdentifier:
-          type: string
-          description: The ARN of the control. Only Strongly recommended and Elective controls are permitted.
-          example: arn:aws:controltower:us-east-1::control/AWS-GR_ENCRYPTED_VOLUMES
-        targetIdentifier:
-          type: string
-          description: The ARN of the organizational unit on which the control will be enabled.
-          example: arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111
-        parameters:
-          type: array
-          description: A list of input parameter values that are supplied to enable the control.
-          items:
-            $ref: '#/components/schemas/EnabledControlParameter'
-        tags:
-          type: object
-          description: Tags to apply to the EnabledControl resource.
-          additionalProperties:
-            type: string
-    ListEnabledControlsResponse:
-      type: object
-      properties:
-        enabledControls:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnabledControlSummary'
-        nextToken:
-          type: string
-    Error:
-      type: object
-      description: An AWS Control Tower API error response.
-      properties:
-        message:
-          type: string
-          description: The error message.
-          example: The specified resource was not found.
-        code:
-          type: string
-          description: The error code.
-          example: ResourceNotFoundException
   securitySchemes:
     aws_signature:
       type: http
