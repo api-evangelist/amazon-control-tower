@@ -40,6 +40,14 @@ tags:
 - Landing Zone
 - Multi-Account
 - Security
+- Control
+tags_raw:
+- AWS
+- Compliance
+- Governance
+- Landing Zone
+- Multi-Account
+- Security
 - Controls
 url: https://raw.githubusercontent.com/api-evangelist/amazon-control-tower/refs/heads/main/apis.yml
 created: '2026-03-16'
@@ -82,6 +90,8 @@ apis:
   humanURL: https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html
   baseURL: https://controltower.amazonaws.com
   tags:
+  - Control
+  tags_raw:
   - Controls
   properties:
   - type: OpenAPI
