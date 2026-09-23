@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: AWS Control Tower Baselines Tags API
+  title: AWS Control Tower Tags API
   description: AWS Control Tower provides the easiest way to set up and govern a secure, multi-account AWS environment. The API enables programmatic management of landing zones, controls (guardrails), baselines, and organizational unit registrations within your AWS Control Tower environment.
   version: '2018-11-28'
   contact:
