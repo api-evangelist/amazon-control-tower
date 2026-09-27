@@ -456,14 +456,54 @@ components:
           type: string
           description: The identifier of the asynchronous operation.
           example: a1b2c3d4-5678-90ab-cdef-EXAMPLE55555
-    ListControlOperationsResponse:
+    UpdateEnabledControlResponse:
       type: object
       properties:
-        controlOperations:
-          type: array
-          items:
-            $ref: '#/components/schemas/ControlOperationSummary'
-        nextToken:
+        operationIdentifier:
+          type: string
+          description: The identifier of the operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE77777
+    GetEnabledControlResponse:
+      type: object
+      properties:
+        enabledControl:
+          $ref: '#/components/schemas/EnabledControl'
+    DisableControlResponse:
+      type: object
+      properties:
+        operationIdentifier:
+          type: string
+          description: The identifier of the asynchronous operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE66666
+    EnabledControlParameter:
+      type: object
+      description: A key-value pair for a control parameter.
+      required:
+      - key
+      - value
+      properties:
+        key:
+          type: string
+          description: The parameter key.
+          example: AllowedRegions
+        value:
+          description: The parameter value.
+    EnabledControlSummary:
+      type: object
+      description: Summary information about an enabled control.
+      properties:
+        arn:
+          type: string
+          description: The ARN of the enabled control.
+        controlIdentifier:
+          type: string
+          description: The control identifier.
+        statusSummary:
+          type: object
+          properties:
+            status:
+              type: string
+        targetIdentifier:
           type: string
     ControlOperation:
       type: object
@@ -505,6 +545,34 @@ components:
         targetIdentifier:
           type: string
           description: The ARN of the organizational unit.
+    ResetEnabledControlResponse:
+      type: object
+      properties:
+        operationIdentifier:
+          type: string
+          description: The identifier of the operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE88888
+    ListEnabledControlsResponse:
+      type: object
+      properties:
+        enabledControls:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnabledControlSummary'
+        nextToken:
+          type: string
+    Error:
+      type: object
+      description: An AWS Control Tower API error response.
+      properties:
+        message:
+          type: string
+          description: The error message.
+          example: The specified resource was not found.
+        code:
+          type: string
+          description: The error code.
+          example: ResourceNotFoundException
     EnabledControl:
       type: object
       description: Information about an enabled control.
@@ -545,69 +613,20 @@ components:
         targetIdentifier:
           type: string
           description: The ARN of the organizational unit.
-    DisableControlResponse:
-      type: object
-      properties:
-        operationIdentifier:
-          type: string
-          description: The identifier of the asynchronous operation.
-          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE66666
-    GetEnabledControlResponse:
-      type: object
-      properties:
-        enabledControl:
-          $ref: '#/components/schemas/EnabledControl'
-    EnabledControlSummary:
-      type: object
-      description: Summary information about an enabled control.
-      properties:
-        arn:
-          type: string
-          description: The ARN of the enabled control.
-        controlIdentifier:
-          type: string
-          description: The control identifier.
-        statusSummary:
-          type: object
-          properties:
-            status:
-              type: string
-        targetIdentifier:
-          type: string
-    UpdateEnabledControlResponse:
-      type: object
-      properties:
-        operationIdentifier:
-          type: string
-          description: The identifier of the operation.
-          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE77777
-    ListEnabledControlsResponse:
-      type: object
-      properties:
-        enabledControls:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnabledControlSummary'
-        nextToken:
-          type: string
-    EnabledControlParameter:
-      type: object
-      description: A key-value pair for a control parameter.
-      required:
-      - key
-      - value
-      properties:
-        key:
-          type: string
-          description: The parameter key.
-          example: AllowedRegions
-        value:
-          description: The parameter value.
     GetControlOperationResponse:
       type: object
       properties:
         controlOperation:
           $ref: '#/components/schemas/ControlOperation'
+    ListControlOperationsResponse:
+      type: object
+      properties:
+        controlOperations:
+          type: array
+          items:
+            $ref: '#/components/schemas/ControlOperationSummary'
+        nextToken:
+          type: string
     EnableControlRequest:
       type: object
       required:
@@ -632,25 +651,6 @@ components:
           description: Tags to apply to the EnabledControl resource.
           additionalProperties:
             type: string
-    ResetEnabledControlResponse:
-      type: object
-      properties:
-        operationIdentifier:
-          type: string
-          description: The identifier of the operation.
-          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE88888
-    Error:
-      type: object
-      description: An AWS Control Tower API error response.
-      properties:
-        message:
-          type: string
-          description: The error message.
-          example: The specified resource was not found.
-        code:
-          type: string
-          description: The error code.
-          example: ResourceNotFoundException
   securitySchemes:
     aws_signature:
       type: http
