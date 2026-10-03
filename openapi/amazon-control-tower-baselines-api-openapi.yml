@@ -419,47 +419,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    UpdateEnabledBaselineResponse:
-      type: object
-      properties:
-        operationIdentifier:
-          type: string
-          example: a1b2c3d4-5678-90ab-cdef-EXAMPLEDDDDD
-    EnabledBaseline:
-      type: object
-      description: An enabled baseline for a target organizational unit.
-      properties:
-        arn:
-          type: string
-          description: The ARN of the enabled baseline.
-          example: arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE
-        baselineIdentifier:
-          type: string
-          description: The baseline ARN.
-        baselineVersion:
-          type: string
-          description: The version of the baseline.
-          example: '2.0'
-        parameters:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnabledBaselineParameter'
-        statusSummary:
-          type: object
-          properties:
-            lastOperationIdentifier:
-              type: string
-            status:
-              type: string
-        targetIdentifier:
-          type: string
-          description: The ARN of the target organizational unit.
-    DisableBaselineResponse:
-      type: object
-      properties:
-        operationIdentifier:
-          type: string
-          example: a1b2c3d4-5678-90ab-cdef-EXAMPLEAAAAA
     EnableBaselineRequest:
       type: object
       required:
@@ -489,6 +448,124 @@ components:
           type: string
           description: The ARN of the target organizational unit.
           example: arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111
+    ResetEnabledBaselineResponse:
+      type: object
+      properties:
+        operationIdentifier:
+          type: string
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLECCCCC
+    GetBaselineResponse:
+      type: object
+      properties:
+        arn:
+          type: string
+        description:
+          type: string
+        name:
+          type: string
+    EnableBaselineResponse:
+      type: object
+      properties:
+        arn:
+          type: string
+          description: The ARN of the EnabledBaseline resource.
+          example: arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE
+        operationIdentifier:
+          type: string
+          description: The identifier of the asynchronous operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE99999
+    EnabledBaselineSummary:
+      type: object
+      description: Summary of an enabled baseline.
+      properties:
+        arn:
+          type: string
+        baselineIdentifier:
+          type: string
+        statusSummary:
+          type: object
+          properties:
+            status:
+              type: string
+        targetIdentifier:
+          type: string
+    EnabledBaseline:
+      type: object
+      description: An enabled baseline for a target organizational unit.
+      properties:
+        arn:
+          type: string
+          description: The ARN of the enabled baseline.
+          example: arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE
+        baselineIdentifier:
+          type: string
+          description: The baseline ARN.
+        baselineVersion:
+          type: string
+          description: The version of the baseline.
+          example: '2.0'
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnabledBaselineParameter'
+        statusSummary:
+          type: object
+          properties:
+            lastOperationIdentifier:
+              type: string
+            status:
+              type: string
+        targetIdentifier:
+          type: string
+          description: The ARN of the target organizational unit.
+    EnabledBaselineParameter:
+      type: object
+      description: A key-value pair for a baseline parameter.
+      required:
+      - key
+      - value
+      properties:
+        key:
+          type: string
+          description: The parameter key.
+          example: IdentityCenterEnabled
+        value:
+          description: The parameter value.
+    ListEnabledBaselinesResponse:
+      type: object
+      properties:
+        enabledBaselines:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnabledBaselineSummary'
+        nextToken:
+          type: string
+    ListBaselinesResponse:
+      type: object
+      properties:
+        baselines:
+          type: array
+          items:
+            $ref: '#/components/schemas/Baseline'
+        nextToken:
+          type: string
+    GetEnabledBaselineResponse:
+      type: object
+      properties:
+        enabledBaselineDetails:
+          $ref: '#/components/schemas/EnabledBaseline'
+    Error:
+      type: object
+      description: An AWS Control Tower API error response.
+      properties:
+        message:
+          type: string
+          description: The error message.
+          example: The specified resource was not found.
+        code:
+          type: string
+          description: The error code.
+          example: ResourceNotFoundException
     Baseline:
       type: object
       description: A baseline definition.
@@ -505,58 +582,12 @@ components:
           type: string
           description: The name of the baseline.
           example: AWSControlTowerBaseline
-    ListEnabledBaselinesResponse:
+    DisableBaselineResponse:
       type: object
       properties:
-        enabledBaselines:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnabledBaselineSummary'
-        nextToken:
-          type: string
-    EnabledBaselineSummary:
-      type: object
-      description: Summary of an enabled baseline.
-      properties:
-        arn:
-          type: string
-        baselineIdentifier:
-          type: string
-        statusSummary:
-          type: object
-          properties:
-            status:
-              type: string
-        targetIdentifier:
-          type: string
-    Error:
-      type: object
-      description: An AWS Control Tower API error response.
-      properties:
-        message:
-          type: string
-          description: The error message.
-          example: The specified resource was not found.
-        code:
-          type: string
-          description: The error code.
-          example: ResourceNotFoundException
-    EnableBaselineResponse:
-      type: object
-      properties:
-        arn:
-          type: string
-          description: The ARN of the EnabledBaseline resource.
-          example: arn:aws:controltower:us-east-1:123456789012:enabledbaseline/a1b2c3d4EXAMPLE
         operationIdentifier:
           type: string
-          description: The identifier of the asynchronous operation.
-          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE99999
-    GetEnabledBaselineResponse:
-      type: object
-      properties:
-        enabledBaselineDetails:
-          $ref: '#/components/schemas/EnabledBaseline'
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLEAAAAA
     BaselineOperation:
       type: object
       description: An operation performed on a baseline.
@@ -584,48 +615,17 @@ components:
           - IN_PROGRESS
         statusMessage:
           type: string
-    ResetEnabledBaselineResponse:
-      type: object
-      properties:
-        operationIdentifier:
-          type: string
-          example: a1b2c3d4-5678-90ab-cdef-EXAMPLECCCCC
     GetBaselineOperationResponse:
       type: object
       properties:
         baselineOperation:
           $ref: '#/components/schemas/BaselineOperation'
-    ListBaselinesResponse:
+    UpdateEnabledBaselineResponse:
       type: object
       properties:
-        baselines:
-          type: array
-          items:
-            $ref: '#/components/schemas/Baseline'
-        nextToken:
+        operationIdentifier:
           type: string
-    EnabledBaselineParameter:
-      type: object
-      description: A key-value pair for a baseline parameter.
-      required:
-      - key
-      - value
-      properties:
-        key:
-          type: string
-          description: The parameter key.
-          example: IdentityCenterEnabled
-        value:
-          description: The parameter value.
-    GetBaselineResponse:
-      type: object
-      properties:
-        arn:
-          type: string
-        description:
-          type: string
-        name:
-          type: string
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLEDDDDD
   securitySchemes:
     aws_signature:
       type: http

@@ -430,149 +430,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ControlOperationSummary:
-      type: object
-      description: Summary of a control operation.
-      properties:
-        controlIdentifier:
-          type: string
-        operationIdentifier:
-          type: string
-        operationType:
-          type: string
-        startTime:
-          type: string
-          format: date-time
-        status:
-          type: string
-    EnableControlResponse:
-      type: object
-      properties:
-        arn:
-          type: string
-          description: The ARN of the EnabledControl resource.
-          example: arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE
-        operationIdentifier:
-          type: string
-          description: The identifier of the asynchronous operation.
-          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE55555
-    UpdateEnabledControlResponse:
-      type: object
-      properties:
-        operationIdentifier:
-          type: string
-          description: The identifier of the operation.
-          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE77777
-    GetEnabledControlResponse:
-      type: object
-      properties:
-        enabledControl:
-          $ref: '#/components/schemas/EnabledControl'
-    DisableControlResponse:
-      type: object
-      properties:
-        operationIdentifier:
-          type: string
-          description: The identifier of the asynchronous operation.
-          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE66666
-    EnabledControlParameter:
-      type: object
-      description: A key-value pair for a control parameter.
-      required:
-      - key
-      - value
-      properties:
-        key:
-          type: string
-          description: The parameter key.
-          example: AllowedRegions
-        value:
-          description: The parameter value.
-    EnabledControlSummary:
-      type: object
-      description: Summary information about an enabled control.
-      properties:
-        arn:
-          type: string
-          description: The ARN of the enabled control.
-        controlIdentifier:
-          type: string
-          description: The control identifier.
-        statusSummary:
-          type: object
-          properties:
-            status:
-              type: string
-        targetIdentifier:
-          type: string
-    ControlOperation:
-      type: object
-      description: An operation performed on a control.
-      properties:
-        controlIdentifier:
-          type: string
-          description: The identifier of the control.
-        enabledControlIdentifier:
-          type: string
-          description: The ARN of the enabled control.
-        endTime:
-          type: string
-          format: date-time
-        operationIdentifier:
-          type: string
-          description: The unique identifier of the operation.
-        operationType:
-          type: string
-          description: The type of operation.
-          enum:
-          - ENABLE_CONTROL
-          - DISABLE_CONTROL
-          - UPDATE_ENABLED_CONTROL
-          - RESET_ENABLED_CONTROL
-        startTime:
-          type: string
-          format: date-time
-        status:
-          type: string
-          description: The status of the operation.
-          enum:
-          - SUCCEEDED
-          - FAILED
-          - IN_PROGRESS
-        statusMessage:
-          type: string
-          description: An error message if the operation failed.
-        targetIdentifier:
-          type: string
-          description: The ARN of the organizational unit.
-    ResetEnabledControlResponse:
-      type: object
-      properties:
-        operationIdentifier:
-          type: string
-          description: The identifier of the operation.
-          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE88888
-    ListEnabledControlsResponse:
-      type: object
-      properties:
-        enabledControls:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnabledControlSummary'
-        nextToken:
-          type: string
-    Error:
-      type: object
-      description: An AWS Control Tower API error response.
-      properties:
-        message:
-          type: string
-          description: The error message.
-          example: The specified resource was not found.
-        code:
-          type: string
-          description: The error code.
-          example: ResourceNotFoundException
     EnabledControl:
       type: object
       description: Information about an enabled control.
@@ -613,11 +470,28 @@ components:
         targetIdentifier:
           type: string
           description: The ARN of the organizational unit.
-    GetControlOperationResponse:
+    ControlOperationSummary:
+      type: object
+      description: Summary of a control operation.
+      properties:
+        controlIdentifier:
+          type: string
+        operationIdentifier:
+          type: string
+        operationType:
+          type: string
+        startTime:
+          type: string
+          format: date-time
+        status:
+          type: string
+    DisableControlResponse:
       type: object
       properties:
-        controlOperation:
-          $ref: '#/components/schemas/ControlOperation'
+        operationIdentifier:
+          type: string
+          description: The identifier of the asynchronous operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE66666
     ListControlOperationsResponse:
       type: object
       properties:
@@ -627,6 +501,17 @@ components:
             $ref: '#/components/schemas/ControlOperationSummary'
         nextToken:
           type: string
+    EnableControlResponse:
+      type: object
+      properties:
+        arn:
+          type: string
+          description: The ARN of the EnabledControl resource.
+          example: arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE
+        operationIdentifier:
+          type: string
+          description: The identifier of the asynchronous operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE55555
     EnableControlRequest:
       type: object
       required:
@@ -651,6 +536,121 @@ components:
           description: Tags to apply to the EnabledControl resource.
           additionalProperties:
             type: string
+    ControlOperation:
+      type: object
+      description: An operation performed on a control.
+      properties:
+        controlIdentifier:
+          type: string
+          description: The identifier of the control.
+        enabledControlIdentifier:
+          type: string
+          description: The ARN of the enabled control.
+        endTime:
+          type: string
+          format: date-time
+        operationIdentifier:
+          type: string
+          description: The unique identifier of the operation.
+        operationType:
+          type: string
+          description: The type of operation.
+          enum:
+          - ENABLE_CONTROL
+          - DISABLE_CONTROL
+          - UPDATE_ENABLED_CONTROL
+          - RESET_ENABLED_CONTROL
+        startTime:
+          type: string
+          format: date-time
+        status:
+          type: string
+          description: The status of the operation.
+          enum:
+          - SUCCEEDED
+          - FAILED
+          - IN_PROGRESS
+        statusMessage:
+          type: string
+          description: An error message if the operation failed.
+        targetIdentifier:
+          type: string
+          description: The ARN of the organizational unit.
+    GetControlOperationResponse:
+      type: object
+      properties:
+        controlOperation:
+          $ref: '#/components/schemas/ControlOperation'
+    Error:
+      type: object
+      description: An AWS Control Tower API error response.
+      properties:
+        message:
+          type: string
+          description: The error message.
+          example: The specified resource was not found.
+        code:
+          type: string
+          description: The error code.
+          example: ResourceNotFoundException
+    GetEnabledControlResponse:
+      type: object
+      properties:
+        enabledControl:
+          $ref: '#/components/schemas/EnabledControl'
+    EnabledControlParameter:
+      type: object
+      description: A key-value pair for a control parameter.
+      required:
+      - key
+      - value
+      properties:
+        key:
+          type: string
+          description: The parameter key.
+          example: AllowedRegions
+        value:
+          description: The parameter value.
+    EnabledControlSummary:
+      type: object
+      description: Summary information about an enabled control.
+      properties:
+        arn:
+          type: string
+          description: The ARN of the enabled control.
+        controlIdentifier:
+          type: string
+          description: The control identifier.
+        statusSummary:
+          type: object
+          properties:
+            status:
+              type: string
+        targetIdentifier:
+          type: string
+    ResetEnabledControlResponse:
+      type: object
+      properties:
+        operationIdentifier:
+          type: string
+          description: The identifier of the operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE88888
+    UpdateEnabledControlResponse:
+      type: object
+      properties:
+        operationIdentifier:
+          type: string
+          description: The identifier of the operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE77777
+    ListEnabledControlsResponse:
+      type: object
+      properties:
+        enabledControls:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnabledControlSummary'
+        nextToken:
+          type: string
   securitySchemes:
     aws_signature:
       type: http

@@ -404,6 +404,49 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    LandingZone:
+      type: object
+      description: An AWS Control Tower landing zone.
+      properties:
+        arn:
+          type: string
+          description: The ARN of the landing zone.
+          example: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
+        driftStatus:
+          type: object
+          description: The drift status of the landing zone.
+          properties:
+            status:
+              type: string
+              enum:
+              - DRIFTED
+              - IN_SYNC
+              - NOT_CHECKING_FOR_DRIFT
+              - UNKNOWN
+        latestAvailableVersion:
+          type: string
+          description: The latest available version of the landing zone.
+          example: '3.3'
+        manifest:
+          type: object
+          description: The landing zone manifest document.
+        status:
+          type: string
+          description: The landing zone deployment status.
+          enum:
+          - ACTIVE
+          - PROCESSING
+          - FAILED
+          example: ACTIVE
+        version:
+          type: string
+          description: The current deployed version of the landing zone.
+          example: '3.3'
+    GetLandingZoneResponse:
+      type: object
+      properties:
+        landingZone:
+          $ref: '#/components/schemas/LandingZone'
     ListLandingZonesResponse:
       type: object
       properties:
@@ -413,19 +456,22 @@ components:
             $ref: '#/components/schemas/LandingZoneSummary'
         nextToken:
           type: string
-    LandingZoneSummary:
+    ListLandingZoneOperationsResponse:
       type: object
-      description: Summary information about a landing zone.
       properties:
-        arn:
+        landingZoneOperations:
+          type: array
+          items:
+            $ref: '#/components/schemas/LandingZoneOperationSummary'
+        nextToken:
           type: string
-          description: The ARN of the landing zone.
-          example: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
-    GetLandingZoneOperationResponse:
+    UpdateLandingZoneResponse:
       type: object
       properties:
-        operationDetails:
-          $ref: '#/components/schemas/LandingZoneOperationDetail'
+        operationIdentifier:
+          type: string
+          description: A unique identifier assigned to the UpdateLandingZone operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE33333
     LandingZoneOperationDetail:
       type: object
       description: Information about a landing zone operation.
@@ -472,33 +518,43 @@ components:
           type: string
           description: The error code.
           example: ResourceNotFoundException
-    UpdateLandingZoneRequest:
+    ResetLandingZoneResponse:
+      type: object
+      properties:
+        operationIdentifier:
+          type: string
+          description: A unique identifier assigned to the ResetLandingZone operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE44444
+    GetLandingZoneOperationResponse:
+      type: object
+      properties:
+        operationDetails:
+          $ref: '#/components/schemas/LandingZoneOperationDetail'
+    DeleteLandingZoneResponse:
+      type: object
+      properties:
+        operationIdentifier:
+          type: string
+          description: A unique identifier assigned to a DeleteLandingZone operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE22222
+    CreateLandingZoneRequest:
       type: object
       required:
-      - landingZoneIdentifier
       - manifest
       - version
       properties:
-        landingZoneIdentifier:
-          type: string
-          description: The identifier of the landing zone.
-          example: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
         manifest:
           type: object
-          description: The landing zone manifest document.
+          description: The landing zone manifest document, a YAML expressible input type.
         version:
           type: string
-          description: The target landing zone version.
+          description: The landing zone version, for example, 3.3.
           example: '3.3'
-    ListLandingZoneOperationsResponse:
-      type: object
-      properties:
-        landingZoneOperations:
-          type: array
-          items:
-            $ref: '#/components/schemas/LandingZoneOperationSummary'
-        nextToken:
-          type: string
+        tags:
+          type: object
+          description: Tags to apply to the landing zone.
+          additionalProperties:
+            type: string
     LandingZoneOperationSummary:
       type: object
       description: Summary of a landing zone operation.
@@ -518,27 +574,14 @@ components:
           - SUCCEEDED
           - FAILED
           - IN_PROGRESS
-    ResetLandingZoneResponse:
+    LandingZoneSummary:
       type: object
+      description: Summary information about a landing zone.
       properties:
-        operationIdentifier:
+        arn:
           type: string
-          description: A unique identifier assigned to the ResetLandingZone operation.
-          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE44444
-    UpdateLandingZoneResponse:
-      type: object
-      properties:
-        operationIdentifier:
-          type: string
-          description: A unique identifier assigned to the UpdateLandingZone operation.
-          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE33333
-    DeleteLandingZoneResponse:
-      type: object
-      properties:
-        operationIdentifier:
-          type: string
-          description: A unique identifier assigned to a DeleteLandingZone operation.
-          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE22222
+          description: The ARN of the landing zone.
+          example: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
     CreateLandingZoneResponse:
       type: object
       properties:
@@ -550,67 +593,24 @@ components:
           type: string
           description: A unique identifier assigned to a CreateLandingZone operation.
           example: a1b2c3d4-5678-90ab-cdef-EXAMPLE11111
-    CreateLandingZoneRequest:
+    UpdateLandingZoneRequest:
       type: object
       required:
+      - landingZoneIdentifier
       - manifest
       - version
       properties:
-        manifest:
-          type: object
-          description: The landing zone manifest document, a YAML expressible input type.
-        version:
+        landingZoneIdentifier:
           type: string
-          description: The landing zone version, for example, 3.3.
-          example: '3.3'
-        tags:
-          type: object
-          description: Tags to apply to the landing zone.
-          additionalProperties:
-            type: string
-    LandingZone:
-      type: object
-      description: An AWS Control Tower landing zone.
-      properties:
-        arn:
-          type: string
-          description: The ARN of the landing zone.
+          description: The identifier of the landing zone.
           example: arn:aws:controltower:us-east-1:123456789012:landingzone/a1b2c3d4EXAMPLE
-        driftStatus:
-          type: object
-          description: The drift status of the landing zone.
-          properties:
-            status:
-              type: string
-              enum:
-              - DRIFTED
-              - IN_SYNC
-              - NOT_CHECKING_FOR_DRIFT
-              - UNKNOWN
-        latestAvailableVersion:
-          type: string
-          description: The latest available version of the landing zone.
-          example: '3.3'
         manifest:
           type: object
           description: The landing zone manifest document.
-        status:
-          type: string
-          description: The landing zone deployment status.
-          enum:
-          - ACTIVE
-          - PROCESSING
-          - FAILED
-          example: ACTIVE
         version:
           type: string
-          description: The current deployed version of the landing zone.
+          description: The target landing zone version.
           example: '3.3'
-    GetLandingZoneResponse:
-      type: object
-      properties:
-        landingZone:
-          $ref: '#/components/schemas/LandingZone'
   securitySchemes:
     aws_signature:
       type: http
