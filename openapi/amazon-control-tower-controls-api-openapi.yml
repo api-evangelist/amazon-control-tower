@@ -430,46 +430,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    EnabledControl:
-      type: object
-      description: Information about an enabled control.
-      properties:
-        arn:
-          type: string
-          description: The ARN of the enabled control.
-          example: arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE
-        controlIdentifier:
-          type: string
-          description: The control identifier.
-          example: arn:aws:controltower:us-east-1::control/AWS-GR_ENCRYPTED_VOLUMES
-        driftStatusSummary:
-          type: object
-          properties:
-            driftStatus:
-              type: string
-              enum:
-              - DRIFTED
-              - IN_SYNC
-              - NOT_CHECKING_FOR_DRIFT
-              - UNKNOWN
-        parameters:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnabledControlParameter'
-        statusSummary:
-          type: object
-          properties:
-            lastOperationIdentifier:
-              type: string
-            status:
-              type: string
-              enum:
-              - SUCCEEDED
-              - FAILED
-              - UNDER_CHANGE
-        targetIdentifier:
-          type: string
-          description: The ARN of the organizational unit.
     ControlOperationSummary:
       type: object
       description: Summary of a control operation.
@@ -485,57 +445,18 @@ components:
           format: date-time
         status:
           type: string
-    DisableControlResponse:
+    GetControlOperationResponse:
+      type: object
+      properties:
+        controlOperation:
+          $ref: '#/components/schemas/ControlOperation'
+    UpdateEnabledControlResponse:
       type: object
       properties:
         operationIdentifier:
           type: string
-          description: The identifier of the asynchronous operation.
-          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE66666
-    ListControlOperationsResponse:
-      type: object
-      properties:
-        controlOperations:
-          type: array
-          items:
-            $ref: '#/components/schemas/ControlOperationSummary'
-        nextToken:
-          type: string
-    EnableControlResponse:
-      type: object
-      properties:
-        arn:
-          type: string
-          description: The ARN of the EnabledControl resource.
-          example: arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE
-        operationIdentifier:
-          type: string
-          description: The identifier of the asynchronous operation.
-          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE55555
-    EnableControlRequest:
-      type: object
-      required:
-      - controlIdentifier
-      - targetIdentifier
-      properties:
-        controlIdentifier:
-          type: string
-          description: The ARN of the control. Only Strongly recommended and Elective controls are permitted.
-          example: arn:aws:controltower:us-east-1::control/AWS-GR_ENCRYPTED_VOLUMES
-        targetIdentifier:
-          type: string
-          description: The ARN of the organizational unit on which the control will be enabled.
-          example: arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111
-        parameters:
-          type: array
-          description: A list of input parameter values that are supplied to enable the control.
-          items:
-            $ref: '#/components/schemas/EnabledControlParameter'
-        tags:
-          type: object
-          description: Tags to apply to the EnabledControl resource.
-          additionalProperties:
-            type: string
+          description: The identifier of the operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE77777
     ControlOperation:
       type: object
       description: An operation performed on a control.
@@ -576,11 +497,58 @@ components:
         targetIdentifier:
           type: string
           description: The ARN of the organizational unit.
-    GetControlOperationResponse:
+    ResetEnabledControlResponse:
       type: object
       properties:
-        controlOperation:
-          $ref: '#/components/schemas/ControlOperation'
+        operationIdentifier:
+          type: string
+          description: The identifier of the operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE88888
+    GetEnabledControlResponse:
+      type: object
+      properties:
+        enabledControl:
+          $ref: '#/components/schemas/EnabledControl'
+    EnabledControl:
+      type: object
+      description: Information about an enabled control.
+      properties:
+        arn:
+          type: string
+          description: The ARN of the enabled control.
+          example: arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE
+        controlIdentifier:
+          type: string
+          description: The control identifier.
+          example: arn:aws:controltower:us-east-1::control/AWS-GR_ENCRYPTED_VOLUMES
+        driftStatusSummary:
+          type: object
+          properties:
+            driftStatus:
+              type: string
+              enum:
+              - DRIFTED
+              - IN_SYNC
+              - NOT_CHECKING_FOR_DRIFT
+              - UNKNOWN
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnabledControlParameter'
+        statusSummary:
+          type: object
+          properties:
+            lastOperationIdentifier:
+              type: string
+            status:
+              type: string
+              enum:
+              - SUCCEEDED
+              - FAILED
+              - UNDER_CHANGE
+        targetIdentifier:
+          type: string
+          description: The ARN of the organizational unit.
     Error:
       type: object
       description: An AWS Control Tower API error response.
@@ -593,11 +561,66 @@ components:
           type: string
           description: The error code.
           example: ResourceNotFoundException
-    GetEnabledControlResponse:
+    DisableControlResponse:
       type: object
       properties:
-        enabledControl:
-          $ref: '#/components/schemas/EnabledControl'
+        operationIdentifier:
+          type: string
+          description: The identifier of the asynchronous operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE66666
+    ListControlOperationsResponse:
+      type: object
+      properties:
+        controlOperations:
+          type: array
+          items:
+            $ref: '#/components/schemas/ControlOperationSummary'
+        nextToken:
+          type: string
+    EnableControlRequest:
+      type: object
+      required:
+      - controlIdentifier
+      - targetIdentifier
+      properties:
+        controlIdentifier:
+          type: string
+          description: The ARN of the control. Only Strongly recommended and Elective controls are permitted.
+          example: arn:aws:controltower:us-east-1::control/AWS-GR_ENCRYPTED_VOLUMES
+        targetIdentifier:
+          type: string
+          description: The ARN of the organizational unit on which the control will be enabled.
+          example: arn:aws:organizations::123456789012:ou/o-exampleorgid11/ou-exampleouid111
+        parameters:
+          type: array
+          description: A list of input parameter values that are supplied to enable the control.
+          items:
+            $ref: '#/components/schemas/EnabledControlParameter'
+        tags:
+          type: object
+          description: Tags to apply to the EnabledControl resource.
+          additionalProperties:
+            type: string
+    EnableControlResponse:
+      type: object
+      properties:
+        arn:
+          type: string
+          description: The ARN of the EnabledControl resource.
+          example: arn:aws:controltower:us-east-1:123456789012:enabledcontrol/a1b2c3d4EXAMPLE
+        operationIdentifier:
+          type: string
+          description: The identifier of the asynchronous operation.
+          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE55555
+    ListEnabledControlsResponse:
+      type: object
+      properties:
+        enabledControls:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnabledControlSummary'
+        nextToken:
+          type: string
     EnabledControlParameter:
       type: object
       description: A key-value pair for a control parameter.
@@ -627,29 +650,6 @@ components:
             status:
               type: string
         targetIdentifier:
-          type: string
-    ResetEnabledControlResponse:
-      type: object
-      properties:
-        operationIdentifier:
-          type: string
-          description: The identifier of the operation.
-          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE88888
-    UpdateEnabledControlResponse:
-      type: object
-      properties:
-        operationIdentifier:
-          type: string
-          description: The identifier of the operation.
-          example: a1b2c3d4-5678-90ab-cdef-EXAMPLE77777
-    ListEnabledControlsResponse:
-      type: object
-      properties:
-        enabledControls:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnabledControlSummary'
-        nextToken:
           type: string
   securitySchemes:
     aws_signature:
