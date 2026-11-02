@@ -30,7 +30,7 @@ plans:
   overage: $0.003 per configuration item recorded; $0.001 per evaluation (for the first 100,000 evaluations);
     $2.00 per 100,000 management events (CloudTrail); $0.023 per GB for Amazon S3
 x-canonical:
-  generated: '2026-11-01'
+  generated: '2026-11-02'
   vocabulary: engine/economics/plans-canonical.yml
   models:
   - metered
