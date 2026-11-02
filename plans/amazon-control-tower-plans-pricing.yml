@@ -1,0 +1,45 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-28'
+method: searched
+source: https://aws.amazon.com/controltower/pricing/
+sources:
+- https://aws.amazon.com/controltower/pricing/
+provenance:
+  tool: engine/economics/harvest_pricing.py
+  run: 20261028T161713
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: free
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-10-28'
+published: false
+note: Page states no charge for AWS Control Tower itself; numeric prices appear only within worked pricing
+  examples for underlying AWS services (AWS Config per configuration item/evaluation, CloudTrail per 100,000
+  management events, S3 per GB).
+plan_count: 1
+currency: USD
+plans:
+- name: AWS Control Tower
+  price_text: There is no additional charge to use AWS Control Tower.
+  currency: USD
+  period: none
+  included_quota: Service itself at no additional charge; you pay for underlying services (AWS Config,
+    CloudTrail, S3, SNS, etc.) based on usage
+  overage: $0.003 per configuration item recorded; $0.001 per evaluation (for the first 100,000 evaluations);
+    $2.00 per 100,000 management events (CloudTrail); $0.023 per GB for Amazon S3
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models:
+  - metered
+  units: []
+  plans:
+  - name: AWS Control Tower
+    access: other
+    model: metered
+    model_how: derived
+    units: []
+    periods:
+    - none
