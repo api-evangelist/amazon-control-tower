@@ -1,11 +1,14 @@
 aid: amazon-control-tower
+
 name: Amazon Control Tower
-description: AWS Control Tower provides the easiest way to set up and govern a secure, multi-account AWS
-  environment based on best practices. It establishes a landing zone with pre-configured governance and
-  guardrails, enabling organizations to maintain compliance and manage accounts at scale. With over 750
-  preconfigured controls, it automates account creation, OU registration, and compliance enforcement across
-  the entire AWS organization.
+
+description: AWS Control Tower provides the easiest way to set up and govern a secure, multi-account AWS environment based on best practices.
+  It establishes a landing zone with pre-configured governance and guardrails, enabling organizations to maintain compliance and manage accounts
+  at scale. With over 750 preconfigured controls, it automates account creation, OU registration, and compliance enforcement across the entire
+  AWS organization.
+
 type: Index
+
 deliveryModel:
   model: saas
   open_source: false
@@ -18,6 +21,7 @@ deliveryModel:
   - pricing
   generated: '2026-08-28'
   method: derived
+
 accessModel:
   pricing: unknown
   onboarding: unknown
@@ -30,9 +34,10 @@ accessModel:
   - plans
   - authentication
   - security
-  generated: '2026-11-06'
+  generated: '2026-11-13'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/amazon-control-tower.png
+
 tags:
 - Amazon Web Services
 - Compliance
@@ -48,135 +53,72 @@ tags_raw:
 - Landing Zone
 - Multi-Account
 - Security
+- Control
+
+tags_raw:
+- AWS
+- Compliance
+- Governance
+- Landing Zone
+- Multi-Account
+- Security
 - Controls
+
 url: https://raw.githubusercontent.com/api-evangelist/amazon-control-tower/refs/heads/main/apis.yml
+
 created: '2026-03-16'
+
 modified: '2026-09-16'
+
 specificationVersion: '0.23'
-apis:
-- aid: amazon-control-tower:amazon-control-tower-baselines-api
-  name: Amazon Control Tower Baselines API
-  description: Operations for applying and managing baselines on organizational units
-  humanURL: https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html
-  baseURL: https://controltower.amazonaws.com
-  tags:
-  - Baselines
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-control-tower-baselines-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html
-  - type: GettingStarted
-    url: https://aws.amazon.com/controltower/getting-started/
-  - type: Pricing
-    url: https://aws.amazon.com/controltower/pricing/
-  - type: FAQ
-    url: https://aws.amazon.com/controltower/faqs/
-  - type: APIReference
-    url: https://docs.aws.amazon.com/controltower/latest/APIReference/API_Operations.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html
-  - type: JSONSchema
-    url: json-schema/landing-zone-schema.json
-  - type: JSONSchema
-    url: json-schema/enabled-control-schema.json
-  - type: JSONSchema
-    url: json-schema/enabled-baseline-schema.json
-  - type: JSONLD
-    url: json-ld/amazon-control-tower-context.jsonld
-- aid: amazon-control-tower:amazon-control-tower-controls-api
-  name: Amazon Control Tower Controls API
-  description: Operations for enabling, disabling, and managing guardrail controls on organizational units
-  humanURL: https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html
-  baseURL: https://controltower.amazonaws.com
-  tags:
-  - Control
-  tags_raw:
-  - Controls
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-control-tower-controls-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html
-  - type: GettingStarted
-    url: https://aws.amazon.com/controltower/getting-started/
-  - type: Pricing
-    url: https://aws.amazon.com/controltower/pricing/
-  - type: FAQ
-    url: https://aws.amazon.com/controltower/faqs/
-  - type: APIReference
-    url: https://docs.aws.amazon.com/controltower/latest/APIReference/API_Operations.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html
-  - type: JSONSchema
-    url: json-schema/landing-zone-schema.json
-  - type: JSONSchema
-    url: json-schema/enabled-control-schema.json
-  - type: JSONSchema
-    url: json-schema/enabled-baseline-schema.json
-  - type: JSONLD
-    url: json-ld/amazon-control-tower-context.jsonld
-- aid: amazon-control-tower:amazon-control-tower-landing-zones-api
-  name: Amazon Control Tower Landing Zones API
-  description: Operations for managing AWS Control Tower landing zones
-  humanURL: https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html
-  baseURL: https://controltower.amazonaws.com
-  tags:
-  - Landing Zones
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-control-tower-landing-zones-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html
-  - type: GettingStarted
-    url: https://aws.amazon.com/controltower/getting-started/
-  - type: Pricing
-    url: https://aws.amazon.com/controltower/pricing/
-  - type: FAQ
-    url: https://aws.amazon.com/controltower/faqs/
-  - type: APIReference
-    url: https://docs.aws.amazon.com/controltower/latest/APIReference/API_Operations.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html
-  - type: JSONSchema
-    url: json-schema/landing-zone-schema.json
-  - type: JSONSchema
-    url: json-schema/enabled-control-schema.json
-  - type: JSONSchema
-    url: json-schema/enabled-baseline-schema.json
-  - type: JSONLD
-    url: json-ld/amazon-control-tower-context.jsonld
-- aid: amazon-control-tower:amazon-control-tower-tags-api
-  name: Amazon Control Tower Tags API
-  description: Operations for tagging AWS Control Tower resources
-  humanURL: https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html
-  baseURL: https://controltower.amazonaws.com
-  tags:
-  - Tags
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-control-tower-tags-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html
-  - type: GettingStarted
-    url: https://aws.amazon.com/controltower/getting-started/
-  - type: Pricing
-    url: https://aws.amazon.com/controltower/pricing/
-  - type: FAQ
-    url: https://aws.amazon.com/controltower/faqs/
-  - type: APIReference
-    url: https://docs.aws.amazon.com/controltower/latest/APIReference/API_Operations.html
-  - type: Documentation
-    url: https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html
-  - type: JSONSchema
-    url: json-schema/landing-zone-schema.json
-  - type: JSONSchema
-    url: json-schema/enabled-control-schema.json
-  - type: JSONSchema
-    url: json-schema/enabled-baseline-schema.json
-  - type: JSONLD
-    url: json-ld/amazon-control-tower-context.jsonld
+
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+
 common:
+- type: Spectral
+  url: rules/amazon-control-tower-spectral-rules.yml
+- type: Spectral
+  url: rules/amazon-control-tower-rules.yml
+- type: Spectral
+  url: rules/amazon-control-tower-jsonschema-spectral-rules.yml
+- type: Vocabulary
+  url: vocabulary/amazon-control-tower-vocabulary.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DataModel
+  url: data-model/amazon-control-tower-data-model.yml
+- type: Conventions
+  url: conventions/amazon-control-tower-conventions.yml
+- type: Compliance
+  url: https://aws.amazon.com/compliance/
+- type: Lifecycle
+  url: lifecycle/amazon-control-tower-lifecycle.yml
+- type: ErrorCatalog
+  url: errors/amazon-control-tower-problem-types.yml
+- type: Conformance
+  url: conformance/amazon-control-tower-conformance.yml
+- type: LLMsTxt
+  url: llms/amazon-control-tower-llms.txt
+- type: SecurityTxt
+  url: well-known/amazon-control-tower-security.txt
+- type: WellKnown
+  url: well-known/amazon-control-tower-well-known.yml
+- type: Hosts
+  url: hosts/amazon-control-tower-hosts.yml
+- type: Vendors
+  url: vendors/amazon-control-tower-vendors.yml
+- type: SDKs
+  url: packages/amazon-control-tower-packages.yml
+- type: Packages
+  url: packages/amazon-control-tower-packages.yml
+- type: Security
+  url: https://aws.amazon.com/security/?nc2=h_dsc_aa_sec
+- type: Newsroom
+  url: https://aws.amazon.com/media/?nc2=h_sol_ind_med
+- type: GettingStarted
+  url: https://developer.amazon.com/frustration-free-setup
 - type: Plans
   url: plans/amazon-control-tower-plans-pricing.yml
 - type: RateLimits
@@ -253,68 +195,188 @@ common:
 - type: Features
   data:
   - name: Landing Zone Management
-    description: Create, configure, update, reset, and delete AWS Control Tower landing zones programmatically
-      via API, automating multi-account environment setup.
+    description: Create, configure, update, reset, and delete AWS Control Tower landing zones programmatically via API, automating multi-account
+      environment setup.
   - name: Controls (Guardrails) Library
-    description: Over 750 preconfigured controls (guardrails) covering security, operations, and compliance.
-      Enable or disable controls on organizational units via API.
+    description: Over 750 preconfigured controls (guardrails) covering security, operations, and compliance. Enable or disable controls on organizational
+      units via API.
   - name: Baseline Registration
-    description: Apply and manage baselines on organizational units (OUs) to register them with AWS Control
-      Tower and enforce standard configurations programmatically.
+    description: Apply and manage baselines on organizational units (OUs) to register them with AWS Control Tower and enforce standard configurations
+      programmatically.
   - name: Multi-Account Governance
-    description: Automate creation of AWS accounts with built-in governance, policies, and security controls
-      through integration with AWS Organizations.
+    description: Automate creation of AWS accounts with built-in governance, policies, and security controls through integration with AWS Organizations.
   - name: Compliance Enforcement
-    description: Deploy preventive, detective, and proactive controls to enforce compliance standards
-      including CIS, NIST, PCI-DSS, HIPAA, and SOC 2.
+    description: Deploy preventive, detective, and proactive controls to enforce compliance standards including CIS, NIST, PCI-DSS, HIPAA, and
+      SOC 2.
   - name: Audit and Logging
-    description: Centralized audit logging to Amazon S3 and AWS CloudTrail integration for full visibility
-      into API calls and governance actions.
+    description: Centralized audit logging to Amazon S3 and AWS CloudTrail integration for full visibility into API calls and governance actions.
   - name: Third-Party Integrations
-    description: Seamlessly integrate third-party security, compliance, and ITSM tools at scale to enhance
-      your AWS multi-account environment.
+    description: Seamlessly integrate third-party security, compliance, and ITSM tools at scale to enhance your AWS multi-account environment.
 - type: UseCases
   data:
   - name: Multi-Account Environment Setup
-    description: Quickly set up a secure, well-architected multi-account AWS environment with landing
-      zone configuration completed in under 30 minutes.
+    description: Quickly set up a secure, well-architected multi-account AWS environment with landing zone configuration completed in under 30
+      minutes.
   - name: Compliance Automation
-    description: Deploy preconfigured controls to enforce regulatory compliance standards such as PCI-DSS,
-      HIPAA, NIST, and SOC 2 across all accounts.
+    description: Deploy preconfigured controls to enforce regulatory compliance standards such as PCI-DSS, HIPAA, NIST, and SOC 2 across all accounts.
   - name: Account Vending
-    description: Automate provisioning of new AWS accounts with built-in security policies, IAM roles,
-      and governance configurations using Account Factory.
+    description: Automate provisioning of new AWS accounts with built-in security policies, IAM roles, and governance configurations using Account
+      Factory.
   - name: OU Governance
-    description: Programmatically register organizational units with Control Tower baselines and apply
-      targeted controls for department-specific governance.
+    description: Programmatically register organizational units with Control Tower baselines and apply targeted controls for department-specific
+      governance.
   - name: Risk and Posture Management
-    description: Continuously monitor compliance posture across all accounts and receive alerts when controls
-      are violated or drift is detected.
+    description: Continuously monitor compliance posture across all accounts and receive alerts when controls are violated or drift is detected.
 - type: Integrations
   data:
   - name: AWS Organizations
-    description: Native integration with AWS Organizations for multi-account structure, OU management,
-      and account creation within a Control Tower landing zone.
+    description: Native integration with AWS Organizations for multi-account structure, OU management, and account creation within a Control Tower
+      landing zone.
   - name: AWS Service Catalog
-    description: Account Factory integration through AWS Service Catalog for self-service account provisioning
-      with pre-approved configurations.
+    description: Account Factory integration through AWS Service Catalog for self-service account provisioning with pre-approved configurations.
   - name: AWS CloudTrail
-    description: All Control Tower API calls are logged to AWS CloudTrail for audit trails, security investigations,
-      and compliance reporting.
+    description: All Control Tower API calls are logged to AWS CloudTrail for audit trails, security investigations, and compliance reporting.
   - name: AWS Config
-    description: Detective controls are implemented using AWS Config rules to continuously evaluate resource
-      compliance within managed accounts.
+    description: Detective controls are implemented using AWS Config rules to continuously evaluate resource compliance within managed accounts.
   - name: AWS Security Hub
-    description: Integrate Control Tower findings with AWS Security Hub for centralized security posture
-      management and cross-account visibility.
+    description: Integrate Control Tower findings with AWS Security Hub for centralized security posture management and cross-account visibility.
   - name: AWS CloudFormation
-    description: Launch landing zones and enable controls using CloudFormation templates and resource
-      providers for infrastructure-as-code governance.
+    description: Launch landing zones and enable controls using CloudFormation templates and resource providers for infrastructure-as-code governance.
   - name: Terraform
-    description: Community-supported Terraform providers for managing Control Tower landing zones, controls,
-      and account factory configurations.
+    description: Community-supported Terraform providers for managing Control Tower landing zones, controls, and account factory configurations.
 - type: Integrations
   url: https://aws.amazon.com/marketplace
+- type: UsageTerms
+  url: terms/amazon-control-tower-terms-of-service.yml
+- type: DataProcessing
+  url: privacy/amazon-control-tower-privacy-policy.yml
+- type: Attestations
+  url: compliance/amazon-control-tower-compliance.yml
+- type: Eligibility
+  url: eligibility/amazon-control-tower-eligibility.yml
+- type: AIPreferences
+  url: ai-preferences/amazon-control-tower-ai-preferences.yml
+- type: DataLicense
+  url: data-license/amazon-control-tower-data-license.yml
+
+apis:
+- aid: amazon-control-tower:amazon-control-tower-baselines-api
+  name: Amazon Control Tower Baselines API
+  description: Operations for applying and managing baselines on organizational units
+  humanURL: https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html
+  baseURL: https://controltower.amazonaws.com
+  tags:
+  - Baselines
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-control-tower-baselines-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html
+  - type: GettingStarted
+    url: https://aws.amazon.com/controltower/getting-started/
+  - type: Pricing
+    url: https://aws.amazon.com/controltower/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/controltower/faqs/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/controltower/latest/APIReference/API_Operations.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html
+  - type: JSONSchema
+    url: json-schema/enabled-baseline-schema.json
+  - type: JSONLD
+    url: json-ld/amazon-control-tower-context.jsonld
+- aid: amazon-control-tower:amazon-control-tower-controls-api
+  name: Amazon Control Tower Controls API
+  description: Operations for enabling, disabling, and managing guardrail controls on organizational units
+  humanURL: https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html
+  baseURL: https://controltower.amazonaws.com
+  tags:
+  - Control
+  tags_raw:
+  - Controls
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-control-tower-controls-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html
+  - type: GettingStarted
+    url: https://aws.amazon.com/controltower/getting-started/
+  - type: Pricing
+    url: https://aws.amazon.com/controltower/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/controltower/faqs/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/controltower/latest/APIReference/API_Operations.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html
+  - type: JSONSchema
+    url: json-schema/enabled-control-schema.json
+  - type: JSONLD
+    url: json-ld/amazon-control-tower-context.jsonld
+- aid: amazon-control-tower:amazon-control-tower-landing-zones-api
+  name: Amazon Control Tower Landing Zones API
+  description: Operations for managing AWS Control Tower landing zones
+  humanURL: https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html
+  baseURL: https://controltower.amazonaws.com
+  tags:
+  - Landing Zones
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-control-tower-landing-zones-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html
+  - type: GettingStarted
+    url: https://aws.amazon.com/controltower/getting-started/
+  - type: Pricing
+    url: https://aws.amazon.com/controltower/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/controltower/faqs/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/controltower/latest/APIReference/API_Operations.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html
+  - type: JSONSchema
+    url: json-schema/landing-zone-schema.json
+  - type: JSONLD
+    url: json-ld/amazon-control-tower-context.jsonld
+- aid: amazon-control-tower:amazon-control-tower-tags-api
+  name: Amazon Control Tower Tags API
+  description: Operations for tagging AWS Control Tower resources
+  humanURL: https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html
+  baseURL: https://controltower.amazonaws.com
+  tags:
+  - Tags
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-control-tower-tags-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html
+  - type: GettingStarted
+    url: https://aws.amazon.com/controltower/getting-started/
+  - type: Pricing
+    url: https://aws.amazon.com/controltower/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/controltower/faqs/
+  - type: APIReference
+    url: https://docs.aws.amazon.com/controltower/latest/APIReference/API_Operations.html
+  - type: Documentation
+    url: https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html
+  - type: JSONLD
+    url: json-ld/amazon-control-tower-context.jsonld
+  - type: JSONSchema
+    url: json-schema/amazon-control-tower-tag-resource-input-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-control-tower-untag-resource-input-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-control-tower-list-tags-for-resource-output-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-control-tower-list-tags-for-resource-input-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-control-tower-tag-resource-output-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-control-tower-untag-resource-output-schema.json
+
 integrations:
 - name: Sign in
 - name: Agent Mode
@@ -325,8 +387,12 @@ integrations:
 - name: Become a Channel Partner
 - name: Sell in AWS Marketplace
 - name: Manage Your Account
-maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+
 x-parent: amazon-web-services
+
 x-relationship: product
+x-enrichment:
+  date: '2026-11-11'
+  status: enriched
+  artifacts_added: 6
+  pass: local-v6

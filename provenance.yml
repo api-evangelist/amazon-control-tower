@@ -5,6 +5,9 @@ artifacts:
   agentic-access/amazon-control-tower-agentic-access.yml:
     method: generated
     evidence: declared in the artifact
+  ai-preferences/amazon-control-tower-ai-preferences.yml:
+    method: harvested
+    evidence: declared in the artifact
   arazzo/amazon-control-tower-create-landing-zone-workflow.yml:
     method: derived
     evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
@@ -29,6 +32,12 @@ artifacts:
   authentication/amazon-control-tower-authentication.yml:
     method: derived
     evidence: declared in the artifact
+  certification/observations-2026-11-11.jsonl:
+    method: unknown
+    evidence: no authorship recorded
+  certification/status.yml:
+    method: unknown
+    evidence: no authorship recorded
   collections/amazon-control-tower-baselines-api.opencollection.json:
     method: derived
     evidence: openapi/amazon-control-tower-baselines-api
@@ -59,6 +68,27 @@ artifacts:
   collections/amazon-control-tower.postman_collection.json:
     method: derived
     evidence: openapi/amazon-control-tower
+  compliance/amazon-control-tower-compliance.yml:
+    method: harvested
+    evidence: declared in the artifact
+  conformance/amazon-control-tower-conformance.yml:
+    method: derived
+    evidence: declared in the artifact
+  conventions/amazon-control-tower-conventions.yml:
+    method: derived
+    evidence: declared in the artifact
+  data-license/amazon-control-tower-data-license.yml:
+    method: harvested
+    evidence: declared in the artifact
+  data-model/amazon-control-tower-data-model.yml:
+    method: derived
+    evidence: declared in the artifact
+  eligibility/amazon-control-tower-eligibility.yml:
+    method: harvested
+    evidence: declared in the artifact
+  errors/amazon-control-tower-problem-types.yml:
+    method: derived
+    evidence: declared in the artifact
   examples/baseline-example.json:
     method: unknown
     evidence: no authorship recorded
@@ -194,6 +224,9 @@ artifacts:
   front-door-ai/2026-09-17.yml:
     method: unknown
     evidence: no authorship recorded
+  hosts/amazon-control-tower-hosts.yml:
+    method: derived
+    evidence: declared in the artifact
   integrations/_index.yml:
     method: generated
     evidence: carries an API Evangelist house phrase
@@ -201,6 +234,24 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   json-ld/amazon-control-tower-context.jsonld:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-control-tower-list-tags-for-resource-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-control-tower-list-tags-for-resource-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-control-tower-tag-resource-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-control-tower-tag-resource-output-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-control-tower-untag-resource-input-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-control-tower-untag-resource-output-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/baseline-operation-schema.json:
@@ -464,7 +515,7 @@ artifacts:
   kin/checks-2026-10-23T222754.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  kin/checks-2026-11-02T082323.yml:
+  kin/checks-2026-11-06T143934.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-23T000603.yml:
@@ -533,6 +584,21 @@ artifacts:
   kin/score-2026-11-02T082323.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-11-06T143934.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  lifecycle/amazon-control-tower-lifecycle.yml:
+    method: derived
+    evidence: declared in the artifact
+  llms/amazon-control-tower-llms-provenance.yml:
+    method: unknown
+    evidence: no authorship recorded
+  llms/amazon-control-tower-llms.txt:
+    method: unknown
+    evidence: no authorship recorded
+  mcp/amazon-control-tower-mcp.yml:
+    method: derived
+    evidence: declared in the artifact
   openapi/amazon-control-tower-baselines-api-openapi.yml:
     method: unknown
     evidence: no authorship recorded
@@ -545,16 +611,28 @@ artifacts:
   openapi/amazon-control-tower-tags-api-openapi.yml:
     method: unknown
     evidence: no authorship recorded
+  packages/amazon-control-tower-packages.yml:
+    method: searched
+    evidence: declared in the artifact
+  patterns/amazon-control-tower-patterns.yml:
+    method: derived
+    evidence: declared in the artifact
   plans/amazon-control-tower-plans-pricing.yml:
     method: searched
     evidence: declared in the artifact
   postman/amazon-control-tower.postman_collection.json:
     method: derived
     evidence: openapi/amazon-control-tower
+  privacy/amazon-control-tower-privacy-policy.yml:
+    method: harvested
+    evidence: declared in the artifact
   rate-limits/amazon-control-tower-rate-limits.yml:
     method: generated
     evidence: declared in the artifact
   rules/amazon-control-tower-jsonschema-spectral-rules.yml:
+    method: generated
+    evidence: declared in the artifact
+  rules/amazon-control-tower-rules.yml:
     method: generated
     evidence: declared in the artifact
   rules/amazon-control-tower-spectral-rules.yml:
@@ -569,12 +647,40 @@ artifacts:
   security/amazon-control-tower-vulnerability-disclosure.yml:
     method: searched
     evidence: declared in the artifact
+  skills/_index.yml:
+    method: generated
+    evidence: declared in the artifact
+  skills/amazon-control-tower-enable-control.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/amazon-control-tower-manage-baselines.md:
+    method: generated
+    evidence: declared in the artifact
   sla/amazon-control-tower-sla.yml:
     method: generated
     evidence: declared in the artifact
   smithy/controltower-2018-05-10.json:
+    method: harvested
+    evidence: byte-identical to https://raw.githubusercontent.com/aws/api-models-aws/3cd98287b471c106254abd89279cc87308d38bfd/models/controltower/service/2018-05-10/controltower-2018-05-10.json
+      (sha256 1c601e77a769, fetched 2026-11-11T21:08:01+00:00)
+  terms/amazon-control-tower-terms-of-service.yml:
+    method: harvested
+    evidence: declared in the artifact
+  vendors/amazon-control-tower-vendors.yml:
     method: unknown
     evidence: no authorship recorded
   vocabulary/amazon-control-tower-vocabulary.yaml:
+    method: unknown
+    evidence: no authorship recorded
+  vocabulary/amazon-control-tower-vocabulary.yml:
+    method: derived
+    evidence: declared in the artifact
+  well-known/amazon-control-tower-midway-auth-openid-configuration.json:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/amazon-control-tower-security.txt:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/amazon-control-tower-well-known.yml:
     method: unknown
     evidence: no authorship recorded
