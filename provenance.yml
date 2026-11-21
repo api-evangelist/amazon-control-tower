@@ -515,7 +515,7 @@ artifacts:
   kin/checks-2026-10-23T222754.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  kin/checks-2026-11-06T143934.yml:
+  kin/checks-2026-11-13T214628.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-23T000603.yml:
@@ -587,6 +587,9 @@ artifacts:
   kin/score-2026-11-06T143934.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-11-13T214628.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
   lifecycle/amazon-control-tower-lifecycle.yml:
     method: derived
     evidence: declared in the artifact
@@ -654,9 +657,6 @@ artifacts:
     method: generated
     evidence: declared in the artifact
   skills/amazon-control-tower-manage-baselines.md:
-    method: generated
-    evidence: declared in the artifact
-  sla/amazon-control-tower-sla.yml:
     method: generated
     evidence: declared in the artifact
   smithy/controltower-2018-05-10.json:
